@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class ExampleAgent : MonoBehaviour
+namespace Com.StudioTBD.CoronaIO
 {
-    public Camera _camera;
-    private StateMachine _stateMachine = new StateMachine();
-
-    // Use this for initialization
-    void Start()
+    public class ExampleAgent : MonoBehaviour
     {
-        _stateMachine.ChangeState(new ExampleIdleState());
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        _stateMachine.Update();
-
+        public Camera _camera;
+        public StateMachine stateMachine;
+        public Text stateText;
+        
+        // Update is called once per frame
+        void Update()
+        {
+            if (stateMachine.currentState != null)
+            {
+                stateText.text = "State: " + stateMachine.currentState.StateName;
+            }
+            else
+                stateText.text = "State: Null";
+        }
         
     }
 }

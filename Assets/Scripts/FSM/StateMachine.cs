@@ -1,32 +1,50 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class StateMachine
+namespace Com.StudioTBD.CoronaIO
 {
-    IState currentState;
-
-    public StateMachine()
-    { }
-
-    public StateMachine(IState initialState)
+    public abstract class StateMachine : MonoBehaviour
     {
-        currentState = initialState;
-    }
+        public State defaultState;
+        public State currentState;
 
-
-    public void ChangeState(IState newState)
-    {
-        if (currentState != null)
+        protected virtual void Start()
         {
-            currentState.OnStateExit();
+            foreach (State state in GetComponents<State>())
+            {
+                if (state == currentState) continue;
+                state.enabled = false;
+            }
         }
-        currentState = newState;
-        currentState.OnStateEnter();
-    }
 
-    public void Update()
-    {
-        if (currentState != null) currentState.Execute();
+        public void ChangeState(State newState)
+        {
+            Debug.Log("Changing state: " + (currentState == null ? "Null" : currentState.GetType().Name) +
+                      " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
+
+            if (currentState != null)
+            {
+                currentState.OnStateExit();
+            }
+            
+            currentState = newState;
+
+            if (currentState != null)
+            {
+                currentState.OnStateEnter();
+            }
+        }
+
+        public void Update()
+        {
+            if(currentState != null && currentState.enabled)
+            {
+                currentState.Execute();
+            }
+        }
     }
 }

@@ -1,26 +1,39 @@
 ﻿using System;
 using UnityEngine;
 
-public class ExampleIdleState : IState
+namespace Com.StudioTBD.CoronaIO
 {
-
-    public ExampleIdleState()
+    public class ExampleIdleState : State
     {
-        
-    }
+        private ExampleMovingState _exampleMovingState;
 
-    public void OnStateEnter()
-    {
-        Debug.Log("Entering " + this.GetType().Name);
-    }
+        protected override void Start()
+        {
+            base.Start();
+            StateName = "Idle";
+            _exampleMovingState = GetComponent<ExampleMovingState>();
+            Debug.Log(_exampleMovingState);
+        }
 
-    public void Execute()
-    {
-        Debug.Log("Executing " + this.GetType().Name);
-    }
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            Debug.Log("Entering " + this.GetType().FullName);
+        }
 
-    public void OnStateExit()
-    {
-        Debug.Log("Exiting " + this.GetType().Name);
+        public override void Execute()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log(this.GetType().Name + ": Space pressed");
+                StateMachine.ChangeState(_exampleMovingState);
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            base.OnStateExit();
+            Debug.Log("Exiting " + this.GetType().FullName);
+        }
     }
 }
