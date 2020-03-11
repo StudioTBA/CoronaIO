@@ -3,16 +3,15 @@ using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO
 {
-    public class ExampleMovingState : State
+    public class ExampleRunningState : State
     {
-        private ExampleIdleState _idleState;
+        private State _idleState;
         
         protected override void Start()
         {
             base.Start();
-            StateName = "Moving";
+            StateName = "Running";
             _idleState = GetComponent<ExampleIdleState>();
-            Debug.Log(_idleState);
         }
 
         public override void OnStateEnter()
@@ -21,6 +20,9 @@ namespace Com.StudioTBD.CoronaIO
             Debug.Log("Entering " + this.GetType().FullName);
         }
 
+        /// <summary>
+        /// Example Execute function that transitions from Moving to Running.
+        /// </summary>
         public override void Execute()
         {
             if (Input.GetKeyDown(KeyCode.Space))

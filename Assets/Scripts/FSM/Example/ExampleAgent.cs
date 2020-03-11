@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Com.StudioTBD.CoronaIO
 {
+    /// <summary>
+    /// Example of an entity that uses a FiniteStateMachine. 
+    /// </summary>
     public class ExampleAgent : MonoBehaviour
     {
         public Camera _camera;

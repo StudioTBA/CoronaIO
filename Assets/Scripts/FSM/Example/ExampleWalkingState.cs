@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO
 {
-    public class ExampleIdleState : State
+    public class ExampleWalkingState : State
     {
-        private State _exampleRunningState;
-
+        private State _runningState;
+        
         protected override void Start()
         {
             base.Start();
-            StateName = "Idle";
-            _exampleRunningState = GetComponent<ExampleWalkingState>();
+            StateName = "Walking";
+            _runningState = GetComponent<ExampleRunningState>();
         }
 
         public override void OnStateEnter()
@@ -21,14 +21,14 @@ namespace Com.StudioTBD.CoronaIO
         }
 
         /// <summary>
-        /// Example Execute function that transitions from Idle to Moving.
+        /// Example Execute function that transitions from Moving to Running.
         /// </summary>
         public override void Execute()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-            {
+            { 
                 Debug.Log(this.GetType().Name + ": Space pressed");
-                StateMachine.ChangeState(_exampleRunningState);
+                StateMachine.ChangeState(_runningState);
             }
         }
 
