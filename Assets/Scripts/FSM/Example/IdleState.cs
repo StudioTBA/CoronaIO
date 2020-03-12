@@ -1,7 +1,8 @@
 ﻿using System;
+using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO.Example
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     public class IdleState : State
     {
@@ -29,7 +30,7 @@ namespace Com.StudioTBD.CoronaIO.Example
         {
             if (HandleMouseClick())
             {
-                StateMachine.ChangeState(_walkingState);
+                this.ChangeState(_walkingState);
             }
         }
 

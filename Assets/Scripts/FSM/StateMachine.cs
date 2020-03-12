@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Com.StudioTBD.CoronaIO
+namespace Com.StudioTBD.CoronaIO.FMS
 {
     public abstract class StateMachine : MonoBehaviour
     {

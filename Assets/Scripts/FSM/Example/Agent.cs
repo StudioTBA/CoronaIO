@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Com.StudioTBD.CoronaIO.Example
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     /// <summary>
     /// Example of an entity that uses a FiniteStateMachine. 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO.Example
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     /// <summary>
     /// Example State Machine

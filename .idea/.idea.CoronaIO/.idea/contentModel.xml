@@ -14,6 +14,7 @@
               <e p="RunningState.cs" t="Include" />
               <e p="WalkingState.cs" t="Include" />
             </e>
+            <e p="Extensions.cs" t="Include" />
             <e p="State.cs" t="Include" />
             <e p="StateMachine.cs" t="Include" />
           </e>

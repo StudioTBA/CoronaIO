@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO
+namespace Com.StudioTBD.CoronaIO.FMS
 {
     public abstract class State : MonoBehaviour
     {
         /// <summary>
         /// State machine where that this state belongs to.
         /// </summary>
-        protected StateMachine StateMachine;
-        
+        protected StateMachine _stateMachine;
+
         private String _stateName;
-        
+
         /// <summary>
         /// Name of the state for debugging purposes.
         /// <b>Note:</b> Must be set before being used.
@@ -24,7 +24,7 @@ namespace Com.StudioTBD.CoronaIO
 
         protected virtual void Start()
         {
-            this.StateMachine = GetComponent<StateMachine>();
+            this._stateMachine = GetComponent<StateMachine>();
         }
 
         /// <summary>
@@ -52,6 +52,11 @@ namespace Com.StudioTBD.CoronaIO
         public virtual void OnStateExit()
         {
             this.enabled = false;
+        }
+
+        public StateMachine StateMachine
+        {
+            get { return _stateMachine; }
         }
     }
 }

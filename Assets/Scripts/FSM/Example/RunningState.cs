@@ -1,7 +1,8 @@
 ﻿using System;
+using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO.Example
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     public class RunningState : State
     {
@@ -49,7 +50,7 @@ namespace Com.StudioTBD.CoronaIO.Example
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                StateMachine.ChangeState(_walkingState);
+                this.ChangeState(_walkingState);
             }
         }
 
@@ -58,7 +59,7 @@ namespace Com.StudioTBD.CoronaIO.Example
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
         }
-        
+
         private bool HandleMouseClick()
         {
             if (Input.GetMouseButtonDown(0))
@@ -71,6 +72,7 @@ namespace Com.StudioTBD.CoronaIO.Example
                     return true;
                 }
             }
+
             return false;
         }
     }

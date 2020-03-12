@@ -1,7 +1,8 @@
 ﻿using System;
+using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO.Example
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     public class WalkingState : State
     {
@@ -50,7 +51,7 @@ namespace Com.StudioTBD.CoronaIO.Example
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                StateMachine.ChangeState(_runningState);
+                this.ChangeState(_runningState);
             }
         }
 

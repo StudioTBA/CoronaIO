@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-namespace Com.StudioTBD.CoronaIO
+namespace Com.StudioTBD.CoronaIO.FMS.Example
 {
     public class DataHolder
     {
