@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
     #region Parent Movement Vars
     [Header("Handler")]
     [SerializeField] float handlerSpeed = 0.25f;
-    Vector3 toPos = Vector3.zero;
+    Vector3 goalPos = Vector3.zero;
     Vector3 initMouseRot = Vector3.zero;
     Vector3 mousePosDirRot = Vector3.zero;
     [SerializeField] float rotateSpeed = 10.0f;
@@ -91,22 +91,22 @@ public class CameraMovement : MonoBehaviour
         // WASD and Arrow movements
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            toPos += transform.forward * handlerSpeed;
+            goalPos += transform.forward * handlerSpeed;
         }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            toPos += transform.right * -handlerSpeed;
+            goalPos += transform.right * -handlerSpeed;
         }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            toPos += transform.forward * -handlerSpeed;
+            goalPos += transform.forward * -handlerSpeed;
         }
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            toPos += transform.right * handlerSpeed;
+            goalPos += transform.right * handlerSpeed;
         }
 
         // Drag Movement
@@ -135,7 +135,7 @@ public class CameraMovement : MonoBehaviour
                 mousePosDirDrag = initMouseDrag - currentPos;
                 mousePosDirDrag.Normalize();
 
-                toPos += new Vector3(mousePosDirDrag.x, 0, mousePosDirDrag.z) * dragSpeed;
+                goalPos += new Vector3(mousePosDirDrag.x, 0, mousePosDirDrag.z) * dragSpeed;
 
                 initMouseDrag = currentPos;
             }
@@ -161,7 +161,7 @@ public class CameraMovement : MonoBehaviour
         // Update Position and Rotation
         float t = Time.deltaTime * interpolateTime;
         transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, t);
-        transform.position = Vector3.Lerp(transform.position, toPos, t);
+        transform.position = Vector3.Lerp(transform.position, goalPos, t);
     }
 
 }
