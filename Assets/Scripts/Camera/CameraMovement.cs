@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class CameraMovement : MonoBehaviour
 {
     Camera mainCamera = null;
@@ -22,10 +23,10 @@ public class CameraMovement : MonoBehaviour
     Vector3 initMouseRot = Vector3.zero;
     Vector3 mousePosDirRot = Vector3.zero;
     [SerializeField] float rotateSpeed = 10.0f;
-    [SerializeField] float dragSpeed = 1.5f;
 
     Vector3 initMouseDrag = Vector3.zero;
     Vector3 mousePosDirDrag = Vector3.zero;
+    [SerializeField] float dragSpeed = 1.5f;
 
     Quaternion goalRot = Quaternion.identity;
     #endregion
@@ -76,9 +77,9 @@ public class CameraMovement : MonoBehaviour
         }
 
         // Debug Lines
-        Debug.DrawLine(handlerPos, handlerPos + verticalDistance, Color.red);
-        Debug.DrawLine(handlerPos, handlerPos + horizontalDistance, Color.blue);
-        Debug.DrawLine(handlerPos, cameraPos, Color.green);
+        //Debug.DrawLine(handlerPos, handlerPos + verticalDistance, Color.red);
+        //Debug.DrawLine(handlerPos, handlerPos + horizontalDistance, Color.blue);
+        //Debug.DrawLine(handlerPos, cameraPos, Color.green);
 
     }
 
