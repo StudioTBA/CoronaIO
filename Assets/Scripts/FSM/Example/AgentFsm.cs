@@ -1,12 +1,15 @@
 ﻿using System;
+using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO
+namespace Com.StudioTBD.CoronaIO.Example
 {
     /// <summary>
     /// Example State Machine
     /// </summary>
-    public class ExampleAgentFsm : StateMachine
+    public class AgentFsm : StateMachine
     {
+        [HideInInspector] public DataHolder DataHolder = new DataHolder();
+
         protected override void Start()
         {
             base.Start();

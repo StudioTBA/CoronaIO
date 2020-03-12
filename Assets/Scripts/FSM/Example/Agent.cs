@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Com.StudioTBD.CoronaIO
+namespace Com.StudioTBD.CoronaIO.Example
 {
     /// <summary>
     /// Example of an entity that uses a FiniteStateMachine. 
     /// </summary>
-    public class ExampleAgent : MonoBehaviour
+    public class Agent : MonoBehaviour
     {
         public Camera _camera;
         public StateMachine stateMachine;
