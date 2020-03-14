@@ -45,7 +45,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         }
 
         /// <summary>
-        /// Callback when that is called when you exit the state.
+        /// Callback that is called when you exit the state.
         /// On exiting the state, it is automatically disabled by calling base.OnStateEnter().
         /// This is to prevent unintended code execution.
         /// </summary>
