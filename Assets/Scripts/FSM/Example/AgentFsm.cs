@@ -8,12 +8,17 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
     /// </summary>
     public class AgentFsm : StateMachine
     {
-        [HideInInspector] public DataHolder DataHolder = new DataHolder();
+        public DataHolder DataHolder;
 
-        protected override void Start()
+        public AgentFsm(DataHolder dataHolder)
         {
-            base.Start();
-            ChangeState(this.defaultState);
+            this.DataHolder = dataHolder;
         }
+
+        // protected override void Start()
+        // {
+        // base.Start();
+        // ChangeState(this.defaultState);
+        // }
     }
 }

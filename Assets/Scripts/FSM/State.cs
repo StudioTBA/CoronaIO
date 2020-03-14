@@ -22,9 +22,18 @@ namespace Com.StudioTBD.CoronaIO.FMS
             set => _stateName = value;
         }
 
+        private void Awake()
+        {
+            this.enabled = false;
+        }
+
+        public void Setup(StateMachine stateMachine)
+        {
+            this._stateMachine = stateMachine;
+        }
+
         protected virtual void Start()
         {
-            this._stateMachine = GetComponent<StateMachine>();
         }
 
         /// <summary>

@@ -7,64 +7,75 @@ using UnityEngine.Serialization;
 
 namespace Com.StudioTBD.CoronaIO.FMS
 {
-    public abstract class StateMachine : MonoBehaviour
+    public abstract class StateMachine
     {
         /// <summary>
         /// Default state if needed. Might be null.
         /// </summary>
-        public State defaultState;
+        public State DefaultState;
 
         /// <summary>
         /// State we are as of right now. Might be null. 
         /// </summary>
-        public State currentState;
-
-        /// <summary>
-        /// On every start, any attached state class will be disabled except for the starting state.
-        /// <b>Note:</b> Any children must call this method.
-        /// </summary>
-        protected virtual void Start()
-        {
-            foreach (State state in GetComponents<State>())
-            {
-                if (state == defaultState) continue;
-                state.enabled = false;
-            }
-        }
-
+        public State CurrentState;
+        
         /// <summary>
         /// Method to transition from state to state.
         /// </summary>
         /// <param name="newState"></param>
         public void ChangeState(State newState)
         {
-            Debug.Log("Changing state: " + (currentState == null ? "Null" : currentState.GetType().Name) +
+            Debug.Log("Changing state: " + (CurrentState == null ? "Null" : CurrentState.GetType().Name) +
                       " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
 
-            if (currentState != null)
+            if (CurrentState != null)
             {
-                currentState.OnStateExit();
+                CurrentState.OnStateExit();
             }
-            
-            currentState = newState;
 
-            if (currentState != null)
+            CurrentState = newState;
+
+            if (CurrentState != null)
             {
-                currentState.OnStateEnter();
+                CurrentState.OnStateEnter();
             }
         }
 
-        public void Update()
+        /// <summary>
+        /// TODO: Document
+        /// On every start, any attached state class will be disabled except for the starting state.
+        /// <b>Note:</b> Any children must call this method.
+        /// </summary>
+        public void Setup(GameObject parent, State defaultState)
         {
-            if (currentState != null && currentState.enabled)
+            this.DefaultState = defaultState;
+            foreach (State state in parent.GetComponents<State>())
             {
-                currentState.Execute();
+                state.Setup(this);
+            }
+        }
+
+        public void Start()
+        {
+            ChangeState(DefaultState);
+        }
+
+        public void Pause()
+        {
+            ChangeState(null);
+        }
+
+        public void Execute()
+        {
+            if (CurrentState != null && CurrentState.enabled)
+            {
+                CurrentState.Execute();
             }
         }
 
         public void ResetToDefaultState()
         {
-            ChangeState(defaultState);
+            ChangeState(DefaultState);
         }
     }
 }
