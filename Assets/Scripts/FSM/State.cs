@@ -6,7 +6,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
     public abstract class State : MonoBehaviour
     {
         /// <summary>
-        /// State machine where that this state belongs to.
+        /// State machine to which this state belongs.
         /// </summary>
         protected StateMachine _stateMachine;
 
