@@ -28,7 +28,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         }
 
         /// <summary>
-        /// Callback when that is called when you enter the state.
+        /// Callback that is called when you enter the state.
         /// On entering the state, it is automatically enabled by calling base.OnStateEnter().
         /// This is to prevent unintended code execution.∑
         /// </summary>
