@@ -14,11 +14,5 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
         {
             this.DataHolder = dataHolder;
         }
-
-        // protected override void Start()
-        // {
-        // base.Start();
-        // ChangeState(this.defaultState);
-        // }
     }
 }

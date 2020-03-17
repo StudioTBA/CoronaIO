@@ -641,7 +641,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2083021116}
   - component: {fileID: 2083021115}
-  - component: {fileID: 2083021119}
   - component: {fileID: 2083021118}
   - component: {fileID: 2083021117}
   - component: {fileID: 2083021120}
@@ -665,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 65878889}
-  stateMachine: {fileID: 2083021119}
+  defaultState: {fileID: 0}
   stateText: {fileID: 472109323}
 --- !u!4 &2083021116
 Transform:
@@ -706,20 +705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb1d070fe43549cfad1e394b3ca7c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2083021119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083021114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f038b7929b77469fb33a83532a2d926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultState: {fileID: 2083021118}
-  currentState: {fileID: 0}
 --- !u!114 &2083021120
 MonoBehaviour:
   m_ObjectHideFlags: 0
