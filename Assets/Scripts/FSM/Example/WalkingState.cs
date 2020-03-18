@@ -36,6 +36,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
                 return;
             }
 
+
             if (transform.position != DataHolder.target)
             {
                 // Move to target

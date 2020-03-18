@@ -213,8 +213,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1152383230}
   - component: {fileID: 1152383231}
-  - component: {fileID: 1152383234}
   - component: {fileID: 1152383233}
+  - component: {fileID: 1152383234}
   - component: {fileID: 1152383232}
   m_Layer: 0
   m_Name: HumanAgent
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fae2867006246d0a17afbe768ceec58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 1152383232}
+  defaultState: {fileID: 1152383233}
 --- !u!114 &1152383232
 MonoBehaviour:
   m_ObjectHideFlags: 0
