@@ -13,7 +13,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Example.States
         protected override void Start()
         {
             base.Start();
-            StateName = "Human - Idle";
+            StateName = "Human - Arrive";
             DataHolder = (StateMachine as HumanStateMachine).DataHolder;
 
             _fleeState = GetComponent<Flee>();
