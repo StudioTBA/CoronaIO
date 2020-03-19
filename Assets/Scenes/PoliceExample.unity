@@ -975,10 +975,10 @@ MonoBehaviour:
   enemylayer:
     serializedVersion: 2
     m_Bits: 256
-  retreatDistance: 3
+  retreatDistance: 10
   weapon:
-    type: 3
-    Range: 15
+    type: 2
+    Range: 30
     attackdamage: 1
     rateOfFire: 0.1
     AOE_radius: 0

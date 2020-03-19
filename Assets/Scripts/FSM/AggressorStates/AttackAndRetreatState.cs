@@ -20,7 +20,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             StateName = "AttackAndRetreat";
             _defendingState = GetComponent<DefendingState>();
             //_attackingState = GetComponent<AttackingState>();
-            DataHolder = (_stateMachine as AggressorFsm).dataHolder;
+            
         }
 
         public override void OnStateEnter()
@@ -28,8 +28,9 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             base.OnStateEnter();
             Debug.Log("Entering " + this.GetType().FullName);
             fireing = true;
+            
+            DataHolder = DataHolder == null? (_stateMachine as AggressorFsm).dataHolder: DataHolder;
             StartCoroutine(shoot());
-
         }
 
         IEnumerator shoot()
@@ -42,7 +43,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawRay(transform.position, transform.forward, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 
@@ -76,7 +77,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             if (transform.position != DataHolder.target.Value)
             {
                 transform.position =
-                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 1f * Time.deltaTime);
+                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 6f * Time.deltaTime);
             }
             else
             {
