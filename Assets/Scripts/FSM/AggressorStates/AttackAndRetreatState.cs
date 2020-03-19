@@ -43,7 +43,8 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                Debug.DrawRay(transform.position, transform.forward, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                //Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 
