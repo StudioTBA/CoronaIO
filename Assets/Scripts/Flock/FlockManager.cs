@@ -11,7 +11,6 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -22,15 +21,18 @@ public class FlockManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            randomPosInACube = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f));
-            GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube, Quaternion.identity);
+            randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 0, Random.Range(-100.0f, 100.0f));
+            GameObject Swarmling = (GameObject) Instantiate(flockPrefab, transform.position + randomPosInACube,
+                Quaternion.identity);
+            Swarmling.transform.localScale = new Vector3(50f, 50f, 50f);
             Swarmling.transform.parent = flockHolder.transform;
             Swarmling.GetComponent<Flocker>().target = this.gameObject;
         }
 
-        normalizedDirection = (new Vector3(1.0f, 0, 0) * Input.GetAxis("Horizontal") + new Vector3(0, 0, 1.0f) * Input.GetAxis("Vertical")).normalized;
+        normalizedDirection =
+            (new Vector3(1.0f, 0, 0) * Input.GetAxis("Horizontal") +
+             new Vector3(0, 0, 1.0f) * Input.GetAxis("Vertical")).normalized;
 
         transform.position += normalizedDirection * flockMoveSpeed * Time.deltaTime;
-
     }
 }

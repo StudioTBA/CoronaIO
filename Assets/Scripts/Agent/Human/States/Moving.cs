@@ -39,7 +39,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Vector3 target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    Vector3 target = new Vector3(hit.point.x, 50f, hit.point.z);
                     _dataHolder.NavMeshAgent.SetDestination(target);
                 }
             }

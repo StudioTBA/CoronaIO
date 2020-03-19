@@ -20,13 +20,5 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
-
-
-        public override void OnStateChange(State oldState, State newState)
-        {
-            Debug.Log("Changing state: " + (oldState == null ? "Null" : oldState.GetType().Name) +
-                      " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
-        }
-        
     }
 }
