@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Given a floor scale and a tile prefab, cover the floor by placing prefabs on top
+/// Given a floor scale and a tile prefab, cover the floor by placing tiles on top
 /// This script should only be a component of a floor
 /// </summary>
 public class TileGenerator : MonoBehaviour
@@ -30,7 +30,7 @@ public class TileGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// cover the floor by placing prefabs on top
+    /// Cover the floor by placing tiles on top
     /// </summary>
     private void GenerateTiles()
     {
