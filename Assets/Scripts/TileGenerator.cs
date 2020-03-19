@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Given a floor scale and a tile prefab, cover the floor by placing prefabs on top
+/// This script should only be a component of a floor
+/// </summary>
 public class TileGenerator : MonoBehaviour
 {
-    // Size of the map. Should be a multiple of 10
+    // Size of the map. Scale should be a multiple of 10
     public int _floorScale;
 
-    // Tile
+    // Tile prefab. Scale should be 5
     public GameObject _tilePrefab;
 
     // Start is called before the first frame update
@@ -16,9 +20,22 @@ public class TileGenerator : MonoBehaviour
         // Set floor scale
         gameObject.transform.localScale = new Vector3(_floorScale, _floorScale, _floorScale);
 
-        // Obtain tiles per row
-        float tilesPerRow = _floorScale / _tilePrefab.transform.localScale.x;
+        GenerateTiles();
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    /// <summary>
+    /// cover the floor by placing prefabs on top
+    /// </summary>
+    private void GenerateTiles()
+    {
+        // Variables
+        float tilesPerRow = gameObject.transform.localScale.x / _tilePrefab.transform.localScale.x;
         float tileSize = _tilePrefab.transform.localScale.x * 10.0f;
         float tileBound;
         float tilePositionX;
@@ -67,7 +84,7 @@ public class TileGenerator : MonoBehaviour
         tileBound *= -1.0f;
         tilePositionX = tilePositionZ = tileBound;
 
-        // Counter for naming purposes
+        // Counter for tile naming purposes
         float tileCounter = 0;
 
         for (int i = 0; i < tilesPerRow; i++)
@@ -93,11 +110,5 @@ public class TileGenerator : MonoBehaviour
             tilePositionX = tileBound;
             tilePositionZ += tileSize;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
