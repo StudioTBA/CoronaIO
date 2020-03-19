@@ -10,6 +10,7 @@ public class Flocker : MonoBehaviour
     public float cohesionFactor;
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
+    public float alignmentFactor;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +61,19 @@ public class Flocker : MonoBehaviour
 
     private void Alignment()
     {
+        Vector3 targetPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        
+        if(target != null)
+        {
+            targetPosition = (target.transform.position-transform.position).normalized;
+        }
+        else
+        {
+            targetPosition = GetComponent<Rigidbody>().velocity.normalized;
+        }
 
+        Quaternion goalHeading = Quaternion.LookRotation(targetPosition, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, goalHeading, alignmentFactor);
     }
 
     private void CollectiveMotion()
