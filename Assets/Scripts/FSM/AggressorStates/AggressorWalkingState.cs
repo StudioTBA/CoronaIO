@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Com.StudioTBD.CoronaIO.FMS.Example;
+﻿using System;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
+using Com.StudioTBD.CoronaIO.FMS.Example;
+using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
-    public class AttackingState : State
+    public class AggressorWalkingState : State
     {
-        private State _attackandretreat;
+        private State _runningState;
         public AggressorDataHolder DataHolder;
 
         protected override void Start()
         {
             base.Start();
-            StateName = "Attacking";
-            _attackandretreat = GetComponent<AttackAndRetreatState>();
-            DataHolder = (_stateMachine as AggressorFsm).dataHolder;
+            StateName = "Walking";
+            _runningState = GetComponent<RunningState>();
+            DataHolder = (StateMachine as AggressorFsm).dataHolder;
         }
 
         public override void OnStateEnter()
@@ -30,24 +29,32 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
+            HandleMouseClick();
+
+            if (DataHolder.target == null)
+            {
+                StateMachine.ResetToDefaultState();
+                return;
+            }
 
 
+            if (transform.position != DataHolder.target)
+            {
+                // Move to target
+                // Naive approach don't do it this way.
+                transform.position =
+                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 1f * Time.deltaTime);
+            }
+            else
+            {
+                // Reach destination
+                StateMachine.ResetToDefaultState();
+            }
 
-
-            //turn to look at enemy 
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition);
-
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.2f);
-            //stand still and fire at the enmey 
-
-            Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red);
-                                          
-            //if they are walking away keep them within attack distance
-
-            // if they get close change to next state
-
-            
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                this.ChangeState(_runningState);
+            }
         }
 
         public override void OnStateExit()
@@ -71,13 +78,5 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
             return false;
         }
-
-
-
-
-
-
     }
 }
-
-

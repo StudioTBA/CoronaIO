@@ -7,11 +7,11 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
     public class AggressorFsm : StateMachine
     {
-        public AggressorDataHolder DataHolder;
+        public AggressorDataHolder dataHolder;
 
         public AggressorFsm(AggressorDataHolder dataHolder)
         {
-            this.DataHolder = dataHolder;
+            this.dataHolder = dataHolder;
         }
     }
 }

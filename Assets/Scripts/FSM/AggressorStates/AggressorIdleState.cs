@@ -12,15 +12,16 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         private State _walkingState;
         private State _attackingState;
-        private AggressorDataHolder DataHolder;
+        private AggressorDataHolder dataHolder;
 
         protected override void Start()
         {
             base.Start();
             StateName = "Idle";
-            _walkingState = GetComponent<WalkingState>();
+            _walkingState = GetComponent<AggressorWalkingState>();
             _attackingState = GetComponent<AttackingState>();
-            DataHolder = (AggressorDataHolder)(StateMachine as AgentFsm).DataHolder;
+            dataHolder = (StateMachine as AggressorFsm).dataHolder;
+            StartCoroutine(checkforEnemies());
         }
 
         public override void OnStateEnter()
@@ -29,33 +30,71 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             Debug.Log("Entering " + this.GetType().FullName);
         }
 
+
+        IEnumerator checkforEnemies()
+        {
+            //wait for the game to load before starting the coroutine
+            if (Time.timeSinceLevelLoad < 0.3f)
+                yield return new WaitForSeconds(0.3f);
+
+
+            while (true)
+            {
+                //wait for a second before continuing to update path 
+                yield return new WaitForSeconds(1.0f);
+
+                Collider[] colliders = Physics.OverlapSphere(transform.position, 20, dataHolder.enemyLayer.Value);
+                if (colliders.Length > 0)
+                {
+                    Vector3 smallestpos = colliders[0].transform.position;
+
+                    foreach (Collider c in colliders)
+                    {
+                        Vector3 temppos = c.transform.position;
+
+                        smallestpos = Vector3.Distance(transform.position, temppos) < Vector3.Distance(transform.position, smallestpos) ? c.transform.position : smallestpos;
+
+                        dataHolder.EnemyPosition = smallestpos;
+                    }
+
+                }
+                
+
+                
+            }
+            
+
+
+        }
+
+
         /// <summary>
-        /// Example Execute function that transitions from Idle to Moving.
+        /// 
+        /// checks if there is an enemy nearby
+        /// if enemy is within range will change state to attacking 
+        /// else if directional input is given will walk to a destination
         /// </summary>
+        /// 
         public override void Execute()
         {
+            
+
+            if(dataHolder.EnemyPosition != null)
+            {
+                if (Vector3.Distance(transform.position, dataHolder.EnemyPosition) <= dataHolder.weapon.Range)
+                {
+
+                    this.ChangeState(_attackingState);
+
+                }
+
+            }
+
+
+
             if (HandleMouseClick())
             {
                 this.ChangeState(_walkingState);
-            }
-
-            if(DataHolder.EnemyPosition == null)
-            {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 5, DataHolder.enemyLayer.Value);
-
-                Vector3 smallestpos = new Vector3();
-
-                foreach(Collider c in colliders)
-                {
-                    Vector3 temppos = c.transform.position;
-
-                    smallestpos = Vector3.Distance(transform.position,temppos) < Vector3.Distance(transform.position, smallestpos) ? c.transform.position : smallestpos;
-
-                    DataHolder.EnemyPosition = smallestpos;
-                }
-
-
-
             }
 
 
@@ -75,7 +114,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    DataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    dataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
                     return true;
                 }
             }

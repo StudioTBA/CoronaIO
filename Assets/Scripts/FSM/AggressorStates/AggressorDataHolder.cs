@@ -7,11 +7,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
     public class AggressorDataHolder : DataHolder
     {
-        public enum weaponType { Aoe, longrange, mediumrange, shortrange}
 
-        public weaponType? weapon;
+        public Weapon weapon;
 
-        public Vector3? EnemyPosition;
+        public Vector3 EnemyPosition;
 
         public LayerMask? enemyLayer;
 

@@ -18,7 +18,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             base.Start();
             StateName = "AttackAndRetreat";
             _defendingState = GetComponent<DefendingState>();
-            DataHolder = (AggressorDataHolder)(StateMachine as AgentFsm).DataHolder;
+            DataHolder = (_stateMachine as AggressorFsm).dataHolder;
         }
 
         public override void OnStateEnter()
