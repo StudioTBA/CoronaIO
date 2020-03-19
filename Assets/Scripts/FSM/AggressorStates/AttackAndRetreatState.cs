@@ -27,6 +27,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             base.OnStateEnter();
             Debug.Log("Entering " + this.GetType().FullName);
+            fireing = true;
             StartCoroutine(shoot());
 
         }
@@ -64,7 +65,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             float theta = 1e-5f;
             Vector3 am = new Vector3(posdiff.x / (absposdiff.x + theta), 0, posdiff.z / (absposdiff.z + theta));
 
-            DataHolder.target = transform.position + -am;
+            DataHolder.target = transform.position + -am * 2.0f;
 
             Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
 
@@ -93,6 +94,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
+            fireing = false;
             StopCoroutine(shoot());
         }
 
