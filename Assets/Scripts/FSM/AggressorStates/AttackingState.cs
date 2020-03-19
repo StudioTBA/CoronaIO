@@ -11,6 +11,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private State _attackandretreat;
         public AggressorDataHolder DataHolder;
 
+        private bool fireing = true;
         protected override void Start()
         {
             base.Start();
@@ -23,6 +24,8 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             base.OnStateEnter();
             Debug.Log("Entering " + this.GetType().FullName);
+            fireing = true;
+            StartCoroutine(shoot());
         }
 
         /// <summary>
@@ -35,25 +38,40 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
 
             //turn to look at enemy 
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition);
+            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.2f);
-            //stand still and fire at the enmey 
-
-            Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
                                           
             //if they are walking away keep them within attack distance
 
             // if they get close change to next state
-
+            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition) <= DataHolder.retreatDistance)
+            {
+                StateMachine.ChangeState(_attackandretreat);
+            }
             
 
         }
+        IEnumerator shoot()
+        {
+            if (Time.timeSinceLevelLoad < 0.3f)
+                yield return new WaitForSeconds(0.3f);
+            //stand still and fire at the enmey 
+            //probably want to trigger an effect here not just draw line
+            while (fireing)
+            {
+                yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
+                Debug.DrawRay(transform.position, transform.forward, Color.red, DataHolder.weapon.rateOfFire * 1/2, true);
+            }
+        }
         public override void OnStateExit()
         {
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
+            fireing = false;
+            StopCoroutine(shoot());
+            //StopAllCoroutines();
         }
 
         private bool HandleMouseClick()

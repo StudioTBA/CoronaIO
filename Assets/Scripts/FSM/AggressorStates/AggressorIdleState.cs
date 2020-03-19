@@ -21,7 +21,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             _walkingState = GetComponent<AggressorWalkingState>();
             _attackingState = GetComponent<AttackingState>();
             dataHolder = (StateMachine as AggressorFsm).dataHolder;
-            StartCoroutine(checkforEnemies());
+            //StartCoroutine(checkforEnemies());
         }
 
         public override void OnStateEnter()
@@ -31,41 +31,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         }
 
 
-        IEnumerator checkforEnemies()
-        {
-            //wait for the game to load before starting the coroutine
-            if (Time.timeSinceLevelLoad < 0.3f)
-                yield return new WaitForSeconds(0.3f);
-
-
-            while (true)
-            {
-                //wait for a second before continuing to update path 
-                yield return new WaitForSeconds(1.0f);
-
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 20, dataHolder.enemyLayer.Value);
-                if (colliders.Length > 0)
-                {
-                    Vector3 smallestpos = colliders[0].transform.position;
-
-                    foreach (Collider c in colliders)
-                    {
-                        Vector3 temppos = c.transform.position;
-
-                        smallestpos = Vector3.Distance(transform.position, temppos) < Vector3.Distance(transform.position, smallestpos) ? c.transform.position : smallestpos;
-
-                        dataHolder.EnemyPosition = smallestpos;
-                    }
-
-                }
-                
-
-                
-            }
-            
-
-
-        }
+        
 
 
         /// <summary>

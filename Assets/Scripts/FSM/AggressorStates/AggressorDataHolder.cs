@@ -14,6 +14,8 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         public LayerMask? enemyLayer;
 
+        public float retreatDistance = 3.0f;
+
     }
 }
 
