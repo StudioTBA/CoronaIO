@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,6 +10,13 @@ namespace Com.StudioTBD.CoronaIO.FMS
 {
     public abstract class StateMachine
     {
+        /// <summary>
+        /// State Listener to notify of anything
+        /// </summary>
+        // [CanBeNull]
+        // public IStateMachineListener MachineListener => _machineListener;
+        private List<IStateMachineListener> _stateMachineListeners = new List<IStateMachineListener>();
+
         /// <summary>
         /// Default state if needed. Might be null.
         /// </summary>
@@ -18,18 +26,20 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// State we are as of right now. Might be null. 
         /// </summary>
         public State CurrentState;
-        
+
         /// <summary>
         /// Method to transition from state to state.
         /// </summary>
         /// <param name="newState"></param>
         public void ChangeState(State newState)
         {
-            Debug.Log("Changing state: " + (CurrentState == null ? "Null" : CurrentState.GetType().Name) +
-                      " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
+            NotifyStateChange(CurrentState, newState);
+            // Debug.Log("Changing state: " + (CurrentState == null ? "Null" : CurrentState.GetType().Name) +
+            //           " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
 
             if (CurrentState != null)
             {
+                NotifyStateExit(CurrentState);
                 CurrentState.OnStateExit();
             }
 
@@ -37,6 +47,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
 
             if (CurrentState != null)
             {
+                NotifyStateEnter(CurrentState);
                 CurrentState.OnStateEnter();
             }
         }
@@ -55,14 +66,15 @@ namespace Com.StudioTBD.CoronaIO.FMS
             }
         }
 
+        public void Setup(GameObject parent, State defaultState, IStateMachineListener listener)
+        {
+            Setup(parent, defaultState);
+            this.AddListener(listener);
+        }
+
         public void Start()
         {
             ChangeState(DefaultState);
-        }
-
-        public void Pause()
-        {
-            ChangeState(null);
         }
 
         public void Execute()
@@ -76,6 +88,82 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public void ResetToDefaultState()
         {
             ChangeState(DefaultState);
+        }
+
+        private void NotifyStateChange(State oldState, State newState)
+        {
+            foreach (var listener in _stateMachineListeners)
+            {
+                listener.OnStateChange(oldState, newState);
+            }
+        }
+
+        private void NotifyStateExit(State oldState)
+        {
+            foreach (var listener in _stateMachineListeners)
+            {
+                listener.OnStateExit(oldState);
+            }
+        }
+
+        private void NotifyStateEnter(State newState)
+        {
+            foreach (var listener in _stateMachineListeners)
+            {
+                listener.OnStateEnter(newState);
+            }
+        }
+
+        public void AddListener(IStateMachineListener listener)
+        {
+            _stateMachineListeners.Add(listener);
+        }
+
+        public void RemoveListener(IStateMachineListener listener)
+        {
+            _stateMachineListeners.Remove(listener);
+        }
+    }
+
+    public interface IStateMachineListener
+    {
+        void OnStateExit(State oldState);
+        void OnStateEnter(State newState);
+        void OnStateChange(State oldState, State newState);
+    }
+
+    public delegate void OnStateChangeHandler(State state);
+
+    public delegate void OnStatesChangeHandler(State stateOne, State stateTwo);
+
+
+    public class StateMachineListener : IStateMachineListener
+    {
+        [CanBeNull] private readonly OnStateChangeHandler _onStateEnterHandler;
+        [CanBeNull] private readonly OnStatesChangeHandler _statesChangeHandler;
+        [CanBeNull] private readonly OnStateChangeHandler _onStateExitHandler;
+
+        public StateMachineListener(OnStateChangeHandler onStateEnterHandler, OnStatesChangeHandler statesChangeHandler,
+            OnStateChangeHandler onStateExitHandler)
+        {
+            _onStateEnterHandler = onStateEnterHandler;
+            _statesChangeHandler = statesChangeHandler;
+            _onStateExitHandler = onStateExitHandler;
+        }
+
+        public void OnStateExit(State oldState)
+        {
+            _onStateExitHandler?.Invoke(oldState);
+        }
+
+        public void OnStateEnter(State newState)
+        {
+            _onStateEnterHandler?.Invoke(newState);
+        }
+
+        public void OnStateChange(State oldState, State newState)
+        {
+            _statesChangeHandler?.Invoke(oldState, newState);
         }
     }
 }

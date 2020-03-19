@@ -13,28 +13,29 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
     {
         public Camera _camera;
         public StateMachine stateMachine;
-        public State _defaultState;
+        public State defaultState;
         public Text stateText;
 
         private DataHolder _dataHolder = new DataHolder();
-        
+
 
         private void Awake()
         {
             stateMachine = new AgentFsm(_dataHolder);
-            stateMachine.Setup(gameObject, _defaultState);
+            stateMachine.Setup(gameObject, defaultState);
         }
-        
-        public void Start(){
+
+        public void Start()
+        {
             stateMachine.Start();
         }
-       
+
 
         // Update is called once per frame
         void Update()
         {
             stateMachine.Execute();
-            
+
             if (stateMachine.CurrentState != null)
             {
                 stateText.text = "State: " + stateMachine.CurrentState.StateName;
@@ -42,6 +43,5 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
             else
                 stateText.text = "State: Null";
         }
-        
     }
 }

@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 65878889}
-  _defaultState: {fileID: 2083021118}
+  defaultState: {fileID: 0}
   stateText: {fileID: 472109323}
 --- !u!4 &2083021116
 Transform:

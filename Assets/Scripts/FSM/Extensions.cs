@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace Com.StudioTBD.CoronaIO.FMS.Extensions
 {
     public static class Extension

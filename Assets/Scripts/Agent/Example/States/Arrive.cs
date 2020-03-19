@@ -1,48 +1,41 @@
-﻿using System;
+using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
 
-namespace Com.StudioTBD.CoronaIO.FMS.Example
+namespace Com.StudioTBD.CoronaIO.Agent.Example.States
 {
-    public class WalkingState : State
+    public class Arrive : State
     {
-        private State _runningState;
-        public DataHolder DataHolder;
+        private DataHolder DataHolder;
+        private State _fleeState;
+        private State _idleState;
 
         protected override void Start()
         {
             base.Start();
-            StateName = "Walking";
-            _runningState = GetComponent<RunningState>();
-            DataHolder = (StateMachine as AgentFsm).DataHolder;
+            StateName = "Human - Arrive";
+            DataHolder = (StateMachine as HumanStateMachine).DataHolder;
+
+            _fleeState = GetComponent<Flee>();
+            _idleState = GetComponent<Arrive>();
         }
 
-        public override void OnStateEnter()
-        {
-            base.OnStateEnter();
-            Debug.Log("Entering " + this.GetType().FullName);
-        }
-
-        /// <summary>
-        /// Example Execute function that transitions from Moving to Running.
-        /// </summary>
         public override void Execute()
         {
             HandleMouseClick();
 
-            if (DataHolder.target == null)
+            if (DataHolder.Target == null)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
 
-
-            if (transform.position != DataHolder.target)
+            if (transform.position != DataHolder.Target)
             {
                 // Move to target
                 // Naive approach don't do it this way.
                 transform.position =
-                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 1f * Time.deltaTime);
+                    Vector3.MoveTowards(transform.position, DataHolder.Target.Value, 4f * Time.deltaTime);
             }
             else
             {
@@ -50,16 +43,11 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
                 StateMachine.ResetToDefaultState();
             }
 
+            // Switch to flee
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                this.ChangeState(_runningState);
+                this.ChangeState(_fleeState);
             }
-        }
-
-        public override void OnStateExit()
-        {
-            base.OnStateExit();
-            Debug.Log("Exiting " + this.GetType().FullName);
         }
 
         private bool HandleMouseClick()
@@ -70,7 +58,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Example
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    DataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    DataHolder.Target = new Vector3(hit.point.x, .5f, hit.point.z);
                     return true;
                 }
             }
