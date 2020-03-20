@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapTexture : MonoBehaviour
+public class TakeMapPic : MonoBehaviour
 {
     GameObject sceneLight;
     // Start is called before the first frame update
@@ -41,5 +41,7 @@ public class MapTexture : MonoBehaviour
         // Reseting Light
         sceneLight.transform.rotation = originalRot;
         sceneLight.GetComponent<Light>().intensity = 1.0f;
+
+        Destroy(gameObject);
     }
 }
