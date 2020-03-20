@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.FMS.Example;
+using Com.StudioTBD.CoronaIO.Agent.Human;
 
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors

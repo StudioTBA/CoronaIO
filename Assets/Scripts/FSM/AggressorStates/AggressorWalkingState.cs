@@ -1,6 +1,6 @@
 ﻿using System;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.FMS.Example;
+using Com.StudioTBD.CoronaIO.Agent.Human;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
@@ -14,7 +14,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             base.Start();
             StateName = "Walking";
-            _runningState = GetComponent<RunningState>();
+            //_runningState = GetComponent<RunningState>();
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
         }
 
