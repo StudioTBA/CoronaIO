@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530f42c023a31d349a5b102091360070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropDownMenu: {fileID: 0}
+  maxHordes: 2
