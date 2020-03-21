@@ -32,7 +32,7 @@ public class HordeOrganizer : MonoBehaviour
             {
                 hordeList.Add(temp);
                 activeHorde = hordeList.IndexOf(temp);
-                dropDownMenu.options.Add(new Dropdown.OptionData(activeHorde.ToString()));
+                dropDownMenu.options.Add(new Dropdown.OptionData());
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
@@ -52,6 +52,8 @@ public class HordeOrganizer : MonoBehaviour
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
+
+        UpdateDropDown();
     }
 
     public int IndexOfClosestHorde()
@@ -88,5 +90,14 @@ public class HordeOrganizer : MonoBehaviour
         hordeList[activeHorde].active = false;
         activeHorde = dropDownMenu.value;
         hordeList[activeHorde].active = true;
+    }
+
+    private void UpdateDropDown()
+    {
+        for(int i = 0; i < hordeList.Count; i++)
+        {
+            dropDownMenu.options[i].text = "Horde: " + i + " Size: " + hordeList[i].HordeSize();
+        }
+        dropDownMenu.captionText.text = "Horde: " + activeHorde + " Size: " + hordeList[activeHorde].HordeSize();
     }
 }

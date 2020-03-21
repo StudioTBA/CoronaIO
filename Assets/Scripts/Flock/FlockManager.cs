@@ -113,4 +113,8 @@ public class FlockManager : MonoBehaviour
 
         Destroy(otherHorde.gameObject);
     }
+    public int HordeSize()
+    {
+        return zombieList.Count;
+    }
 }
