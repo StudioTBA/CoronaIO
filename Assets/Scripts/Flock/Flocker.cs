@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flocker : MonoBehaviour
+public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 {
     public GameObject target;
     public float seekSpeed;
@@ -11,6 +11,7 @@ public class Flocker : MonoBehaviour
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
     public float alignmentFactor;
+    public float rsat;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class Flocker : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+    {  
         Cohesion();
         Repulsion();
         Alignment();
@@ -34,7 +35,8 @@ public class Flocker : MonoBehaviour
         Vector3 avgPos = new Vector3(0.0f, 0.0f, 0.0f);
         foreach (Collider neighbor in nearbyColliders)
         {
-           avgPos += neighbor.transform.position;
+            if(neighbor.gameObject.GetComponent<Flocker>())
+                avgPos += neighbor.transform.position;
         }
         avgPos /= nearbyColliders.Length;
         Vector3 forceVec = (avgPos - transform.position) * cohesionFactor;
@@ -50,7 +52,8 @@ public class Flocker : MonoBehaviour
         Vector3 avgPos = new Vector3(0.0f, 0.0f, 0.0f);
         foreach (Collider neighbor in nearbyColliders)
         {
-            avgPos += neighbor.transform.position;
+            if (neighbor.gameObject.GetComponent<Flocker>())
+                avgPos += neighbor.transform.position;
         }
         avgPos /= nearbyColliders.Length;
         Vector3 forceVec = -(avgPos - transform.position) * repulsionFactor;
@@ -65,7 +68,8 @@ public class Flocker : MonoBehaviour
         
         if(target != null)
         {
-            targetPosition = (target.transform.position-transform.position).normalized;
+            targetPosition = (target.transform.position-transform.position);
+            targetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
         }
         else
         {
@@ -85,5 +89,11 @@ public class Flocker : MonoBehaviour
             GetComponent<Rigidbody>().velocity = direction * seekSpeed;
             //GetComponent<Rigidbody>().AddForce(direction * seekSpeed);
         }
+    }
+
+    //This function is specifically allowing zombies to be removed form horde lists
+    public bool Equals(Flocker other)
+    {
+        return (transform.position==other.transform.position);
     }
 }
