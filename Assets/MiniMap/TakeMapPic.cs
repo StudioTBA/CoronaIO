@@ -7,7 +7,7 @@ public class TakeMapPic : MonoBehaviour
 {
     GameObject sceneLight;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         sceneLight = GameObject.Find("Directional Light");
         getMiniMapTexture();

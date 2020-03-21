@@ -2,22 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI.Extensions;
 
 public class CameraViewportBox : MonoBehaviour
 {
     Camera mainCamera;
-
-    LineRenderer viewPort;
-
     public MeshRenderer gameFloor;
     public RectTransform miniMap;
-
-    Vector2[] cornerMapPos;
 
     private void Start()
     {
         mainCamera = Camera.main;
-        viewPort = this.GetComponent<LineRenderer>();
     }
     // Update is called once per frame
     void Update()
@@ -52,14 +47,13 @@ public class CameraViewportBox : MonoBehaviour
             if (Physics.Raycast(cornerRays[i], out hits[i], Mathf.Infinity))
             {
                 cornerWorldPos[i] = hits[i].point;
-                cornerWorldPos[i].y = 0;
             }
         }
 
         Vector3 topRightMapPos, bottomRightMapPos, topLeftMapPos, bottomLeftMapPos;
         topRightMapPos = bottomRightMapPos = topLeftMapPos = bottomLeftMapPos = Vector3.zero;
 
-        cornerMapPos = new Vector2[] { topRightMapPos, bottomRightMapPos, topLeftMapPos, bottomLeftMapPos };
+        Vector2[] cornerMapPos = new Vector2[] { topRightMapPos, bottomRightMapPos, topLeftMapPos, bottomLeftMapPos };
 
         Vector2 miniMapSize = new Vector2(miniMap.sizeDelta.x, miniMap.sizeDelta.y);
         Vector2 worldSize = new Vector2(gameFloor.bounds.size.x, gameFloor.bounds.size.z);
@@ -69,47 +63,37 @@ public class CameraViewportBox : MonoBehaviour
             cornerMapPos[i] = getMiniMapPos(new Vector2(cornerWorldPos[i].x, cornerWorldPos[i].z), miniMapSize, worldSize);
         }
 
+        /*
+        GameObject.Find("TopRight").SetActive(true);
+        GameObject.Find("TopRight").GetComponent<RectTransform>().anchoredPosition = cornerMapPos[0];
 
-        if (this.name.Equals("TopRight"))
-            this.GetComponent<RectTransform>().anchoredPosition = cornerMapPos[0];
-        if (this.name.Equals("TopLeft"))
-            this.GetComponent<RectTransform>().anchoredPosition = cornerMapPos[1];
-        if (this.name.Equals("BottomRight"))
-            this.GetComponent<RectTransform>().anchoredPosition = cornerMapPos[2];
-        if (this.name.Equals("BottomLeft"))
-            this.GetComponent<RectTransform>().anchoredPosition = cornerMapPos[3];
+        GameObject.Find("BottomRight").SetActive(true);
+        GameObject.Find("BottomRight").GetComponent<RectTransform>().anchoredPosition = cornerMapPos[1];
 
-        //drawViewPort(cornerMapPos);
+        GameObject.Find("TopLeft").SetActive(true);
+        GameObject.Find("TopLeft").GetComponent<RectTransform>().anchoredPosition = cornerMapPos[2];
+
+        GameObject.Find("BottomLeft").SetActive(true);
+        GameObject.Find("BottomLeft").GetComponent<RectTransform>().anchoredPosition = cornerMapPos[3];
+        */
+
+        drawViewPort(cornerMapPos);
     }
 
     private void drawViewPort(Vector2[] cornerMapPos)
     {
+        UILineRenderer lineRenderer = this.GetComponentInChildren<UILineRenderer>();
 
-        if (viewPort == null)
-            return;
+        lineRenderer.Points = new Vector2[cornerMapPos.Length * 2];
 
-        viewPort.positionCount = 8;
-
-        // Top Right -> Bottom Right
-        viewPort.SetPosition(0, new Vector3(cornerMapPos[0].x, 0, cornerMapPos[0].y));
-        viewPort.SetPosition(1, new Vector3(cornerMapPos[1].x, 0, cornerMapPos[1].y));
-
-        // Top Right -> Top Left
-        viewPort.SetPosition(2, new Vector3(cornerMapPos[0].x, 0, cornerMapPos[0].y));
-        viewPort.SetPosition(3, new Vector3(cornerMapPos[2].x, 0, cornerMapPos[2].y));
-
-        // Top Left -> Bottom Left
-        viewPort.SetPosition(4, new Vector3(cornerMapPos[2].x, 0, cornerMapPos[2].y));
-        viewPort.SetPosition(5, new Vector3(cornerMapPos[3].x, 0, cornerMapPos[3].y));
-
-        // Bottom Left -> Bottom Right
-        viewPort.SetPosition(6, new Vector3(cornerMapPos[3].x, 0, cornerMapPos[3].y));
-        viewPort.SetPosition(7, new Vector3(cornerMapPos[1].x, 0, cornerMapPos[1].y));
-
-        viewPort.startColor = Color.white;
-        viewPort.endColor = Color.white;
-        viewPort.startWidth = 0.5f;
-        viewPort.endWidth = 0.5f;
+        lineRenderer.Points[0] = cornerMapPos[0];
+        lineRenderer.Points[1] = cornerMapPos[2];
+        lineRenderer.Points[2] = cornerMapPos[2];
+        lineRenderer.Points[3] = cornerMapPos[3];
+        lineRenderer.Points[4] = cornerMapPos[3];
+        lineRenderer.Points[5] = cornerMapPos[1];
+        lineRenderer.Points[6] = cornerMapPos[1];
+        lineRenderer.Points[7] = cornerMapPos[0];
     }
 
     private Vector2 getMiniMapPos(Vector2 targetPos, Vector2 miniMapSize, Vector2 worldSize)
