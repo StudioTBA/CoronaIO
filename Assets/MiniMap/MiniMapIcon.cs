@@ -39,6 +39,4 @@ public class MiniMapIcon : MonoBehaviour
     {
         return targetPos * (miniMapSize / worldSize);
     }
-
-
 }
