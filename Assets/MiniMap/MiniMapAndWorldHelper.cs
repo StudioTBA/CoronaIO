@@ -5,9 +5,30 @@ using UnityEngine;
 
 public class MiniMapAndWorldHelper : MonoBehaviour
 {
-    public float MiniMapSize { get; private set; }
-    public float WorldSize { get; private set; }
-    public float MiniMapCanvasScale { get; private set; }
+    public float MiniMapSize
+    {
+        get
+        {
+            return miniMap.sizeDelta.x;
+        }
+        private set { MiniMapSize = value; }
+    }
+    public float WorldSize
+    {
+        get
+        {
+            return worldPlane.bounds.size.x;
+        }
+        private set { WorldSize = value; }
+    }
+    public float MiniMapCanvasScale
+    {
+        get
+        {
+            return miniMapCanvas.localScale.x;
+        }
+        private set { MiniMapCanvasScale = value; }
+    }
 
     RectTransform miniMap;
     RectTransform miniMapCanvas;

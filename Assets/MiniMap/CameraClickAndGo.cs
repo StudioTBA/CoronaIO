@@ -13,7 +13,7 @@ public class CameraClickAndGo : MonoBehaviour, IPointerClickHandler
     {
         cameraHandler = GameObject.Find("CameraHandler");
         mapHelper = GameObject.Find("MiniMapManager").GetComponent<MiniMapAndWorldHelper>();
-        cameraHandlerBlip = GameObject.Find("CameraHandleBlip").GetComponent<RectTransform>();
+        cameraHandlerBlip = GameObject.Find("CameraHandlerBlip").GetComponent<RectTransform>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
