@@ -5,29 +5,34 @@ using UnityEngine.EventSystems;
 
 public class CameraClickAndGo : MonoBehaviour, IPointerClickHandler
 {
+    RectTransform cameraHandlerBlip;
+    GameObject cameraHandler;
+    MiniMapAndWorldHelper mapHelper;
 
-    public MeshRenderer gameFloor;
-    public RectTransform miniMap;
-    public RectTransform cameraHandlerBlip;
-
-    CameraMovement cameraHandlerData;
+    private void Start()
+    {
+        cameraHandler = GameObject.Find("CameraHandler");
+        mapHelper = GameObject.Find("MiniMapManager").GetComponent<MiniMapAndWorldHelper>();
+        cameraHandlerBlip = GameObject.Find("CameraHandleBlip").GetComponent<RectTransform>();
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Vector2 miniMapSize = new Vector2(miniMap.sizeDelta.x, miniMap.sizeDelta.y);
-        Vector2 worldSize = new Vector2(gameFloor.bounds.size.x, gameFloor.bounds.size.z);
-        cameraHandlerData = GameObject.Find("CameraHandler").GetComponent<CameraMovement>();
-        Vector2 distance = eventData.position - new Vector2(cameraHandlerBlip.position.x, cameraHandlerBlip.position.y);
-        float scale = GameObject.Find("MiniMapCanvas").GetComponent<RectTransform>().localScale.x;
-        Debug.Log(cameraHandlerBlip.position);
-        Debug.Log(eventData.position);
-        Debug.Log(scale);
-        //Debug.Log(distance.magnitude);
-        //Debug.Log(distance.normalized);
-        //Debug.Log(distance.magnitude * (worldSize / miniMapSize));
+        float miniMapSize = mapHelper.MiniMapSize;
+        float worldSize = mapHelper.WorldSize;
 
-        cameraHandlerData.GoalPos = (cameraHandlerData.transform.position + (new Vector3((distance.normalized * distance.magnitude * (worldSize / miniMapSize)).x, 0, (distance.normalized * distance.magnitude * (worldSize / miniMapSize)).y)) / scale);
+        Vector2 cameraHandlerBlipPos = new Vector2(cameraHandlerBlip.position.x, cameraHandlerBlip.position.y);
+        Vector2 blipToMouse = eventData.position - cameraHandlerBlipPos;
+        float distanceBlipToMouse = blipToMouse.magnitude;
+        Vector2 directionBlipToMouse = blipToMouse / distanceBlipToMouse;
 
-        Debug.Log(GameObject.Find("CameraHandler").transform.position);
+        float miniMapCanvasScale = mapHelper.MiniMapCanvasScale;
+
+        float blipToMouseWorldX = (directionBlipToMouse * distanceBlipToMouse * (worldSize / miniMapSize)).x;
+        float blipToMouseWorldY = (directionBlipToMouse * distanceBlipToMouse * (worldSize / miniMapSize)).y;
+
+        Vector3 goalPos = new Vector3(blipToMouseWorldX, 0, blipToMouseWorldY) / miniMapCanvasScale;
+
+        cameraHandler.GetComponent<CameraMovement>().GoalPos = cameraHandler.transform.position + goalPos;
     }
 }

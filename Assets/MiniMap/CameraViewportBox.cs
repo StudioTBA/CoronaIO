@@ -7,12 +7,12 @@ using UnityEngine.UI.Extensions;
 public class CameraViewportBox : MonoBehaviour
 {
     Camera mainCamera;
-    public MeshRenderer gameFloor;
-    public RectTransform miniMap;
 
+    MiniMapAndWorldHelper mapHelper;
     private void Start()
     {
         mainCamera = Camera.main;
+        mapHelper = GameObject.Find("MiniMapManager").GetComponent<MiniMapAndWorldHelper>();
     }
     // Update is called once per frame
     void Update()
@@ -20,8 +20,14 @@ public class CameraViewportBox : MonoBehaviour
         handleCameraViewPortInMiniMap();
     }
 
+
+    /// <summary>
+    /// Takes care of getting the position of the corners of the viewport in the World, 
+    /// translating it to MiniMap "Space" and connecting the points with lines.
+    /// </summary>
     private void handleCameraViewPortInMiniMap()
     {
+        // Initializing Rays whose origin represent the corners of the cameras viewport
         Vector3 topRightRayOrigin = new Vector3(Screen.width, Screen.height, 0);
         Ray topRightRay = mainCamera.ScreenPointToRay(topRightRayOrigin);
 
@@ -37,11 +43,14 @@ public class CameraViewportBox : MonoBehaviour
         Ray[] cornerRays = { topRightRay, bottomRightRay, topLeftRay, bottomLeftRay };
         RaycastHit[] hits = new RaycastHit[4];
 
+        // Initializing structures that will hold the position of where the rays hit in World Space
         Vector3 topRightWorldPos, bottomRightWorldPos, topLeftWorldPos, bottomLeftWorldPos;
         topRightWorldPos = bottomRightWorldPos = topLeftWorldPos = bottomLeftWorldPos = Vector3.zero;
 
         Vector3[] cornerWorldPos = { topRightWorldPos, bottomRightWorldPos, topLeftWorldPos, bottomLeftWorldPos };
 
+
+        // Where in the world do the rays hit
         for (int i = 0; i < cornerRays.Length; i++)
         {
             if (Physics.Raycast(cornerRays[i], out hits[i], Mathf.Infinity))
@@ -50,20 +59,24 @@ public class CameraViewportBox : MonoBehaviour
             }
         }
 
+
+        // Initializing structures that will hold the position of the where the rays hit in Map Space
         Vector3 topRightMapPos, bottomRightMapPos, topLeftMapPos, bottomLeftMapPos;
         topRightMapPos = bottomRightMapPos = topLeftMapPos = bottomLeftMapPos = Vector3.zero;
 
         Vector2[] cornerMapPos = new Vector2[] { topRightMapPos, bottomRightMapPos, topLeftMapPos, bottomLeftMapPos };
 
-        Vector2 miniMapSize = new Vector2(miniMap.sizeDelta.x, miniMap.sizeDelta.y);
-        Vector2 worldSize = new Vector2(gameFloor.bounds.size.x, gameFloor.bounds.size.z);
+        float miniMapSize = mapHelper.MiniMapSize;
+        float worldSize = mapHelper.WorldSize;
 
+        // Translating the World Ray Position to Map Position
         for (int i = 0; i < cornerMapPos.Length; i++)
         {
-            cornerMapPos[i] = getMiniMapPos(new Vector2(cornerWorldPos[i].x, cornerWorldPos[i].z), miniMapSize, worldSize);
+            Vector2 worldPos = new Vector2(cornerWorldPos[i].x, cornerWorldPos[i].z);
+            cornerMapPos[i] = mapHelper.getMiniMapPos(worldPos, miniMapSize, worldSize);
         }
 
-        /*
+        /* DEBUG PURPOSES
         GameObject.Find("TopRight").SetActive(true);
         GameObject.Find("TopRight").GetComponent<RectTransform>().anchoredPosition = cornerMapPos[0];
 
@@ -80,24 +93,30 @@ public class CameraViewportBox : MonoBehaviour
         drawViewPort(cornerMapPos);
     }
 
+    /// <summary>
+    /// Takes care of drawing the viewport in the MiniMap
+    /// </summary>
+    /// <param name="cornerMapPos"></param>
     private void drawViewPort(Vector2[] cornerMapPos)
     {
         UILineRenderer lineRenderer = this.GetComponentInChildren<UILineRenderer>();
 
         lineRenderer.Points = new Vector2[cornerMapPos.Length * 2];
 
+        // Top Right -> Top Left
         lineRenderer.Points[0] = cornerMapPos[0];
         lineRenderer.Points[1] = cornerMapPos[2];
+
+        // Top Left -> Bottom Left
         lineRenderer.Points[2] = cornerMapPos[2];
         lineRenderer.Points[3] = cornerMapPos[3];
+
+        // Bottom Left -> Bottom Right
         lineRenderer.Points[4] = cornerMapPos[3];
         lineRenderer.Points[5] = cornerMapPos[1];
+
+        // Bottom Right -> Top Right
         lineRenderer.Points[6] = cornerMapPos[1];
         lineRenderer.Points[7] = cornerMapPos[0];
-    }
-
-    private Vector2 getMiniMapPos(Vector2 targetPos, Vector2 miniMapSize, Vector2 worldSize)
-    {
-        return targetPos * (miniMapSize / worldSize);
     }
 }
