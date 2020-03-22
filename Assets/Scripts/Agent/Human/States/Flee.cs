@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {
+    /// <summary>
+    /// Fake flee
+    /// </summary>
     public class Flee : State
     {
         private DataHolder _dataHolder;
