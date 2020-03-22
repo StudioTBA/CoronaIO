@@ -1,11 +1,11 @@
 using System;
 using Com.StudioTBD.CoronaIO.FMS;
 using UnityEngine;
-using UnityEngine.Serialization;
+using EventHandler = Com.StudioTBD.CoronaIO.Event.EventHandler;
 
 namespace Com.StudioTBD.CoronaIO.Agent
 {
-    public abstract class Agent : MonoBehaviour, IStateMachineListener
+    public abstract class Agent : MonoBehaviour, IStateMachineListener, EventHandler
     {
         public StateMachine stateMachine;
         public State defaultState;
@@ -41,6 +41,17 @@ namespace Com.StudioTBD.CoronaIO.Agent
 
         public virtual void OnStateChange(State oldState, State newState)
         {
+        }
+
+        /// <summary>
+        /// Override as needed.
+        /// By default the state machine will redirect the event to each state.
+        /// </summary>
+        /// <param name="event">An event</param>
+        public virtual void Consume(Event.Event @event)
+        {
+            if (stateMachine != null && stateMachine.CurrentState != null)
+                stateMachine.CurrentState.Consume(@event);
         }
     }
 }

@@ -1,7 +1,8 @@
+using System;
 using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {
@@ -9,6 +10,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
     {
         private DataHolder _dataHolder;
         private State _movingState;
+        private State _fleeState;
 
         protected override void Start()
         {
@@ -16,6 +18,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             StateName = "Idle";
             _dataHolder = (StateMachine as HumanStateMachine).DataHolder;
             _movingState = GetComponent<Moving>();
+            _fleeState = GetComponent<Flee>();
         }
 
         public override void Execute()
@@ -31,6 +34,30 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                     this.ChangeState(_movingState);
                 }
             }
+        }
+
+        public override void Consume([NotNull] Event.Event @event)
+        {
+            Debug.Log("Consuming event: " + @event, this);
+
+            if (!(@event is HumanEvent humanEvent)) return;
+
+            switch (humanEvent.EventType)
+            {
+                case HumanEvent.HumanEventType.SpottedZombie:
+                    this.ChangeState(_fleeState);
+                    break;
+                case HumanEvent.HumanEventType.PoliceAlert:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public override void OnStateEnter()
+        {
+            base.OnStateEnter();
+            Debug.Log("Idle - Enter", this);
         }
     }
 }

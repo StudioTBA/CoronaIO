@@ -20,5 +20,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
+
+        public override void Consume(Event.Event @event)
+        {
+            if (@event is HumanEvent)
+            {
+                base.Consume(@event);
+                Debug.Log(@event.GetType().Name);
+            }
+        }
     }
 }
