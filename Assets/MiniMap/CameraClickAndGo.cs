@@ -18,6 +18,10 @@ public class CameraClickAndGo : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+
+        if (!eventData.button.Equals(PointerEventData.InputButton.Left))
+            return;
+
         float miniMapSize = mapHelper.MiniMapSize;
         float worldSize = mapHelper.WorldSize;
 
