@@ -24,7 +24,6 @@ namespace Com.StudioTBD.CoronaIO.FMS
 
         private void Awake()
         {
-            this.enabled = false;
         }
 
         public void Setup(StateMachine stateMachine)
@@ -32,16 +31,18 @@ namespace Com.StudioTBD.CoronaIO.FMS
             this._stateMachine = stateMachine;
         }
 
+        /// <summary>
+        /// Note: Should be called as the last statement in the children's "Start"
+        /// </summary>
         protected virtual void Start()
         {
+            this.enabled = false;
         }
-
-        // warning TODO: Fix on first time OnStateEnter that doesn't recognize the dataholder
         
         /// <summary>
         /// Callback that is called when you enter the state.
         /// On entering the state, it is automatically enabled by calling base.OnStateEnter().
-        /// This is to prevent unintended code execution.∑
+        /// This is to prevent unintended code execution.
         /// </summary>
         public virtual void OnStateEnter()
         {

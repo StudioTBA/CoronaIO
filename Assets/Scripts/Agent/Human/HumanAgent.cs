@@ -26,7 +26,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             if (@event is HumanEvent)
             {
                 base.Consume(@event);
-                Debug.Log(@event.GetType().Name);
             }
         }
     }

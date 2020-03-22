@@ -14,10 +14,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         protected override void Start()
         {
-            base.Start();
             StateName = "Moving";
-            _dataHolder = (StateMachine as HumanStateMachine).DataHolder;
+            _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _fleeState = GetComponent<Flee>();
+            base.Start();
         }
 
         public override void Execute()
@@ -35,56 +35,23 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
                 case NavMeshPathStatus.PathPartial:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Vector3 target = new Vector3(hit.point.x, 50f, hit.point.z);
-                    _dataHolder.NavMeshAgent.SetDestination(target);
-                }
-            }
-        }
+            if (!Input.GetMouseButtonDown(0)) return;
 
-        public override void OnStateEnter()
-        {
-            base.OnStateEnter();
-            if (_dataHolder == null)
-            {
-                Debug.Log("Moving - Enter: DataHolder null", this);
-            }
-            else
-            {
-                Debug.Log("Moving - Enter: DataHolder NOT null", this);
-            }
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            // if (_dataHolder.NavMeshAgent == null)
-            // {
-            //     Debug.Log("Moving - Enter: DataHolder null", this);
-            // }
+            if (!Physics.Raycast(ray, out hit)) return;
 
-            // Debug.Log("Moving - Enter", this);
-        }
-
-        public override void OnStateExit()
-        {
-            base.OnStateExit();
-            if (_dataHolder == null)
-            {
-                Debug.Log("Moving - Exit: DataHolder null", this);
-            }
-            else
-            {
-                Debug.Log("Moving - Exit: DataHolder NOT null", this);
-            }
+            Vector3 target = new Vector3(hit.point.x, 50f, hit.point.z);
+            _dataHolder.NavMeshAgent.SetDestination(target);
         }
 
         public override void Consume(Event.Event @event)
         {
-            Debug.Log("Consuming event: " + @event, this);
             if (!(@event is HumanEvent humanEvent)) return;
 
             switch (humanEvent.EventType)
