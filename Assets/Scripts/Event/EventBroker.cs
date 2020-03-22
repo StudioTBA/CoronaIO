@@ -1,6 +1,6 @@
 namespace Com.StudioTBD.CoronaIO.Event
 {
-    public interface EventHandler
+    public interface EventBroker
     {
         void Consume(Event @event);
     }

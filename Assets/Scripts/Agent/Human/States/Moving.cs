@@ -3,7 +3,6 @@ using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {

@@ -1,11 +1,12 @@
 using System;
+using Com.StudioTBD.CoronaIO.Event;
 using Com.StudioTBD.CoronaIO.FMS;
 using UnityEngine;
-using EventHandler = Com.StudioTBD.CoronaIO.Event.EventHandler;
+
 
 namespace Com.StudioTBD.CoronaIO.Agent
 {
-    public abstract class Agent : MonoBehaviour, IStateMachineListener, EventHandler
+    public abstract class Agent : MonoBehaviour, IStateMachineListener, EventBroker
     {
         public StateMachine stateMachine;
         public State defaultState;

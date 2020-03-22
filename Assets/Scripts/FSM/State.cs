@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS
 {
-    public abstract class State : MonoBehaviour, Event.EventHandler
+    public abstract class State : MonoBehaviour, Event.EventBroker
     {
         /// <summary>
         /// State machine to which this state belongs.
