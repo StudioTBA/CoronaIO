@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS
 {
-    public abstract class State : MonoBehaviour
+    public abstract class State : MonoBehaviour, Event.EventBroker
     {
         /// <summary>
         /// State machine to which this state belongs.
@@ -24,7 +24,6 @@ namespace Com.StudioTBD.CoronaIO.FMS
 
         private void Awake()
         {
-            this.enabled = false;
         }
 
         public void Setup(StateMachine stateMachine)
@@ -32,14 +31,18 @@ namespace Com.StudioTBD.CoronaIO.FMS
             this._stateMachine = stateMachine;
         }
 
+        /// <summary>
+        /// Note: Should be called as the last statement in the children's "Start"
+        /// </summary>
         protected virtual void Start()
         {
+            this.enabled = false;
         }
-
+        
         /// <summary>
         /// Callback that is called when you enter the state.
         /// On entering the state, it is automatically enabled by calling base.OnStateEnter().
-        /// This is to prevent unintended code execution.∑
+        /// This is to prevent unintended code execution.
         /// </summary>
         public virtual void OnStateEnter()
         {
@@ -66,6 +69,11 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public StateMachine StateMachine
         {
             get { return _stateMachine; }
+        }
+
+        public virtual void Consume(Event.Event @event)
+        {
+            // Override if needed.
         }
     }
 }
