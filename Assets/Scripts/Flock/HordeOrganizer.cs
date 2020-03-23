@@ -52,7 +52,6 @@ public class HordeOrganizer : MonoBehaviour
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
-
         UpdateDropDown();
     }
 
