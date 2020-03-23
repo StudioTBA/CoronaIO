@@ -34,7 +34,7 @@ public class FlockManager : MonoBehaviour
                 randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
                 GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
                     Quaternion.identity);
-                Swarmling.transform.localScale = new Vector3(50f, 50f, 50f);
+                
                 Swarmling.transform.parent = flockHolder.transform;
                 
                 AttachZombie(Swarmling.GetComponent<Flocker>());

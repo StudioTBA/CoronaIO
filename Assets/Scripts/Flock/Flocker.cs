@@ -11,7 +11,6 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
     public float alignmentFactor;
-    public float rsat;
 
     // Start is called before the first frame update
     void Start()
