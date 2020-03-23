@@ -25,7 +25,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// <summary>
         /// State we are as of right now. Might be null. 
         /// </summary>
-        public State CurrentState;
+        [CanBeNull] public State CurrentState;
 
         /// <summary>
         /// Method to transition from state to state.
@@ -130,40 +130,5 @@ namespace Com.StudioTBD.CoronaIO.FMS
         void OnStateExit(State oldState);
         void OnStateEnter(State newState);
         void OnStateChange(State oldState, State newState);
-    }
-
-    public delegate void OnStateChangeHandler(State state);
-
-    public delegate void OnStatesChangeHandler(State stateOne, State stateTwo);
-
-
-    public class StateMachineListener : IStateMachineListener
-    {
-        [CanBeNull] private readonly OnStateChangeHandler _onStateEnterHandler;
-        [CanBeNull] private readonly OnStatesChangeHandler _statesChangeHandler;
-        [CanBeNull] private readonly OnStateChangeHandler _onStateExitHandler;
-
-        public StateMachineListener(OnStateChangeHandler onStateEnterHandler, OnStatesChangeHandler statesChangeHandler,
-            OnStateChangeHandler onStateExitHandler)
-        {
-            _onStateEnterHandler = onStateEnterHandler;
-            _statesChangeHandler = statesChangeHandler;
-            _onStateExitHandler = onStateExitHandler;
-        }
-
-        public void OnStateExit(State oldState)
-        {
-            _onStateExitHandler?.Invoke(oldState);
-        }
-
-        public void OnStateEnter(State newState)
-        {
-            _onStateEnterHandler?.Invoke(newState);
-        }
-
-        public void OnStateChange(State oldState, State newState)
-        {
-            _statesChangeHandler?.Invoke(oldState, newState);
-        }
     }
 }
