@@ -42,10 +42,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
     public class PoliceAgent : Agent
     {
    
-        //public Camera _camera;
-        //public AggressorFsm stateMachine;
-        //public State _defaultState;
-        //public Text stateText;
+        
         [SerializeField] private LayerMask enemylayer;
         [SerializeField] private LayerMask defencelayer;
         [SerializeField] private float retreatDistance;
@@ -66,12 +63,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
         }
 
-        //public void Start()
-        //{
-            
-        //    stateMachine.Start();
-            
-        //}
+        
 
         IEnumerator checkforEnemies()
         {

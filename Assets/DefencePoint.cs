@@ -10,16 +10,11 @@ public class DefencePoint : MonoBehaviour
     [SerializeField] private float NotifyRange = 50f;
 
    
-    //TODO: inform agent of attack and call to defend
-    //private void OnTriggerEnter(Collider other)
-    //{
-        
-    //}
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-        
-    //}
+    /// <summary>
+    /// informs the all nearby agents to come defent the defenc e point when a enemy
+    /// has crossed the defence point collider
+    /// </summary>
+    /// <param name="other"></param>
 
     private void OnTriggerStay(Collider other)
     {
