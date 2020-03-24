@@ -13,6 +13,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public AggressorDataHolder DataHolder;
 
         private bool fireing = true;
+
         protected override void Start()
         {
             StateName = "Attacking";

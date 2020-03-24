@@ -11,6 +11,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     {
         private State _attack;
         public AggressorDataHolder DataHolder;
+        private bool fireing = true;
 
         protected override void Start()
         {
@@ -25,14 +26,31 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             Debug.Log("Entering " + this.GetType().FullName);
 
             DataHolder = DataHolder == null ? (_stateMachine as AggressorFsm).dataHolder : DataHolder;
+            StartCoroutine(shoot());
 
+        }
 
+        IEnumerator shoot()
+        {
+            if (Time.timeSinceLevelLoad < 0.3f)
+                yield return new WaitForSeconds(0.3f);
+            //stand still and fire at the enmey 
+            //probably want to trigger an effect here not just draw line
+            while (fireing)
+            {
+                yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
+
+                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+            }
         }
 
         public override void Execute()
         {
-                     
-                
+            //turn to look at enemy 
+            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
+
 
         }
 
@@ -40,7 +58,9 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
-            //StopAllCoroutines();
+           
+            fireing = false;
+            StopCoroutine(shoot());
         }
 
     }
