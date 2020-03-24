@@ -9,6 +9,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     public class AttackingState : State
     {
         private State _attackandretreat;
+        private State _walkingState;
         public AggressorDataHolder DataHolder;
 
         private bool fireing = true;
@@ -16,6 +17,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             StateName = "Attacking";
             _attackandretreat = GetComponent<AttackAndRetreatState>();
+            _walkingState = GetComponent<AggressorWalkingState>();
             base.Start();
            
         }
@@ -45,6 +47,13 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
                                           
             //if they are walking away keep them within attack distance
+            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.weapon.Range - 1)
+            {
+                float distdiff = (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) - DataHolder.weapon.Range);
+                DataHolder.move_target = transform.position + (DataHolder.EnemyPosition.Value - transform.position).normalized * Math.Abs(distdiff);
+                StateMachine.ChangeState(_walkingState);
+            }
+
 
             // if they get close change to next state
             if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) <= DataHolder.retreatDistance)

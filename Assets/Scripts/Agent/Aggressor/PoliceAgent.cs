@@ -85,7 +85,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 //wait for a second before continuing to update path 
                 yield return new WaitForSeconds(1.0f);
 
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 20, _dataHolder.enemyLayer.Value);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, 50, _dataHolder.enemyLayer.Value);
                 if (colliders.Length > 0)
                 {
                     Vector3 smallestpos = colliders[0].transform.position;
