@@ -98,7 +98,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         public override void OnStateExit()
         {
             base.OnStateExit();
-            // StopAllCoroutines();
+            StopAllCoroutines();
         }
     }
 }

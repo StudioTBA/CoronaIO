@@ -1,6 +1,7 @@
 using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {
@@ -30,17 +31,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             if (_dataHolder.Target == null) return;
             if (IsMoving) return;
             IsMoving = true;
-            // GameObject _target = _dataHolder.Target;
-            // Debug.Log("Moving towards Shelter at: " +
-            //           _target.GetComponent<Shelter>().floorMeshRenderer.transform.position);
-            // _dataHolder.NavMeshAgent.SetDestination(_target.GetComponent<Shelter>().floorMeshRenderer
-            //     .transform.position);
-            
-            _dataHolder.NavMeshAgent.SetDestination(new Vector3(0,0,0));
-            Debug.Log("Moving towards : " + _dataHolder.NavMeshAgent.destination);
-            // Debug.Log(_dataHolder.NavMeshAgent.destination);
 
-            // Check radius
+            GameObject target = _dataHolder.Target;
+            NavMeshAgent agent = _dataHolder.NavMeshAgent;
+            agent.ResetPath();
+            _dataHolder.NavMeshAgent.SetDestination(target.GetComponent<Shelter>().floorMeshRenderer
+                .transform.position);
+
+            // Check radius if needed
             // if (!WithinRadius(transform.position, _dataHolder.Target.transform.position))
             // {
             //     _stateMachine.ResetToDefaultState();

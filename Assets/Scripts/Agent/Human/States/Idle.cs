@@ -3,6 +3,7 @@ using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {
@@ -23,6 +24,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         {
             // Do nothing.
             // TODO: Wander around
+            
+            // if (!Input.GetMouseButtonDown(0)) return;
+            //
+            // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // RaycastHit hit;
+            //
+            // if (!Physics.Raycast(ray, out hit)) return;
+            // Vector3 target = new Vector3(hit.point.x, 50f, hit.point.z);
+            // _dataHolder.NavMeshAgent.SetDestination(target);
+            // Debug.Log("Moving towards: " + _dataHolder.NavMeshAgent.destination);
         }
 
         public override void Consume([NotNull] Event.Event @event)
