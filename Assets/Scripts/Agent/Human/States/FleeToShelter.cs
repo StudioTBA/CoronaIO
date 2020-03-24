@@ -48,10 +48,5 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             // {
             // }
         }
-
-        private bool WithinRadius(Vector3 currentPosition, Vector3 targetPosition)
-        {
-            return Vector3.Distance(currentPosition, targetPosition) > 50f;
-        }
     }
 }

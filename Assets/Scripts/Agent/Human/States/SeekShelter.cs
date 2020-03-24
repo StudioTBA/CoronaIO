@@ -65,11 +65,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                     distance += Vector3.Distance(shortestPath.corners[i], shortestPath.corners[i + 1]);
                 }
 
-                // Uncomment if needed to debug
-                // Debug.Log(
-                //     "Searching shelter #" + index + " : " + shelter.name + " | Target " + position + " | Distance " +
-                //     distance,
-                //     this);
                 if (distance <= smallestDistance)
                 {
                     smallestDistance = distance;
