@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Com.StudioTBD.CoronaIO.Agent.Human;
-using Com.StudioTBD.CoronaIO.FMS.Extensions;
+using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
@@ -51,6 +50,11 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 StateMachine.ChangeState(_attackandretreat);
             }
+            Vector3 nearestdefencepoint;
+            if (CheckIfNearDefensePoint(out nearestdefencepoint))
+            {
+                StateMachine.ChangeState(_attackandretreat);
+            }
             
 
         }
@@ -76,18 +80,28 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             //StopAllCoroutines();
         }
 
-        private bool HandleMouseClick()
+        private bool CheckIfNearDefensePoint(out Vector3 closestDefencePoint)
         {
-            if (Input.GetMouseButtonDown(0))
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 30, DataHolder.defenceLayer.Value);
+
+            if (colliders.Length > 0)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                closestDefencePoint = colliders[0].transform.position;
+                foreach (Collider c in colliders)
                 {
-                    DataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
-                    return true;
+                    if (Vector3.Distance(transform.position, closestDefencePoint) > Vector3.Distance(transform.position, c.transform.position))
+                    {
+                        closestDefencePoint = c.transform.position;
+                    }
+
+
                 }
+
+                return true;
             }
+
+            closestDefencePoint = new Vector3();
 
             return false;
         }

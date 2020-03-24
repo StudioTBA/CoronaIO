@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Com.StudioTBD.CoronaIO.Agent.Human;
+using Com.StudioTBD.CoronaIO.FMS;
+using Com.StudioTBD.CoronaIO.FMS.Aggressors;
 using System;
 
-namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
+namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 {
 
     public enum weaponType { Aoe, longrange, mediumrange, shortrange }
@@ -38,36 +39,39 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
     }
 
-    public class PoliceAgent : MonoBehaviour
+    public class PoliceAgent : Agent
     {
    
-        public Camera _camera;
-        public AggressorFsm stateMachine;
-        public State _defaultState;
-        public Text stateText;
+        //public Camera _camera;
+        //public AggressorFsm stateMachine;
+        //public State _defaultState;
+        //public Text stateText;
         [SerializeField] private LayerMask enemylayer;
+        [SerializeField] private LayerMask defencelayer;
         [SerializeField] private float retreatDistance;
         [SerializeField] private Weapon weapon;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
 
 
-        private void Awake()
+        protected override void Awake()
         {
-
+            base.Awake();
             stateMachine = new AggressorFsm(_dataHolder);
-            stateMachine.Setup(gameObject, _defaultState);
-
-        }
-
-        public void Start()
-        {
-            stateMachine.dataHolder.enemyLayer = enemylayer;
-            stateMachine.dataHolder.weapon = weapon;
-            stateMachine.dataHolder.retreatDistance = retreatDistance;
+            stateMachine.Setup(gameObject, defaultState);
+            _dataHolder.enemyLayer = enemylayer;
+            _dataHolder.defenceLayer = defencelayer;
+            _dataHolder.weapon = weapon;
+            _dataHolder.retreatDistance = retreatDistance;
             StartCoroutine(checkforEnemies());
-            stateMachine.Start();
-            
+
         }
+
+        //public void Start()
+        //{
+            
+        //    stateMachine.Start();
+            
+        //}
 
         IEnumerator checkforEnemies()
         {
@@ -81,7 +85,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 //wait for a second before continuing to update path 
                 yield return new WaitForSeconds(1.0f);
 
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 20, stateMachine.dataHolder.enemyLayer.Value);
+                Collider[] colliders = Physics.OverlapSphere(transform.position, 20, _dataHolder.enemyLayer.Value);
                 if (colliders.Length > 0)
                 {
                     Vector3 smallestpos = colliders[0].transform.position;
@@ -92,7 +96,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
                         smallestpos = Vector3.Distance(transform.position, temppos) < Vector3.Distance(transform.position, smallestpos) ? c.transform.position : smallestpos;
 
-                        stateMachine.dataHolder.EnemyPosition = smallestpos;
+                        _dataHolder.EnemyPosition = smallestpos;
                     }
 
                 }
@@ -105,18 +109,18 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         }
         // Update is called once per frame
-        void Update()
-        {
-            stateMachine.Execute();
+        //void Update()
+        //{
+        //    stateMachine.Execute();
    
 
-            if (stateMachine.CurrentState != null)
-            {
-                stateText.text = "State: " + stateMachine.CurrentState.StateName;
-            }
-            else
-                stateText.text = "State: Null";
-        }
+        //    if (stateMachine.CurrentState != null)
+        //    {
+        //        stateText.text = "State: " + stateMachine.CurrentState.StateName;
+        //    }
+        //    else
+        //        stateText.text = "State: Null";
+        //}
     }
 }
 

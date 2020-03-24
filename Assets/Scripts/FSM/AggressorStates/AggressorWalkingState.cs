@@ -1,6 +1,6 @@
 ﻿using System;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.Agent.Human;
+using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
@@ -51,10 +51,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 StateMachine.ResetToDefaultState();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                this.ChangeState(_runningState);
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    this.ChangeState(_runningState);
+            //}
         }
 
         public override void OnStateExit()
