@@ -22,7 +22,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
             set => _stateName = value;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
         }
 
@@ -38,7 +38,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         {
             this.enabled = false;
         }
-        
+
         /// <summary>
         /// Callback that is called when you enter the state.
         /// On entering the state, it is automatically enabled by calling base.OnStateEnter().
