@@ -9,7 +9,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     public class AttackAndRetreatState : State
     {
         private State _defendingState;
-        //private State _attackingState;
+        private State _attackingState;
         public AggressorDataHolder DataHolder;
         private bool fireing = true;
         private bool movingToDefend = false;
@@ -21,7 +21,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             base.Start();
             StateName = "AttackAndRetreat";
             _defendingState = GetComponent<DefendingState>();
-            //_attackingState = GetComponent<AttackingState>();
+            _attackingState = GetComponent<AttackingState>();
             
         }
 
@@ -55,24 +55,44 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void Execute()
         {
 
-            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition) <= DataHolder.retreatDistance)
+            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition) >= DataHolder.retreatDistance && DataHolder.defend_target == null)
             {
+                //DataHolder.defend_target = null;
                 StateMachine.ResetToDefaultState();
             }
 
+           
+            //if the target is null attempt to set a new target 
+            if (DataHolder.defend_target == null && !movingToDefend)
+            {
+                Vector3 nearestdefencepoint;
+                movingToDefend = CheckIfNearDefensePoint(out nearestdefencepoint);
+                if (movingToDefend)
+                {
+                    DataHolder.defend_target = nearestdefencepoint;
+                }
 
-            //set new retreat target.
-            Vector3 nearestdefencepoint;
-            movingToDefend = CheckIfNearDefensePoint(out nearestdefencepoint);
+            }
+            else
+            {
+                movingToDefend = true;
+            }
+
             if (movingToDefend)
             {
-                DataHolder.target = nearestdefencepoint;
 
-                Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
+                if (Vector3.Distance(transform.position, DataHolder.defend_target.Value) >= satisfaction_radius)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.defend_target.Value, 6f * Time.deltaTime);
+                }
+                else
+                {
+                    // change state to defending
+                    movingToDefend = false;
+                    StateMachine.ChangeState(_defendingState);
+                }
 
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
 
-                
             }
             else
             {
@@ -84,33 +104,11 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
                 Vector3 am = new Vector3(posdiff.x / (absposdiff.x + theta), 0, posdiff.z / (absposdiff.z + theta));
 
-                DataHolder.target = transform.position + -am * 2.0f;
+                DataHolder.move_target = transform.position + -am * 2.0f;
 
-                Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
-
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
-            }
-            
-            if (movingToDefend)
-            {
-
-                if (Vector3.Distance(transform.position, DataHolder.target.Value) >= satisfaction_radius)
+                if (transform.position != DataHolder.move_target)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.target.Value, 6f * Time.deltaTime);
-                }
-                else
-                {
-                    // change state to defending
-                    StateMachine.ChangeState(_defendingState);
-                }
-
-
-            }
-            else
-            {
-                if (transform.position != DataHolder.target.Value)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.target.Value, 6f * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.move_target, 6f * Time.deltaTime);
                 }
                 else
                 {
@@ -118,9 +116,13 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                     StateMachine.ResetToDefaultState();
                 }
             }
-            
 
-            
+            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
+
+
+
 
 
 
@@ -139,7 +141,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, 30, DataHolder.defenceLayer.Value);
-            Debug.Log(colliders.Length);
+            
             if (colliders.Length > 0)
             {
                 closestDefencePoint = colliders[0].transform.position;

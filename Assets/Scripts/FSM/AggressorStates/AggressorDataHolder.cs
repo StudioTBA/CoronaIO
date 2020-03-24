@@ -7,7 +7,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 {
     public class AggressorDataHolder : DataHolder
     {
-        public Vector3? target;
+        public Vector3? defend_target;
+
+        public Vector3 move_target;
 
         public Weapon weapon;
 

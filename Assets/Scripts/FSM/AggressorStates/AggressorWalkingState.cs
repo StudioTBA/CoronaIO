@@ -31,19 +31,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             HandleMouseClick();
 
-            if (DataHolder.target == null)
+            if (DataHolder.move_target == null)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
 
 
-            if (transform.position != DataHolder.target)
+            if (transform.position != DataHolder.move_target)
             {
                 // Move to target
                 // Naive approach don't do it this way.
                 transform.position =
-                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 1f * Time.deltaTime);
+                    Vector3.MoveTowards(transform.position, DataHolder.move_target, 1f * Time.deltaTime);
             }
             else
             {
@@ -71,7 +71,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    DataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    DataHolder.move_target = new Vector3(hit.point.x, .5f, hit.point.z);
                     return true;
                 }
             }

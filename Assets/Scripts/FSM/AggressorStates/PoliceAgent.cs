@@ -105,22 +105,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
             }
 
-
-
         }
-        // Update is called once per frame
-        //void Update()
-        //{
-        //    stateMachine.Execute();
-   
+        
+        
 
-        //    if (stateMachine.CurrentState != null)
-        //    {
-        //        stateText.text = "State: " + stateMachine.CurrentState.StateName;
-        //    }
-        //    else
-        //        stateText.text = "State: Null";
-        //}
+
+
+
+
+
+
     }
 }
 

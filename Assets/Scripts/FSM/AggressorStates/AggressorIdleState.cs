@@ -80,7 +80,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    dataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    dataHolder.move_target = new Vector3(hit.point.x, .5f, hit.point.z);
                     return true;
                 }
             }

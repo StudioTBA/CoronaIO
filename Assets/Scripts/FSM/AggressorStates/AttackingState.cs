@@ -1,7 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
+using Com.StudioTBD.CoronaIO.FMS.Extensions;
+using System;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
@@ -53,6 +54,8 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             Vector3 nearestdefencepoint;
             if (CheckIfNearDefensePoint(out nearestdefencepoint))
             {
+                DataHolder.defend_target = nearestdefencepoint;
+                
                 StateMachine.ChangeState(_attackandretreat);
             }
             
@@ -107,7 +110,24 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         }
 
 
+        public override void Consume(Event.Event @event)
+        {
+            if (!(@event is HumanEvent humanEvent)) return;
 
+            switch (humanEvent.EventType)
+            {
+                case HumanEvent.HumanEventType.SpottedZombie:
+                    break;
+                case HumanEvent.HumanEventType.PoliceAlert:
+                    DataHolder.defend_target = @event.Producer.transform.position;
+                    this.ChangeState(_attackandretreat);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+
+        }
 
 
 
