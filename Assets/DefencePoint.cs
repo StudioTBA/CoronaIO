@@ -11,8 +11,8 @@ public class DefencePoint : MonoBehaviour
 
    
     /// <summary>
-    /// informs the all nearby agents to come defent the defenc e point when a enemy
-    /// has crossed the defence point collider
+    /// informs all nearby agents to come defend the defense point 
+    /// when a enemy has crossed the defence point collider
     /// </summary>
     /// <param name="other"></param>
 
