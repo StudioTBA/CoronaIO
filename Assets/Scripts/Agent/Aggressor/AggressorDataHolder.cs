@@ -9,11 +9,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
     {
         public Vector3? defend_target;
 
-        public Vector3 move_target;
+        public Vector3? move_target;
 
         public Weapon weapon;
 
-        public Vector3 EnemyPosition;
+        public Vector3? EnemyPosition;
 
         public LayerMask? enemyLayer;
 

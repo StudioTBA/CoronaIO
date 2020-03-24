@@ -9,6 +9,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     {
         private State _runningState;
         public AggressorDataHolder DataHolder;
+        private Vector3 currentTarget;
 
         protected override void Start()
         {
@@ -31,19 +32,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             HandleMouseClick();
 
-            if (DataHolder.move_target == null)
+            if (DataHolder.move_target == null && DataHolder.defend_target == null)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
 
-
-            if (transform.position != DataHolder.move_target)
+            currentTarget = DataHolder.defend_target != null ? DataHolder.defend_target.Value : DataHolder.move_target.Value;
+            if (transform.position != currentTarget)
             {
                 // Move to target
                 // Naive approach don't do it this way.
                 transform.position =
-                    Vector3.MoveTowards(transform.position, DataHolder.move_target, 1f * Time.deltaTime);
+                    Vector3.MoveTowards(transform.position, currentTarget, 1f * Time.deltaTime);
             }
             else
             {

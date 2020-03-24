@@ -45,7 +45,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void Execute()
         {
 
-            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition) >= DataHolder.retreatDistance && DataHolder.defend_target == null)
+            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance && DataHolder.defend_target == null)
             {
                 //DataHolder.defend_target = null;
                 StateMachine.ResetToDefaultState();
@@ -96,7 +96,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             }
             else
             {
-                Vector3 posdiff = DataHolder.EnemyPosition - transform.position;
+                Vector3 posdiff = DataHolder.EnemyPosition.Value - transform.position;
 
                 Vector3 absposdiff = new Vector3(Math.Abs(posdiff.x), Math.Abs(posdiff.y), Math.Abs(posdiff.z));
 
@@ -108,7 +108,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
                 if (transform.position != DataHolder.move_target)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.move_target, 6f * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, DataHolder.move_target.Value, 6f * Time.deltaTime);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 }
             }
 
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
+            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
 

@@ -9,28 +9,17 @@ public class DefencePoint : MonoBehaviour
     [SerializeField] private LayerMask layer;
     [SerializeField] private float NotifyRange = 50f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
     //TODO: inform agent of attack and call to defend
-    private void OnTriggerEnter(Collider other)
-    {
+    //private void OnTriggerEnter(Collider other)
+    //{
         
-    }
+    //}
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    //private void OnCollisionEnter(Collision collision)
+    //{
         
-    }
+    //}
 
     private void OnTriggerStay(Collider other)
     {

@@ -40,14 +40,14 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
 
             //turn to look at enemy 
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition - transform.position);
+            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
                                           
             //if they are walking away keep them within attack distance
 
             // if they get close change to next state
-            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition) <= DataHolder.retreatDistance)
+            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) <= DataHolder.retreatDistance)
             {
                 StateMachine.ChangeState(_attackandretreat);
             }
@@ -71,7 +71,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
         public override void OnStateExit()
