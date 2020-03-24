@@ -23,12 +23,6 @@ public class TileGenerator : MonoBehaviour
         GenerateTiles();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     /// <summary>
     /// Cover the floor by placing tiles on top
     /// </summary>
