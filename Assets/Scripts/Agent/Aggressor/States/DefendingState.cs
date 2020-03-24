@@ -14,10 +14,9 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         protected override void Start()
         {
-            base.Start();
             StateName = "Defending";
             _attack = GetComponent<AttackingState>();
-
+            base.Start();
         }
 
         public override void OnStateEnter()

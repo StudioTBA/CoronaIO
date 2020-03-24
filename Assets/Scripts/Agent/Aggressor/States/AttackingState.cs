@@ -14,9 +14,9 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private bool fireing = true;
         protected override void Start()
         {
-            base.Start();
             StateName = "Attacking";
             _attackandretreat = GetComponent<AttackAndRetreatState>();
+            base.Start();
            
         }
 

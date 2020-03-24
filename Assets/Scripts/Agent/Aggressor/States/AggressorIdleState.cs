@@ -9,20 +9,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
     public class AggressorIdleState : State
     {
-
         private State _walkingState;
         private State _attackingState;
-        
+
         private AggressorDataHolder DataHolder;
 
         protected override void Start()
         {
-            base.Start();
             StateName = "Idle";
             _walkingState = GetComponent<AggressorWalkingState>();
             _attackingState = GetComponent<AttackingState>();
-            
+
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
+            base.Start();
             //StartCoroutine(checkforEnemies());
         }
 
@@ -31,9 +30,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             base.OnStateEnter();
             Debug.Log("Entering " + this.GetType().FullName);
         }
-
-
-        
 
 
         /// <summary>
@@ -45,27 +41,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// 
         public override void Execute()
         {
-            
-
-            if(DataHolder.EnemyPosition != null)
+            if (DataHolder.EnemyPosition != null)
             {
                 if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) <= DataHolder.weapon.Range)
                 {
-
                     this.ChangeState(_attackingState);
-
                 }
-
             }
-
 
 
             if (HandleMouseClick())
             {
                 this.ChangeState(_walkingState);
             }
-
-
         }
 
         public override void OnStateExit()
@@ -94,7 +82,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             if (!(@event is HumanEvent humanEvent)) return;
 
-            
+
             switch (humanEvent.EventType)
             {
                 case HumanEvent.HumanEventType.SpottedZombie:
@@ -106,17 +94,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-
         }
     }
-
-    
-
-
-
-
 }
-
-
-

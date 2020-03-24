@@ -13,10 +13,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         protected override void Start()
         {
-            base.Start();
             StateName = "Walking";
             //_runningState = GetComponent<RunningState>();
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
+            base.Start();
         }
 
         public override void OnStateEnter()
