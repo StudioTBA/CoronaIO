@@ -9,16 +9,20 @@ using UnityEngine;
 public class TileGenerator : MonoBehaviour
 {
     // Size of the map. Scale should be a multiple of 10
-    public int _floorScale;
+    public int floorScale;
 
     // Tile prefab. Scale should be 5
-    public GameObject _tilePrefab;
+    public GameObject baseTilePrefab;
+    public GameObject streetTilePrefab;
+    public GameObject rightBuildingTilePrefab;
+    public GameObject leftBuildingTilePrefab;
+    public GameObject[] obstructionTilePrefabs;
 
     // Start is called before the first frame update
     void Start()
     {
         // Set floor scale
-        gameObject.transform.localScale = new Vector3(_floorScale, _floorScale, _floorScale);
+        gameObject.transform.localScale = new Vector3(floorScale, floorScale, floorScale);
 
         GenerateTiles();
     }
@@ -29,8 +33,8 @@ public class TileGenerator : MonoBehaviour
     private void GenerateTiles()
     {
         // Variables
-        float tilesPerRow = gameObject.transform.localScale.x / _tilePrefab.transform.localScale.x;
-        float tileSize = _tilePrefab.transform.localScale.x * 10.0f;
+        float tilesPerRow = gameObject.transform.localScale.x / baseTilePrefab.transform.localScale.x;
+        float tileSize = baseTilePrefab.transform.localScale.x * 10.0f;
         float tileBound;
         float tilePositionX;
         float tilePositionZ;
@@ -86,7 +90,7 @@ public class TileGenerator : MonoBehaviour
             for (int j = 0; j < tilesPerRow; j++)
             {
                 // Create tile
-                GameObject tile = Instantiate(_tilePrefab);
+                GameObject tile = Instantiate(baseTilePrefab);
                 tile.name = "Tile_" + tileCounter;
 
                 // Position tile
