@@ -111,9 +111,7 @@ MonoBehaviour:
     type: 3}
   streetTilePrefab: {fileID: 844231464565017071, guid: 70b6f2d12b5ff4569a78da7fb8015cd3,
     type: 3}
-  rightBuildingTilePrefab: {fileID: 1701292744650470397, guid: aa01df1f4862b4d99a1a614f6b27725c,
-    type: 3}
-  leftBuildingTilePrefab: {fileID: 6164657548277330834, guid: d55cec2e611914770bc8e9ae236231d2,
+  buildingTilePrefab: {fileID: 5882095421328724627, guid: d55cec2e611914770bc8e9ae236231d2,
     type: 3}
   obstructionTilePrefabs:
   - {fileID: 4098254081353838211, guid: 94a30283fe1664ac3820a0c36ecc3d8b, type: 3}

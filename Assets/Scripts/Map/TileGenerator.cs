@@ -14,16 +14,29 @@ public class TileGenerator : MonoBehaviour
     // Tile prefab. Scale should be 5
     public GameObject baseTilePrefab;
     public GameObject streetTilePrefab;
-    public GameObject rightBuildingTilePrefab;
-    public GameObject leftBuildingTilePrefab;
+    public GameObject buildingTilePrefab;
     public GameObject[] obstructionTilePrefabs;
+
+    // Contains a map of tile types prefabs per row
+    // Regenerated as each row is processed
+    private Hashtable tileMap = new Hashtable();
+
+    // Other
+    private float tilesPerRow;
+    private int tilesPerHalf;
+    private float tileSize;
+    private int buildingPosition = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Set floor scale
+        // Set floor scale and tiles per row
         gameObject.transform.localScale = new Vector3(floorScale, floorScale, floorScale);
+        tilesPerRow = gameObject.transform.localScale.x / baseTilePrefab.transform.localScale.x;
+        tilesPerHalf = (int) Mathf.Floor(tilesPerRow / 2.0f);
+        tileSize = baseTilePrefab.transform.localScale.x * 10.0f;
 
+        // Place tiles
         GenerateTiles();
     }
 
@@ -33,8 +46,6 @@ public class TileGenerator : MonoBehaviour
     private void GenerateTiles()
     {
         // Variables
-        float tilesPerRow = gameObject.transform.localScale.x / baseTilePrefab.transform.localScale.x;
-        float tileSize = baseTilePrefab.transform.localScale.x * 10.0f;
         float tileBound;
         float tilePositionX;
         float tilePositionZ;
@@ -85,16 +96,40 @@ public class TileGenerator : MonoBehaviour
         // Counter for tile naming purposes
         float tileCounter = 0;
 
+        // Building flag check to set rotation
+        bool isBuildingTile;
+
         for (int i = 0; i < tilesPerRow; i++)
         {
+            // Generate tile map to determine what type of tile goes where in each row
+            StartCoroutine("TileSelector");
+
             for (int j = 0; j < tilesPerRow; j++)
             {
-                // Create tile
-                GameObject tile = Instantiate(baseTilePrefab);
+                // Select tile
+                string key = j.ToString();
+                GameObject tile = (GameObject) tileMap[key];
+
+                // Check if tile is Building
+                if (tile == buildingTilePrefab)
+                    isBuildingTile = true;
+                else
+                    isBuildingTile = false;
+
+                tile = Instantiate(tile);
                 tile.name = "Tile_" + tileCounter;
 
                 // Position tile
                 tile.transform.position = new Vector3(tilePositionX, 0.0f, tilePositionZ);
+
+                // Rotate Building tile so it faces the right direction
+                if (isBuildingTile)
+                {
+                    if (j <= tilesPerHalf)
+                        tile.transform.Rotate(0.0f, 90.0f, 0.0f);
+                    else
+                        tile.transform.Rotate(0.0f, -90.0f, 0.0f);
+                }
 
                 // Make child of floor
                 tile.transform.SetParent(gameObject.transform);
@@ -107,6 +142,113 @@ public class TileGenerator : MonoBehaviour
             // New row
             tilePositionX = tileBound;
             tilePositionZ += tileSize;
+
+            // Reset tileMap
+            tileMap.Clear();
         }
+    }
+
+    /// <summary>
+    /// Sets a row's tile map to determine what tile prefab goes in what position
+    /// </summary>
+    /// <returns>Null</returns>
+    IEnumerator TileSelector()
+    {
+        // Scale must be a multiple of 10
+        if (gameObject.transform.localScale.x % 10 == 0 &&
+            gameObject.transform.localScale.x >= 20)
+        {
+            // Base cases
+            if (gameObject.transform.localScale.x == 20)
+            {
+                tileMap.Add("0", BuildingSelector());
+                tileMap.Add("1", streetTilePrefab);
+                tileMap.Add("2", streetTilePrefab);
+                tileMap.Add("3", BuildingSelector());
+            }
+            else if (gameObject.transform.localScale.x == 30)
+            {
+                tileMap.Add("0", ObstructionSelector());
+                tileMap.Add("1", BuildingSelector());
+                tileMap.Add("2", streetTilePrefab);
+                tileMap.Add("3", streetTilePrefab);
+                tileMap.Add("4", BuildingSelector());
+                tileMap.Add("5", ObstructionSelector());
+            }
+            else if (gameObject.transform.localScale.x == 40)
+            {
+                tileMap.Add("0", ObstructionSelector());
+                tileMap.Add("1", ObstructionSelector());
+                tileMap.Add("2", BuildingSelector());
+                tileMap.Add("3", streetTilePrefab);
+                tileMap.Add("4", streetTilePrefab);
+                tileMap.Add("5", BuildingSelector());
+                tileMap.Add("6", ObstructionSelector());
+                tileMap.Add("7", ObstructionSelector());
+            }
+            else
+            {
+                int counter = 0;
+
+                /* One side is a mirror of the other (ignoring probabilities
+                 * involved in tile creation). Therefore, assign the mapping
+                 * using absolute value to only account for indeces above 0.
+                 */
+                for (int i = -tilesPerHalf; i < tilesPerHalf; i++)
+                {
+                    int positionFromCenter = Mathf.Abs(i);
+
+                    // Adjust for 0 when i < 0
+                    if (i < 0)
+                        positionFromCenter -= 1;
+
+                    // Add tile type to map
+                    if (positionFromCenter > buildingPosition)
+                        tileMap.Add(counter.ToString(), ObstructionSelector());
+                    else if (positionFromCenter == buildingPosition)
+                        tileMap.Add(counter.ToString(), BuildingSelector());
+                    else if (positionFromCenter < buildingPosition)
+                        tileMap.Add(counter.ToString(), streetTilePrefab);
+
+                    counter += 1;
+                }
+            }
+        }
+
+        yield return null;
+    }
+
+    /// <summary>
+    /// Considering a probability of spawning an obstruction tile prefab,
+    /// select one of the obstructors in obstructionTilePrefabs and return it,
+    /// otherwise return the base tile prefab
+    /// </summary>
+    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
+    private GameObject ObstructionSelector()
+    {
+        int index = Random.Range(0, 2);
+
+        if (index == 1)
+        {
+            index = Random.Range(0, obstructionTilePrefabs.Length);
+            return obstructionTilePrefabs[index];
+        }
+
+        return baseTilePrefab;
+    }
+
+    /// <summary>
+    /// Considering a probability of spawning a building tile prefab,
+    /// return it, otherwise return the base tile prefab 
+    /// </summary>
+    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
+    private GameObject BuildingSelector()
+    {
+        int index = Random.Range(0, 2);
+
+        if (index == 1)
+            return buildingTilePrefab;
+
+        return baseTilePrefab;
     }
 }
