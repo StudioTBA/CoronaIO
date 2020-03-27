@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6956756031875463281}
   - component: {fileID: 6956756031875463280}
   - component: {fileID: 6956756031875463282}
+  - component: {fileID: 2262505473407784550}
+  - component: {fileID: -2065199842865550999}
+  - component: {fileID: 930924733526560999}
   m_Layer: 0
   m_Name: FlockCenter
   m_TagString: Untagged
@@ -98,3 +101,50 @@ MonoBehaviour:
   minHordeSizeToSplit: 2
   flockManagerPrefab: {fileID: 6956756031875463285}
   active: 1
+--- !u!114 &2262505473407784550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956756031875463285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa0abc27256cdc41b8f0c3b0f5566ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: -2065199842865550999}
+--- !u!114 &-2065199842865550999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956756031875463285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7d8824c6462f42bdbd985da819599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &930924733526560999
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956756031875463285}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
