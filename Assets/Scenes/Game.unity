@@ -349,11 +349,6 @@ PrefabInstance:
       propertyPath: _floorScale
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
-        type: 3}
-      propertyPath: floorScale
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 372412278489968503, guid: a54db522f4c054a2ca59062037332679,
         type: 3}
       propertyPath: m_Name

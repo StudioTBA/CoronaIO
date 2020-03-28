@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220641440600868727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 2, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 6113165555921356953}
   m_RootOrder: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8195577414310888011}
   - component: {fileID: 3917831053746719385}
   m_Layer: 0
-  m_Name: Obstruction
+  m_Name: ObstructionBase
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,5 +199,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5c3feb20bad4e67ada490e60742db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstructor: {fileID: 3224579607737059217, guid: fa0cac96619bd411abea3fb5b941a6d7,
-    type: 3}
