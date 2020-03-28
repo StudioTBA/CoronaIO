@@ -106,6 +106,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265047ef795d941148d617e87df49e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorScale: 40
-  _tilePrefab: {fileID: 3567180526418297993, guid: 6925d7cd59da74d8580d257b7e6fa2ca,
+  floorScale: 30
+  baseTilePrefab: {fileID: 3567180526418297993, guid: 6925d7cd59da74d8580d257b7e6fa2ca,
     type: 3}
+  streetTilePrefab: {fileID: 844231464565017071, guid: 70b6f2d12b5ff4569a78da7fb8015cd3,
+    type: 3}
+  buildingTilePrefab: {fileID: 5882095421328724627, guid: d55cec2e611914770bc8e9ae236231d2,
+    type: 3}
+  obstructionTilePrefabs:
+  - {fileID: 4098254081353838211, guid: 94a30283fe1664ac3820a0c36ecc3d8b, type: 3}
+  - {fileID: 532387129099194183, guid: a7bf36cea01244852914ce8563341b5d, type: 3}
+  - {fileID: 3534265680141346834, guid: 9e3ec59f995264a5a867c50625035834, type: 3}
+  - {fileID: 3294076949228392518, guid: 1ce45d4f55aef4e9bbdd07c3121a3c9b, type: 3}
