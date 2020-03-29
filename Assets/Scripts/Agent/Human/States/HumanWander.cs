@@ -49,7 +49,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             Vector3 newPos = RandomPoint(transform.position, 200f, -1);
             Debug.Log("Wandering to new position: " + newPos);
             this._dataHolder.NavMeshAgent.SetDestination(newPos);
-            // return null;
         }
 
         private Vector3 RandomPoint(Vector3 origin, float dist, int layermask)
