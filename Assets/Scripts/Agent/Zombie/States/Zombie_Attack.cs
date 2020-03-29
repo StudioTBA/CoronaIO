@@ -1,27 +1,26 @@
 ﻿using System;
 using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.Agent.Human;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 {
-    public class Wander : State
+    public class Zombie_Attack : State
     {
-        private DataHolder _dataHolder;
+        private ZombieDataHolder _dataHolder;
 
         protected override void Start()
         {
-            StateName = "Wander";
-            _dataHolder = (StateMachine as ZombieStateMachine)?.DataHolder;
+            StateName = "Attack";
+            _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             base.Start();
         }
 
         public override void Execute()
         {
-            //Must get here from idle state only if not currently controlled by player
+            //Use Navmesh to head towards Human target
         }
 
         public override void Consume([NotNull] Event.Event @event)

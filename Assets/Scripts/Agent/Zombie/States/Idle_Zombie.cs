@@ -1,7 +1,6 @@
 ﻿using System;
 using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.Agent.Human;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,12 +9,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 {
     public class Idle_Zombie : State
     {
-        private DataHolder _dataHolder;
+        private ZombieDataHolder _dataHolder;
 
         protected override void Start()
         {
             StateName = "Idle";
-            _dataHolder = (StateMachine as ZombieStateMachine)?.DataHolder;
+            _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             base.Start();
         }
 
