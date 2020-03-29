@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 74938544372652180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 286ae071918946498d10d92bc7329675, type: 3}
+  m_Script: {fileID: 11500000, guid: e95f322e86f40442cbc3d360ed706887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &1787034192
@@ -363,6 +363,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766209939218459941, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766209939218459941, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2bb87907016541ad9a5ff5cc9f35e5a, type: 3}
