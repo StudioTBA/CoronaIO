@@ -8,6 +8,7 @@ TagManager:
   - Shelter
   - ShelterFloor
   - Agent
+  - Zombie
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - 
   - enemy
-  - 
-  - 
+  - Defences
+  - Human
   - 
   - 
   - 

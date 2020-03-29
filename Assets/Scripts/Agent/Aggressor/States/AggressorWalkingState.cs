@@ -1,6 +1,6 @@
 ﻿using System;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
-using Com.StudioTBD.CoronaIO.Agent.Human;
+using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
@@ -9,13 +9,14 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     {
         private State _runningState;
         public AggressorDataHolder DataHolder;
+        private Vector3 currentTarget;
 
         protected override void Start()
         {
-            base.Start();
             StateName = "Walking";
             //_runningState = GetComponent<RunningState>();
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
+            base.Start();
         }
 
         public override void OnStateEnter()
@@ -31,19 +32,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         {
             HandleMouseClick();
 
-            if (DataHolder.target == null)
+            if (DataHolder.move_target == null && DataHolder.defend_target == null)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
 
-
-            if (transform.position != DataHolder.target)
+            currentTarget = DataHolder.defend_target != null ? DataHolder.defend_target.Value : DataHolder.move_target.Value;
+            if (transform.position != currentTarget)
             {
                 // Move to target
                 // Naive approach don't do it this way.
                 transform.position =
-                    Vector3.MoveTowards(transform.position, DataHolder.target.Value, 1f * Time.deltaTime);
+                    Vector3.MoveTowards(transform.position, currentTarget, 1f * Time.deltaTime);
             }
             else
             {
@@ -51,10 +52,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 StateMachine.ResetToDefaultState();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                this.ChangeState(_runningState);
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    this.ChangeState(_runningState);
+            //}
         }
 
         public override void OnStateExit()
@@ -71,7 +72,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    DataHolder.target = new Vector3(hit.point.x, .5f, hit.point.z);
+                    DataHolder.move_target = new Vector3(hit.point.x, .5f, hit.point.z);
                     return true;
                 }
             }
