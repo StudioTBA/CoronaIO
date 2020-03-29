@@ -116,19 +116,19 @@ public class TileGenerator : MonoBehaviour
                 else
                     isBuildingTile = false;
 
-                tile = Instantiate(tile);
+                tile = Instantiate(tile, new Vector3(tilePositionX, 0.0f, tilePositionZ), Quaternion.identity);
                 tile.name = "Tile_" + tileCounter;
 
                 // Position tile
-                tile.transform.position = new Vector3(tilePositionX, 0.0f, tilePositionZ);
+                //tile.transform.position = new Vector3(tilePositionX, 0.0f, tilePositionZ);
 
                 // Rotate Building tile so it faces the right direction
                 if (isBuildingTile)
                 {
                     if (j <= tilesPerHalf)
-                        tile.transform.Rotate(0.0f, 90.0f, 0.0f);
+                        tile.transform.Rotate(0.0f, 0.0f, 0.0f);
                     else
-                        tile.transform.Rotate(0.0f, -90.0f, 0.0f);
+                        tile.transform.Rotate(0.0f, -180.0f, 0.0f);
                 }
 
                 // Make child of floor
