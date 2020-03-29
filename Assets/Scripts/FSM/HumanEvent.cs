@@ -10,7 +10,8 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public enum HumanEventType
         {
             PoliceAlert,
-            SpottedZombie
+            SpottedZombie,
+            EnteredShelter
         }
 
         public readonly HumanEventType EventType;

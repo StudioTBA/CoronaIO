@@ -11,10 +11,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
     {
         private DataHolder _dataHolder = new DataHolder();
         private NavMeshAgent _navMeshAgent;
+        public HealthBar healthBar;
 
         protected override void Awake()
         {
             base.Awake();
+
+            // Set health
+            currentHealth = maxHealth = 100;
+            healthBar.SetMaxHealth(maxHealth);
+
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
             stateMachine = new HumanStateMachine(_dataHolder);

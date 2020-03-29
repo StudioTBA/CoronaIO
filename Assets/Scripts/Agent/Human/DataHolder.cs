@@ -13,6 +13,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
     /// </summary>
     public class DataHolder
     {
+        public GameObject Target;
         public NavMeshAgent NavMeshAgent;
     }
 }

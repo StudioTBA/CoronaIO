@@ -10,6 +10,8 @@ namespace Com.StudioTBD.CoronaIO.Agent
     {
         public StateMachine stateMachine;
         public State defaultState;
+        protected int maxHealth;
+        protected int currentHealth;
 
         /// <summary>
         /// See Example.Agent for guidance.

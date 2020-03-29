@@ -8,31 +8,113 @@ public class FlockManager : MonoBehaviour
     public GameObject flockHolder;
     public float flockMoveSpeed;
 
+    public int minHordeSizeToSplit;
+    public GameObject flockManagerPrefab;
+
+    private List<Flocker> zombieList = new List<Flocker>();
+
+    public bool active = true;
+
     // Start is called before the first frame update
     void Start()
     {
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 randomPosInACube;
-        Vector3 normalizedDirection;
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (active)
         {
-            randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 0, Random.Range(-100.0f, 100.0f));
-            GameObject Swarmling = (GameObject) Instantiate(flockPrefab, transform.position + randomPosInACube,
-                Quaternion.identity);
-            Swarmling.transform.localScale = new Vector3(50f, 50f, 50f);
-            Swarmling.transform.parent = flockHolder.transform;
-            Swarmling.GetComponent<Flocker>().target = this.gameObject;
+            Vector3 randomPosInACube;
+            Vector3 direction = Vector3.zero;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
+                GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
+                    Quaternion.identity);
+                
+                Swarmling.transform.parent = flockHolder.transform;
+                
+                AttachZombie(Swarmling.GetComponent<Flocker>());
+            }
+
+            if (Input.GetKey(KeyCode.I))
+            {
+                direction += new Vector3(0, 0, 1.0f);
+            }
+            if (Input.GetKey(KeyCode.J))
+            {
+                direction += new Vector3(-1.0f, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.K))
+            {
+                direction += new Vector3(0, 0, -1.0f);
+            }
+            if (Input.GetKey(KeyCode.L))
+            {
+                direction += new Vector3(1.0f, 0, 0);
+            }
+
+
+            transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
+        }
+    }
+
+    public void AttachZombie(Flocker zombie)
+    {
+        zombie.target = this.gameObject;
+        zombieList.Add(zombie);
+    }
+
+    public void RemoveZombie(Flocker zombie)
+    {
+        zombieList.Remove(zombie);
+    }
+
+    public FlockManager SplitHorde()
+    {
+        if (zombieList.Count >= minHordeSizeToSplit)
+        {
+            FlockManager newHorde = Instantiate(flockManagerPrefab).GetComponent<FlockManager>();
+            
+            newHorde.flockHolder = flockHolder;
+            newHorde.transform.position = transform.position;
+
+            int amount = zombieList.Count / 2;
+
+            while (zombieList.Count > amount)
+            {
+                newHorde.AttachZombie(zombieList[0]);
+                RemoveZombie(zombieList[0]);
+            }
+
+            active = false;
+
+            return newHorde;
         }
 
-        normalizedDirection =
-            (new Vector3(1.0f, 0, 0) * Input.GetAxis("Horizontal") +
-             new Vector3(0, 0, 1.0f) * Input.GetAxis("Vertical")).normalized;
+        return null;
+    }
 
-        transform.position += normalizedDirection * flockMoveSpeed * Time.deltaTime;
+    public void AbsorbHorde(FlockManager otherHorde)
+    {
+        //Change target of all zombies in other horde
+
+        //Add them to appropriate list
+
+        foreach(Flocker zombie in otherHorde.zombieList)
+        {
+            AttachZombie(zombie);
+        }
+
+        //Destroy other horde
+
+        Destroy(otherHorde.gameObject);
+    }
+    public int HordeSize()
+    {
+        return zombieList.Count;
     }
 }
