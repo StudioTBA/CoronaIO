@@ -10,7 +10,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 {
     public class Wander : State
     {
-        private DataHolder _dataHolder;
+        private ZombieDataHolder _dataHolder;
 
         protected override void Start()
         {
