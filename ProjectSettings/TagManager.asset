@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tile
+  - Shelter
+  - ShelterFloor
+  - Agent
   - Zombie
   layers:
   - Default
@@ -15,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
+  - enemy
   - Defences
   - Human
   - 
