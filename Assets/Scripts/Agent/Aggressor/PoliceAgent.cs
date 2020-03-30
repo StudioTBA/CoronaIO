@@ -41,7 +41,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
     public class PoliceAgent : Agent
     {
-   
         
         [SerializeField] private LayerMask enemylayer;
         [SerializeField] private LayerMask defencelayer;
@@ -49,10 +48,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         [SerializeField] private Weapon weapon;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
 
+        public HealthBar healthBar;
 
         protected override void Awake()
         {
             base.Awake();
+
+            // Set health
+            currentHealth = maxHealth = 100;
+            healthBar.SetMaxHealth(maxHealth);
+
             stateMachine = new AggressorFsm(_dataHolder);
             stateMachine.Setup(gameObject, defaultState);
             _dataHolder.enemyLayer = enemylayer;
