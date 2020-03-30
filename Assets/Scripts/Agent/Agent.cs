@@ -10,6 +10,9 @@ namespace Com.StudioTBD.CoronaIO.Agent
     {
         public StateMachine stateMachine;
         public State defaultState;
+
+        // Health
+        public HealthBar healthBar;
         protected int maxHealth;
         protected int currentHealth;
 
@@ -19,6 +22,11 @@ namespace Com.StudioTBD.CoronaIO.Agent
         protected virtual void Awake()
         {
             // Must override this.
+
+            // Set health
+            currentHealth = maxHealth = 100;
+            healthBar.SetMaxHealth(maxHealth);
+
             // Initialize here your stateMachine
             // stateMachine = new aStateMachine();
             // stateMachine.Setup(gameObject, defaultState);
