@@ -120,6 +120,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: e57f2301ed3444554b7086b0c277e5e8, type: 2}
+--- !u!1 &96596683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5909564011596248452, guid: 085535e0d4b9d1448903471c117edab5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1497854184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &96596685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96596683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f83c7c5e877464fb265e496da1a8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &150269567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,6 +346,11 @@ PrefabInstance:
       propertyPath: dropDownMenu
       value: 
       objectReference: {fileID: 1204771969}
+    - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
+        type: 3}
+      propertyPath: maxHordes
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8781284419721044966, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2535,26 +2558,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905621057}
   m_CullTransparentMesh: 0
---- !u!1 &916734383 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1497854184}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &916734384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916734383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b61447b8e9c6fb4e9a85ac5725aa224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blipPrefab: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
-    type: 3}
 --- !u!1001 &933959583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3172,6 +3175,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204771967}
   m_CullTransparentMesh: 0
+--- !u!1 &1311703975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1311703976}
+  - component: {fileID: 1311703977}
+  m_Layer: 5
+  m_Name: ZombieHordeBlips
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1311703976
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311703975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3855671107481363772}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1311703977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311703975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dadb5c593a98284b84b4fdda2bdf288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hordeBlips: []
 --- !u!1 &1325632885
 GameObject:
   m_ObjectHideFlags: 0
@@ -5002,6 +5054,7 @@ RectTransform:
   m_Children:
   - {fileID: 3855671108857357194}
   - {fileID: 3855671107858024485}
+  - {fileID: 1311703976}
   m_Father: {fileID: 3855671108707968204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5023,6 +5076,7 @@ GameObject:
   - component: {fileID: 3855671107481363774}
   - component: {fileID: 3855671107481363760}
   - component: {fileID: 3855671107481363763}
+  - component: {fileID: 3855671107481363775}
   m_Layer: 5
   m_Name: MiniMap
   m_TagString: Untagged
@@ -5055,6 +5109,19 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &3855671107481363775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855671107481363773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63eaa8758d83d848a610fae3a96bf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieHordeBlips: []
 --- !u!224 &3855671107546970778
 RectTransform:
   m_ObjectHideFlags: 0

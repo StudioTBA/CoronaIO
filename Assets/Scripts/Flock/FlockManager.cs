@@ -118,15 +118,8 @@ public class FlockManager : MonoBehaviour
         return zombieList.Count;
     }
 
-    public Vector3 getCenterOfMass()
+    public List<Flocker> getZombieList()
     {
-        Vector3 centerOfMassPos = Vector3.zero;
-
-        foreach (Flocker zombie in zombieList)
-        {
-            centerOfMassPos += zombie.transform.position;
-        }
-
-        return centerOfMassPos / zombieList.Count;
+        return zombieList;
     }
 }

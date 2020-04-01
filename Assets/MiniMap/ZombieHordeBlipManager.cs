@@ -1,28 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieHordeBlipManager : MonoBehaviour
 {
-    FlockManager hordeManager;
-    GameObject miniMap;
-    GameObject blip;
-    GameObject centerOfMass;
-    public GameObject blipPrefab;
 
+    public List<GameObject> hordeBlips;
 
-    void Awake()
+    // Update is called once per frame
+    void Update()
     {
-        hordeManager = this.GetComponent<FlockManager>();
-        miniMap = GameObject.Find("MiniMap");
-        blip = Instantiate(blipPrefab, miniMap.transform);
-        centerOfMass = gameObject.transform.Find("CenterOfMass").gameObject;
+        handleZombieHordeBlips();
     }
 
-    private void Update()
+    private void handleZombieHordeBlips()
     {
-        centerOfMass.transform.position = hordeManager.getCenterOfMass();
-        blip.GetComponent<MiniMapIcon>().target = centerOfMass.transform;
+        foreach (GameObject hordeBlip in hordeBlips)
+        {
+            if (hordeBlip.GetComponent<MiniMapIcon>().target == null)
+            {
+                hordeBlips.Remove(hordeBlip);
+                Destroy(hordeBlip);
+            }
+        }
     }
 
+    public void addBlip(GameObject zombieHordeBlip)
+    {
+        hordeBlips.Add(zombieHordeBlip);
+    }
 }
