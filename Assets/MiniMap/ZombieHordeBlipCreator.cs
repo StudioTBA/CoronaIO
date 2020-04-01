@@ -7,7 +7,6 @@ public class ZombieHordeBlipCreator : MonoBehaviour
     FlockManager hordeManager;
     GameObject blipManager;
     GameObject blip;
-    GameObject centerOfMass;
     public GameObject blipPrefab;
 
 
@@ -16,8 +15,7 @@ public class ZombieHordeBlipCreator : MonoBehaviour
         hordeManager = this.GetComponent<FlockManager>();
         blipManager = GameObject.Find("ZombieHordeBlips");
         blip = Instantiate(blipPrefab, blipManager.transform);
-        centerOfMass = gameObject.transform.Find("CenterOfMass").gameObject;
-        blip.GetComponent<MiniMapIcon>().target = centerOfMass.transform;
+        blip.GetComponent<MiniMapIcon>().target = this.transform;
         blipManager.GetComponent<ZombieHordeBlipManager>().addBlip(blip);
     }
 
