@@ -62,6 +62,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         foreach (Flocker zombie in zombiesInHorde)
         {
             centerOfMass += zombie.transform.position;
+            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 250f);
         }
 
         return centerOfMass /= zombiesInHorde.Count;
@@ -70,6 +71,13 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     public void resetColor()
     {
         blipOnMiniMap.color = originalColor;
+
+        List<Flocker> zombiesInHorde = hordeManager.GetComponent<FlockManager>().getZombieList();
+
+        foreach (Flocker zombie in zombiesInHorde)
+        {
+            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+        }
     }
 
 }

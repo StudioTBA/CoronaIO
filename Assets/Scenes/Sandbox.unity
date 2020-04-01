@@ -2891,7 +2891,7 @@ MonoBehaviour:
   height: 8150.0312
   distance: 8150.0312
   FOV: 10
-  zoomSpeed: 50
+  zoomSpeed: 500
   handlerSpeed: 50
   rotateSpeed: 10
   dragSpeed: 50
@@ -5089,7 +5089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63eaa8758d83d848a610fae3a96bf5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieHordeBlips: []
 --- !u!224 &3855671107546970778
 RectTransform:
   m_ObjectHideFlags: 0
