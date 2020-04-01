@@ -6,21 +6,31 @@ using UnityEngine.UI;
 
 public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 {
-    bool isSelected = false;
+    public bool IsSelected { get; set; }
     Color originalColor;
     Image blipOnMiniMap;
+    GameObject miniMap;
 
     private void Start()
     {
         blipOnMiniMap = this.GetComponent<Image>();
+        originalColor = blipOnMiniMap.color;
+        IsSelected = false;
+        miniMap = GameObject.Find("MiniMap");
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!isSelected)
+        if (!IsSelected)
         {
-            originalColor = blipOnMiniMap.color;
+            IsSelected = true;
+            miniMap.GetComponent<DeselectZombieHorde>().SelectedHorde = this.gameObject;
             blipOnMiniMap.color = Color.yellow;
         }
+    }
+
+    public void resetColor()
+    {
+        blipOnMiniMap.color = originalColor;
     }
 
 }
