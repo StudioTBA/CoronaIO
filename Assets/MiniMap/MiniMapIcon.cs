@@ -21,6 +21,10 @@ public class MiniMapIcon : MonoBehaviour
 
     private void handleIconPosition()
     {
+
+        if (target == null)
+            return;
+
         Vector2 targetWorldPos = new Vector2(target.position.x, target.position.z);
         float miniMapSize = mapHelper.MiniMapSize;
         float worldSize = mapHelper.WorldSize;
