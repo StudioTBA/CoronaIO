@@ -37,6 +37,7 @@ public class MiniMapAndWorldHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("MiniMapCanvas").GetComponent<Canvas>().enabled = true;
         miniMap = GameObject.Find("MiniMap").GetComponent<RectTransform>();
         miniMapCanvas = GameObject.Find("MiniMapCanvas").GetComponent<RectTransform>();
         setSizes();
