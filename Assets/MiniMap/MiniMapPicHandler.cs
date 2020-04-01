@@ -23,7 +23,7 @@ public class MiniMapPicHandler : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         // Set Ortrhographic Size
-        miniMapCamera.orthographicSize = mapHelper.WorldSize / 2.03f;
+        miniMapCamera.orthographicSize = mapHelper.WorldSize / 2.05f;
 
         // Taking care of the scene light
         GameObject sceneLight = GameObject.Find("Directional Light");
