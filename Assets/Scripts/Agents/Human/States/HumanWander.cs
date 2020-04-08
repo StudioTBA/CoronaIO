@@ -28,12 +28,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             base.OnStateExit();
         }
 
-        protected override void Start()
+        protected override void OnStart()
         {
             StateName = "HumanWander";
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _seekShelter = GetComponent<SeekShelter>();
-            base.Start();
         }
 
         public override void Execute()

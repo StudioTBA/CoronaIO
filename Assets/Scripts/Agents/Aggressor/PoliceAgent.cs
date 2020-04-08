@@ -8,13 +8,17 @@ using System;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 {
-
-    public enum weaponType { Aoe, longrange, mediumrange, shortrange }
+    public enum weaponType
+    {
+        Aoe,
+        longrange,
+        mediumrange,
+        shortrange
+    }
 
     [Serializable]
     public struct Weapon
     {
-
         public weaponType type;
 
         public float Range;
@@ -34,12 +38,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             this.rateOfFire = rateoffire;
             this.AOE_radius = weapontype == weaponType.Aoe ? radius : 0;
         }
-
     }
 
     public class PoliceAgent : Agent
     {
-
         [SerializeField] private LayerMask enemylayer;
         [SerializeField] private LayerMask defencelayer;
         [SerializeField] private float retreatDistance;
@@ -79,15 +81,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                     {
                         Vector3 temppos = c.transform.position;
 
-                        smallestpos = Vector3.Distance(transform.position, temppos) < Vector3.Distance(transform.position, smallestpos) ? c.transform.position : smallestpos;
+                        smallestpos =
+                            Vector3.Distance(transform.position, temppos) <
+                            Vector3.Distance(transform.position, smallestpos)
+                                ? c.transform.position
+                                : smallestpos;
 
                         _dataHolder.EnemyPosition = smallestpos;
                     }
-
                 }
             }
         }
     }
 }
-
-
