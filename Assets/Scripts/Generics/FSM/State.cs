@@ -34,9 +34,17 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// <summary>
         /// Note: Should be called as the last statement in the children's "Start"
         /// </summary>
-        protected virtual void Start()
+        private void Start()
         {
+            OnStart();
             this.enabled = false;
+        }
+
+        /// <summary>
+        /// Use this as an Start().
+        /// </summary>
+        protected virtual void OnStart()
+        {
         }
 
         /// <summary>

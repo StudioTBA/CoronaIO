@@ -4,7 +4,6 @@ using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 
 
-
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
     public class DefendingState : State
@@ -12,12 +11,11 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private State _attack;
         public AggressorDataHolder DataHolder;
         private bool fireing = true;
-
-        protected override void Start()
+        
+        protected override void OnStart()
         {
             StateName = "Defending";
             _attack = GetComponent<AttackingState>();
-            base.Start();
         }
 
         public override void OnStateEnter()
@@ -27,7 +25,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
             DataHolder = DataHolder == null ? (_stateMachine as AggressorFsm).dataHolder : DataHolder;
             StartCoroutine(shoot());
-
         }
 
         IEnumerator shoot()
@@ -40,7 +37,8 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red, DataHolder.weapon.rateOfFire * 1 / 2, true);
+                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
+                    DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 
@@ -50,24 +48,15 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
-
-
         }
 
         public override void OnStateExit()
         {
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
-           
+
             fireing = false;
             StopCoroutine(shoot());
         }
-
     }
-
-
-
-
 }
-
-

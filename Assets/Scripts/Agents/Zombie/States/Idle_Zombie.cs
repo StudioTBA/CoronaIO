@@ -11,11 +11,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     {
         private ZombieDataHolder _dataHolder;
 
-        protected override void Start()
+        protected override void OnStart()
         {
             StateName = "Idle";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
-            base.Start();
         }
 
         public override void Execute()

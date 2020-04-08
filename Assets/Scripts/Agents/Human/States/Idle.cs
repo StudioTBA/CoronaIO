@@ -12,12 +12,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         private DataHolder _dataHolder;
         private State _seekShelter;
 
-        protected override void Start()
+        protected override void OnStart()
         {
             StateName = "Idle";
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _seekShelter = GetComponent<SeekShelter>();
-            base.Start();
         }
 
         public override void Execute()

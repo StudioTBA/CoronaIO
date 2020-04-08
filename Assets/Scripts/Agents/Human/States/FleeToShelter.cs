@@ -18,10 +18,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             StateName = "Flee To Shelter";
         }
 
-        protected override void Start()
+        protected override void OnStart()
         {
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
-            base.Start();
         }
 
         private bool IsMoving = false;

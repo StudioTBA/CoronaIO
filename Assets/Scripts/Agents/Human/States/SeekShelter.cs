@@ -21,13 +21,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             StateName = "Seek Shelter";
         }
 
-        protected override void Start()
+        protected override void OnStart()
         {
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _fleeState = GetComponent<Flee>();
             _fleeToShelterState = GetComponent<FleeToShelter>();
             _gameManager = FindObjectOfType<GameManager>();
-            base.Start();
         }
 
         private Coroutine _searchShelterCoroutine = null;

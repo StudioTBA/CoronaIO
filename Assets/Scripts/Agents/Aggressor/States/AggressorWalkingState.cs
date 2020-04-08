@@ -11,14 +11,12 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public AggressorDataHolder DataHolder;
         private Vector3 currentTarget;
 
-        protected override void Start()
+        protected override void OnStart()
         {
             StateName = "Walking";
-            //_runningState = GetComponent<RunningState>();
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
-            base.Start();
         }
-
+        
         public override void OnStateEnter()
         {
             base.OnStateEnter();
