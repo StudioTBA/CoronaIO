@@ -27,10 +27,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             CancelInvoke();
             base.OnStateExit();
         }
-
+        protected override string SetStateName()
+        {
+            return "HumanWander";
+        }
         protected override void OnStart()
         {
-            StateName = "HumanWander";
+            // StateName = "HumanWander";
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _seekShelter = GetComponent<SeekShelter>();
         }

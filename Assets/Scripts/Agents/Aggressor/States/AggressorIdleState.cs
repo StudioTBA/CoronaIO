@@ -13,10 +13,14 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private State _attackingState;
 
         private AggressorDataHolder DataHolder;
-        
+        protected override string SetStateName()
+        {
+            return "Idle";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Idle";
+            
             _walkingState = GetComponent<AggressorWalkingState>();
             _attackingState = GetComponent<AttackingState>();
 

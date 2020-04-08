@@ -11,9 +11,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     {
         private ZombieDataHolder _dataHolder;
 
+        protected override string SetStateName()
+        {
+            return "Wander";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Wander";
+            // StateName = "Wander";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
         }
 

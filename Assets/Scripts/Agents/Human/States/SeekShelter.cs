@@ -15,10 +15,15 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         private State _fleeToShelterState;
         private GameManager _gameManager;
 
+        protected override string SetStateName()
+        {
+            return "Seek Shelter";
+        }
+
         protected override void Awake()
         {
             base.Awake();
-            StateName = "Seek Shelter";
+            // StateName = "Seek Shelter";
         }
 
         protected override void OnStart()
