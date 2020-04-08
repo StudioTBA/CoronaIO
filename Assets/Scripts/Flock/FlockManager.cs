@@ -18,7 +18,7 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+
     }
 
     // Update is called once per frame
@@ -34,9 +34,9 @@ public class FlockManager : MonoBehaviour
                 randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
                 GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
                     Quaternion.identity);
-                
+
                 Swarmling.transform.parent = flockHolder.transform;
-                
+
                 AttachZombie(Swarmling.GetComponent<Flocker>());
             }
 
@@ -78,7 +78,7 @@ public class FlockManager : MonoBehaviour
         if (zombieList.Count >= minHordeSizeToSplit)
         {
             FlockManager newHorde = Instantiate(flockManagerPrefab).GetComponent<FlockManager>();
-            
+
             newHorde.flockHolder = flockHolder;
             newHorde.transform.position = transform.position;
 
@@ -104,7 +104,7 @@ public class FlockManager : MonoBehaviour
 
         //Add them to appropriate list
 
-        foreach(Flocker zombie in otherHorde.zombieList)
+        foreach (Flocker zombie in otherHorde.zombieList)
         {
             AttachZombie(zombie);
         }
@@ -116,5 +116,17 @@ public class FlockManager : MonoBehaviour
     public int HordeSize()
     {
         return zombieList.Count;
+    }
+
+    public Vector3 getCenterOfMass()
+    {
+        Vector3 centerOfMassPos = Vector3.zero;
+
+        foreach (Flocker zombie in zombieList)
+        {
+            centerOfMassPos += zombie.transform.position;
+        }
+
+        return centerOfMassPos / zombieList.Count;
     }
 }
