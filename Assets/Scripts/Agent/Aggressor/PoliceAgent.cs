@@ -26,7 +26,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         //if applicable
         public float AOE_radius;
 
-        public Weapon(weaponType weapontype, float range, float damage, float rateoffire,float radius)
+        public Weapon(weaponType weapontype, float range, float damage, float rateoffire, float radius)
         {
             this.type = weapontype;
             this.Range = range;
@@ -35,20 +35,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             this.AOE_radius = weapontype == weaponType.Aoe ? radius : 0;
         }
 
-       
-
     }
 
     public class PoliceAgent : Agent
     {
-   
-        
+
         [SerializeField] private LayerMask enemylayer;
         [SerializeField] private LayerMask defencelayer;
         [SerializeField] private float retreatDistance;
         [SerializeField] private Weapon weapon;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
-
 
         protected override void Awake()
         {
@@ -60,10 +56,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             _dataHolder.weapon = weapon;
             _dataHolder.retreatDistance = retreatDistance;
             StartCoroutine(checkforEnemies());
-
         }
-
-        
 
         IEnumerator checkforEnemies()
         {
@@ -92,21 +85,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                     }
 
                 }
-
-
-
             }
-
         }
-        
-        
-
-
-
-
-
-
-
     }
 }
 
