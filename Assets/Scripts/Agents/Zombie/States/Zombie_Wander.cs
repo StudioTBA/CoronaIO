@@ -10,16 +10,22 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     public class Zombie_Wander : State
     {
         private ZombieDataHolder _dataHolder;
+        private State _idle;
 
         protected override void OnStart()
         {
             StateName = "Wander";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
+            _idle = GetComponent<Idle_Zombie>();
         }
 
         public override void Execute()
         {
             //Must get here from idle state only if not currently controlled by player
+            if (_dataHolder.FlockManager.active)
+            {
+                this.ChangeState(_idle);
+            }
         }
 
         public override void Consume([NotNull] Event.Event @event)

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Com.StudioTBD.CoronaIO.Agent.Zombie;
+using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
 using UnityEngine;
 
 public class FlockManager : MonoBehaviour
@@ -9,7 +11,6 @@ public class FlockManager : MonoBehaviour
     public float flockMoveSpeed;
 
     public int minHordeSizeToSplit;
-    public GameObject flockManagerPrefab;
 
     private List<Flocker> zombieList = new List<Flocker>();
 
@@ -73,11 +74,13 @@ public class FlockManager : MonoBehaviour
         zombieList.Remove(zombie);
     }
 
-    public FlockManager SplitHorde()
+    public FlockManager SplitHorde(FlockManager newHorde)
     {
         if (zombieList.Count >= minHordeSizeToSplit)
         {
-            FlockManager newHorde = Instantiate(flockManagerPrefab).GetComponent<FlockManager>();
+            newHorde.transform.parent = transform.parent;
+
+            newHorde.gameObject.GetComponent<ZombieAgent>().stateMachine.ResetToDefaultState();
 
             newHorde.flockHolder = flockHolder;
             newHorde.transform.position = transform.position;

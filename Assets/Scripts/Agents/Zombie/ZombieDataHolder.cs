@@ -8,5 +8,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
     {
         public GameObject Target;
         public NavMeshAgent NavMeshAgent;
+        public FlockManager FlockManager;
     }
 }

@@ -17,6 +17,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
             base.Awake();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
+            _dataHolder.FlockManager = GetComponent<FlockManager>();
             stateMachine = new ZombieStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }

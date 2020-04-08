@@ -333,6 +333,12 @@ PrefabInstance:
       propertyPath: maxHordes
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
+        type: 3}
+      propertyPath: flockManagerPrefab
+      value: 
+      objectReference: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
     - target: {fileID: 8781284419721044966, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -525,7 +531,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181129819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f779d05e4f69f48eab3b7bfcc796b314, type: 3}
   m_Name: 
@@ -3722,6 +3728,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
         type: 3}
+    - target: {fileID: 2007735678988854857, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
@@ -3731,6 +3742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FlockCenter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}

@@ -9,6 +9,7 @@ public class HordeOrganizer : MonoBehaviour
     List<FlockManager> hordeList;
     public Dropdown dropDownMenu;
     [SerializeField][Min(1)] int maxHordes = 1;
+    public GameObject flockManagerPrefab;
 
     private int activeHorde = 0;
 
@@ -24,17 +25,17 @@ public class HordeOrganizer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightShift) && hordeList.Count<maxHordes)
         {
-            FlockManager temp;
+            FlockManager temp = Instantiate(flockManagerPrefab).GetComponent<FlockManager>();
 
-            temp = hordeList[activeHorde].SplitHorde();
-
-            if (temp)
+            if (hordeList[activeHorde].SplitHorde(temp))
             {
                 hordeList.Add(temp);
                 activeHorde = hordeList.IndexOf(temp);
                 dropDownMenu.options.Add(new Dropdown.OptionData());
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
+            else
+                Destroy(temp.gameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
