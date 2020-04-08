@@ -12,6 +12,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         private ZombieDataHolder _dataHolder;
         private State _wander;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            OnStart();
+        }
+
         protected override void OnStart()
         {
             StateName = "Idle";

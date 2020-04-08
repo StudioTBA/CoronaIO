@@ -105,7 +105,6 @@ MonoBehaviour:
   flockHolder: {fileID: 0}
   flockMoveSpeed: 400
   minHordeSizeToSplit: 2
-  flockManagerPrefab: {fileID: 6956756031875463285}
   active: 1
 --- !u!114 &2262505473407784550
 MonoBehaviour:
@@ -143,8 +142,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 200
-  m_Acceleration: 100
+  m_Speed: 400
+  m_Acceleration: 200
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

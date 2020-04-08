@@ -80,8 +80,6 @@ public class FlockManager : MonoBehaviour
         {
             newHorde.transform.parent = transform.parent;
 
-            newHorde.gameObject.GetComponent<ZombieAgent>().stateMachine.ResetToDefaultState();
-
             newHorde.flockHolder = flockHolder;
             newHorde.transform.position = transform.position;
 
