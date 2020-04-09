@@ -13,9 +13,15 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public AggressorDataHolder DataHolder;
 
         private bool fireing = true;
+
+
+        protected override string SetStateName()
+        {
+            return "Attacking";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Attacking";
             _attackandretreat = GetComponent<AttackAndRetreatState>();
             _walkingState = GetComponent<AggressorWalkingState>();
         }

@@ -11,9 +11,15 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     {
         private ZombieDataHolder _dataHolder;
 
+
+        protected override string SetStateName()
+        {
+            return "SeekClosestHuman";
+        }
+
         protected override void OnStart()
         {
-            StateName = "SeekClosestHuman";
+            // StateName = "SeekClosestHuman";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
         }
 

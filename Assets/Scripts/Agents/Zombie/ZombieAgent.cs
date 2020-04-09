@@ -28,5 +28,18 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
                 base.Consume(@event);
             }
         }
+
+        public override void OnStateEnter(State newState)
+        {
+        }
+
+        public override void OnStateChange(State oldState, State newState)
+        {
+            Debug.Log($"{oldState?.StateName} - {newState?.StateName}", this);
+        }
+
+        public override void OnStateExit(State oldState)
+        {
+        }
     }
 }

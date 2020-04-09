@@ -34,11 +34,10 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public void ChangeState(State newState)
         {
             NotifyStateChange(CurrentState, newState);
-            // Debug.Log("Changing state: " + (CurrentState == null ? "Null" : CurrentState.GetType().Name) +
-            //           " - New State: " + (newState == null ? "Null" : newState.GetType().Name));
 
             if (CurrentState != null)
             {
+                CurrentState.enabled = false;
                 NotifyStateExit(CurrentState);
                 CurrentState.OnStateExit();
             }
@@ -47,6 +46,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
 
             if (CurrentState != null)
             {
+                CurrentState.enabled = true;
                 NotifyStateEnter(CurrentState);
                 CurrentState.OnStateEnter();
             }
@@ -60,9 +60,19 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public void Setup(GameObject parent, State defaultState)
         {
             this.DefaultState = defaultState;
-            foreach (State state in parent.GetComponents<State>())
+
+            State[] states = parent.GetComponents<State>();
+
+            foreach (State state in states)
             {
                 state.Setup(this);
+            }
+
+            foreach (var state in states)
+            {
+                if (state != defaultState) continue;
+                state.enabled = true;
+                return;
             }
         }
 

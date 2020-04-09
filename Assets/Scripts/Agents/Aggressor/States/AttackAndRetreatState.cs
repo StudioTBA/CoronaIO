@@ -15,10 +15,13 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private bool movingToDefend = false;
         //dont keep this here this should probably be moved to agent
         private float satisfaction_radius = 15;
-        
+        protected override string SetStateName()
+        {
+            return "AttackAndRetreat";
+        }
+
         protected override void OnStart()
         {
-            StateName = "AttackAndRetreat";
             _defendingState = GetComponent<DefendingState>();
             _attackingState = GetComponent<AttackingState>();
         }

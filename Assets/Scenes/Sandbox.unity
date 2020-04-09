@@ -512,7 +512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &181129820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,8 +2269,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850737584}
-  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 8150.0312, z: -8150.0312}
+  m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 8917.531, z: -8917.531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1465392599}
@@ -2883,8 +2883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolateTime: 5
-  height: 8150.0312
-  distance: 8150.0312
+  height: 8917.531
+  distance: 8917.531
   FOV: 10
   zoomSpeed: 50
   handlerSpeed: 50
@@ -3711,6 +3711,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374822975}
     m_Modifications:
+    - target: {fileID: -2065199842865550999, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -389106778850904027, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186361449705234212, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444086077298788646, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789009175304137784, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
@@ -4432,11 +4457,6 @@ PrefabInstance:
     - target: {fileID: 74938544372652181, guid: 9932633c7c95b4271bc0dc5e75f1b585,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620150001991111644, guid: 9932633c7c95b4271bc0dc5e75f1b585,
-        type: 3}
-      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4620150001991111644, guid: 9932633c7c95b4271bc0dc5e75f1b585,
