@@ -12,7 +12,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         private ZombieDataHolder _dataHolder;
         private State _attack;
         private State _idle;
+        private State _flee;
         public float range;
+        [Tooltip("If the value obtained by dividing the number of humans around target to the horde size " +
+            "is less than this value, the horde will attack. Otherwise it will flee")]
+        public float minRatioToAttack;
 
 
         protected override string SetStateName()
@@ -26,6 +30,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             _attack = GetComponent<Zombie_Attack>();
             _idle = GetComponent<Idle_Zombie>();
+            _flee = GetComponent<Zombie_Flee>();
         }
 
         public override void Execute()
@@ -35,7 +40,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             //print(_dataHolder.Target);
             if (_dataHolder.Target)
-                this.ChangeState(_attack);
+            {
+                if (_dataHolder.FlockManager.always_flee)
+                    this.ChangeState(_flee);
+                else if (_dataHolder.FlockManager.attack_if_able)
+                    this.ChangeState(_attack);
+                else if (OverwhelmingTheHumans())
+                    this.ChangeState(_attack);
+                else
+                    this.ChangeState(_flee);
+            }
             else
                 this.ChangeState(_idle);
         }
@@ -67,7 +81,25 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             }
 
             _dataHolder.Target = temp;
-            print(_dataHolder.Target);
+        }
+
+        private bool OverwhelmingTheHumans()
+        {
+            Collider[] colliders = Physics.OverlapSphere(_dataHolder.Target.transform.position, 200);
+
+            int numOfHumans = 0;
+
+            foreach(Collider coll in colliders)
+            {
+                if(coll.gameObject.tag == "Agent")
+                {
+                    numOfHumans++;
+                }
+            }
+
+            int numOfZombies = _dataHolder.FlockManager.getZombieList().Count;
+
+            return numOfHumans / (numOfZombies == 0 ? numOfHumans : numOfZombies)<minRatioToAttack;
         }
     }
 }

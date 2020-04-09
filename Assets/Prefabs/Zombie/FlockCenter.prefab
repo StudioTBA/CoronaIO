@@ -106,6 +106,9 @@ MonoBehaviour:
   flockMoveSpeed: 400
   minHordeSizeToSplit: 2
   active: 1
+  always_flee: 0
+  fixate_on_target: 0
+  attack_if_able: 0
 --- !u!114 &2262505473407784550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: -2065199842865550999}
   healthBar: {fileID: 2007735678241252271}
-  healthBar: {fileID: 0}
 --- !u!114 &-2065199842865550999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a7d8824c6462f42bdbd985da819599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateName: 
 --- !u!195 &930924733526560999
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1000
-  _stateName: 
+  minRatioToAttack: 0.2
 --- !u!114 &2444086077298788646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6233032f4163e0c4d928b868711f036f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateName: 
 --- !u!114 &6789009175304137784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7b081a5e8e2994999f2f39e53cc795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateName: 
+  flee_distance_goal: 1000
 --- !u!114 &186361449705234212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 4
-  wanderDelay: 2
 --- !u!114 &-4411837927842115126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,4 +375,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbca36a572654711882822574c54022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateName: 

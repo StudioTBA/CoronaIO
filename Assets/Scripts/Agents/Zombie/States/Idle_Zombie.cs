@@ -11,6 +11,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     {
         private ZombieDataHolder _dataHolder;
         private State _wander;
+        private State _seekClosestHuman;
 
         protected override void Awake()
         {
@@ -29,16 +30,17 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             // StateName = "Idle";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             _wander = GetComponent<Zombie_Wander>();
+            _seekClosestHuman = GetComponent<SeekClosestHuman>();
         }
 
         public override void Execute()
         {
-            // Do nothing.
-            // TODO: Wander around
-            if (!_dataHolder.FlockManager.active)
+            if (!_dataHolder.FlockManager.stop)
             {
-                this.ChangeState(_wander);
-                _dataHolder.NavMeshAgent.SetDestination(Vector3.zero);
+                if (_dataHolder.FlockManager.always_flee)
+                    this.ChangeState(_seekClosestHuman);
+                else
+                    this.ChangeState(_wander);
             }
         }
 

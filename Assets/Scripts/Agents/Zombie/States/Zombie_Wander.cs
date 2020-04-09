@@ -43,7 +43,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             timer += Time.deltaTime;
 
             //Must get here from idle state only if not currently controlled by player
-            if (_dataHolder.FlockManager.active)
+            if (_dataHolder.FlockManager.stop)
             {
                 this.ChangeState(_idle);
                 CancelInvoke();
@@ -51,8 +51,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             }
             else if (timer > delay)
             {
+
                 timer = 0;
-                this.ChangeState(_seekClosestHuman);
+                if (!_dataHolder.FlockManager.fixate_on_target || !_dataHolder.Target)
+                    this.ChangeState(_seekClosestHuman);
             }
 
         }

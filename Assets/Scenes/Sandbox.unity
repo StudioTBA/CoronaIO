@@ -3728,9 +3728,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
         type: 3}
-    - target: {fileID: 2007735678988854857, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
     - target: {fileID: -2065199842865550999, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Enabled
@@ -3741,9 +3738,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -389106778850904027, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: flee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -389106778850904027, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: minRatioToAttack
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 186361449705234212, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007735678254268511, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 850737586}
+    - target: {fileID: 2007735678988854857, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2444086077298788646, guid: 085535e0d4b9d1448903471c117edab5,
@@ -3755,6 +3772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789009175304137784, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: flee_distance_goal
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}

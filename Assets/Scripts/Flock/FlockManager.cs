@@ -16,6 +16,11 @@ public class FlockManager : MonoBehaviour
 
     public bool active = true;
 
+    public bool always_flee;
+    public bool fixate_on_target;
+    public bool attack_if_able;
+    public bool stop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +61,27 @@ public class FlockManager : MonoBehaviour
             if (Input.GetKey(KeyCode.L))
             {
                 direction += new Vector3(1.0f, 0, 0);
+            }
+
+            //Keys to control individual horde behavior
+            //probably need a visual cue to indicate what their strategy is
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                always_flee = !always_flee;
+                attack_if_able = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                attack_if_able = !attack_if_able;
+                always_flee = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                fixate_on_target = !fixate_on_target;
+            }
+            else if (Input.GetKeyDown(KeyCode.V))
+            {
+                stop = !stop;
             }
 
 
