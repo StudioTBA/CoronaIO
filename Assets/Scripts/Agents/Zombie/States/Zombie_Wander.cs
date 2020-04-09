@@ -16,9 +16,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         private State _seekClosestHuman;
 
         public float delay;
-        public float wanderDelay;
         private float timer = 0;
-        private float wanderTimer = 0;
 
         protected override void OnStart()
         {
@@ -30,6 +28,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void OnStateEnter()
         {
+            InvokeRepeating("WanderToNewPosition",0,2);
+            
             base.OnStateEnter();
         }
 
@@ -40,19 +40,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             //Must get here from idle state only if not currently controlled by player
             if (_dataHolder.FlockManager.active)
             {
-                _dataHolder.NavMeshAgent.ResetPath();
                 this.ChangeState(_idle);
+                CancelInvoke();
+                _dataHolder.NavMeshAgent.ResetPath();
             }
             else if (timer > delay)
             {
                 timer = 0;
                 this.ChangeState(_seekClosestHuman);
             }
-            else if(wanderTimer > wanderDelay)
-            {
-                wanderTimer = 0;
-                WanderToNewPosition();
-            }
+
         }
 
         public override void Consume([NotNull] Event.Event @event)
