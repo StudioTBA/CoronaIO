@@ -18,9 +18,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         public float delay;
         private float timer = 0;
 
+        protected override string SetStateName()
+        {
+            return "Wander";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Wander";
+            // StateName = "Wander";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             _idle = GetComponent<Idle_Zombie>();
             _seekClosestHuman = GetComponent<SeekClosestHuman>();

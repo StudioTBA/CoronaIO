@@ -10,8 +10,6 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// </summary>
         protected StateMachine _stateMachine;
 
-        private String _stateName;
-
         /// <summary>
         /// Name of the state for debugging purposes.
         /// <b>Note:</b> Must be set before being used.
@@ -19,11 +17,18 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public String StateName
         {
             get => _stateName;
-            set => _stateName = value;
+        }
+
+        private String _stateName = "NA";
+
+        protected virtual string SetStateName()
+        {
+            return "NA";
         }
 
         protected virtual void Awake()
         {
+            _stateName = SetStateName();
         }
 
         public void Setup(StateMachine stateMachine)
@@ -37,7 +42,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         private void Start()
         {
             OnStart();
-            this.enabled = false;
+            // this.enabled = false;
         }
 
         /// <summary>
@@ -47,6 +52,16 @@ namespace Com.StudioTBD.CoronaIO.FMS
         {
         }
 
+        private void OnEnable()
+        {
+            Debug.Log($"OnEnable {_stateName}");
+        }
+
+        private void OnDisable()
+        {
+            Debug.Log($"OnDisable {_stateName}");
+        }
+
         /// <summary>
         /// Callback that is called when you enter the state.
         /// On entering the state, it is automatically enabled by calling base.OnStateEnter().
@@ -54,7 +69,8 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// </summary>
         public virtual void OnStateEnter()
         {
-            this.enabled = true;
+            Debug.Log($"[{StateName}] Enabling state");
+            // this.enabled = true;
         }
 
         /// <summary>
@@ -71,7 +87,8 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// </summary>
         public virtual void OnStateExit()
         {
-            this.enabled = false;
+            Debug.Log($"[{StateName}] Disabling state");
+            // this.enabled = false;
         }
 
         public StateMachine StateMachine

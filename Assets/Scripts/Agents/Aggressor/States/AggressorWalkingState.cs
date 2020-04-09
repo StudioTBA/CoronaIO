@@ -11,12 +11,17 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public AggressorDataHolder DataHolder;
         private Vector3 currentTarget;
 
+
+        protected override string SetStateName()
+        {
+            return "Walking";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Walking";
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
         }
-        
+
         public override void OnStateEnter()
         {
             base.OnStateEnter();
@@ -36,7 +41,9 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 return;
             }
 
-            currentTarget = DataHolder.defend_target != null ? DataHolder.defend_target.Value : DataHolder.move_target.Value;
+            currentTarget = DataHolder.defend_target != null
+                ? DataHolder.defend_target.Value
+                : DataHolder.move_target.Value;
             if (transform.position != currentTarget)
             {
                 // Move to target

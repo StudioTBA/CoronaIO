@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultState: {fileID: 2061467936605828887}
+  healthBar: {fileID: 8318042000067784471}
   enemylayer:
     serializedVersion: 2
     m_Bits: 256
@@ -64,7 +65,6 @@ MonoBehaviour:
     attackdamage: 1
     rateOfFire: 0.5
     AOE_radius: 0
-  healthBar: {fileID: 8318042000067784471}
 --- !u!114 &2061467936605828887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061467936605828971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ff7184e7b6cdb649870d6f3e389737c, type: 3}
   m_Name: 
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061467936605828971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af36c921ed6c3b94f864eb97b5c08c59, type: 3}
   m_Name: 
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061467936605828971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df2afa9eb15bb14428931cf3a9af1fb9, type: 3}
   m_Name: 
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061467936605828971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df4d67ef2a6e7ae4cb82fc0d9e23403e, type: 3}
   m_Name: 
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061467936605828971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 516a09eff0f4baa4780a67446619d003, type: 3}
   m_Name: 

@@ -11,10 +11,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
     {
         private DataHolder _dataHolder;
 
+        protected override string SetStateName()
+        {
+            return "Flee";
+        }
+
         protected override void Awake()
         {
             base.Awake();
-            StateName = "Flee";
         }
         
         protected override void OnStart()

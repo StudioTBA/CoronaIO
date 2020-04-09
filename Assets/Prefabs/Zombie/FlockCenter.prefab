@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: -2065199842865550999}
   healthBar: {fileID: 2007735678241252271}
+  healthBar: {fileID: 0}
 --- !u!114 &-2065199842865550999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,11 +128,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956756031875463285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a7d8824c6462f42bdbd985da819599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateName: 
 --- !u!195 &930924733526560999
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,12 +163,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956756031875463285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4b0457bbc4fdfd41b75ca930fdb3dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1000
+  _stateName: 
 --- !u!114 &2444086077298788646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,11 +177,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956756031875463285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6233032f4163e0c4d928b868711f036f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateName: 
 --- !u!114 &6789009175304137784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,11 +190,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956756031875463285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f7b081a5e8e2994999f2f39e53cc795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateName: 
 --- !u!114 &186361449705234212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +203,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6956756031875463285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 615844e3341dff84ab8cc39297ede10f, type: 3}
   m_Name: 
@@ -371,3 +376,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbca36a572654711882822574c54022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateName: 

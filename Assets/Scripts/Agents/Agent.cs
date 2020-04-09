@@ -25,7 +25,7 @@ namespace Com.StudioTBD.CoronaIO.Agent
 
             // Set health
             currentHealth = maxHealth = 100;
-            healthBar.SetMaxHealth(maxHealth);
+            healthBar?.SetMaxHealth(maxHealth);
 
             // Initialize here your stateMachine
             // stateMachine = new aStateMachine();

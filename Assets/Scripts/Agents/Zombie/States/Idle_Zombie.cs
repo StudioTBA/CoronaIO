@@ -18,9 +18,15 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             OnStart();
         }
 
+
+        protected override string SetStateName()
+        {
+            return "Idle_Zombie";
+        }
+
         protected override void OnStart()
         {
-            StateName = "Idle";
+            // StateName = "Idle";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             _wander = GetComponent<Zombie_Wander>();
         }
