@@ -95,4 +95,14 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     {
         return (transform.position==other.transform.position);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Agent")
+        {
+            //This line is likely to change for when damage is implemented
+            //This was added to ensure that the FSM for Zombies properly switched from Attack to Idle/Wander as appropriate
+            Destroy(collision.gameObject);
+        }
+    }
 }

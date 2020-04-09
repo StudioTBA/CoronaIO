@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b0457bbc4fdfd41b75ca930fdb3dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 1000
 --- !u!114 &2444086077298788646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615844e3341dff84ab8cc39297ede10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 4
+  wanderDelay: 2
 --- !u!114 &-4411837927842115126
 MonoBehaviour:
   m_ObjectHideFlags: 0

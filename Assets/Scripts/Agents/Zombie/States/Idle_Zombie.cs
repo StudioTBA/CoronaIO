@@ -38,7 +38,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Consume([NotNull] Event.Event @event)
         {
-            if (!(@event is ZombieEvent humanEvent)) return;
+            if (!(@event is ZombieEvent zombieEvent)) return;
 
             //TODO: Somehow get StateMachine to change state through a player controlled command
         }
