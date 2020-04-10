@@ -31,10 +31,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                 _dataHolder.NavMeshAgent.SetDestination(_dataHolder.Target.transform.position);
             else
             {
-                if (_dataHolder.FlockManager.fixate_on_target)
-                {
-                    _dataHolder.FlockManager.fixate_on_target = false;
-                }
                 this.ChangeState(_wander);
             }
         }

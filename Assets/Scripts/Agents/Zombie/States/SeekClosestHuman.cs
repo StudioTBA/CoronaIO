@@ -87,7 +87,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         {
             Collider[] colliders = Physics.OverlapSphere(_dataHolder.Target.transform.position, 200);
 
-            int numOfHumans = 0;
+            int numOfHumans = 1;
 
             foreach(Collider coll in colliders)
             {

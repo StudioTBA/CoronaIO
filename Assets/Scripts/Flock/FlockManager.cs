@@ -17,7 +17,6 @@ public class FlockManager : MonoBehaviour
     public bool active = true;
 
     public bool always_flee;
-    public bool fixate_on_target;
     public bool attack_if_able;
     public bool stop;
 
@@ -77,13 +76,8 @@ public class FlockManager : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                fixate_on_target = !fixate_on_target;
-            }
-            else if (Input.GetKeyDown(KeyCode.V))
-            {
                 stop = !stop;
             }
-
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
         }
@@ -119,6 +113,8 @@ public class FlockManager : MonoBehaviour
 
             active = false;
 
+            newHorde.CopyState(this);
+
             return newHorde;
         }
 
@@ -148,5 +144,12 @@ public class FlockManager : MonoBehaviour
     public List<Flocker> getZombieList()
     {
         return zombieList;
+    }
+
+    public void CopyState(FlockManager other)
+    {
+        always_flee = other.always_flee;
+        attack_if_able = other.attack_if_able;
+        stop = other.stop;
     }
 }
