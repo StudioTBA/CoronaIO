@@ -4882,8 +4882,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniMapManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1960666514887534815, guid: b65c0ccd5cb8d8c499b83084f4a6c09b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b65c0ccd5cb8d8c499b83084f4a6c09b, type: 3}
 --- !u!1001 &4445540481941008298
 PrefabInstance:
