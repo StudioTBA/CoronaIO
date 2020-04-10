@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 {
-    public bool IsSelected { get; set; }
+    public static GameObject SelectedHorde { get; set; }
+    public static GameObject LockedHorde { get; set; }
     Color originalColor;
-    Image blipOnMiniMap;
+    public Image blipOnMiniMap;
     GameObject miniMap;
     GameObject cameraHandler;
     GameObject hordeManager;
@@ -18,7 +19,8 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     {
         blipOnMiniMap = this.GetComponent<Image>();
         originalColor = blipOnMiniMap.color;
-        IsSelected = false;
+        SelectedHorde = null;
+        LockedHorde = null;
         miniMap = GameObject.Find("MiniMap");
         cameraHandler = GameObject.Find("CameraHandler");
         hordeManager = this.GetComponent<MiniMapIcon>().target.gameObject;
@@ -31,15 +33,46 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!IsSelected)
+
+
+        if (SelectedHorde == null)
         {
-            IsSelected = true;
-            miniMap.GetComponent<DeselectZombieHorde>().SelectedHorde = this.gameObject;
-            blipOnMiniMap.color = Color.yellow;
+            SelectedHorde = eventData.pointerPress;
+            SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
             return;
         }
 
-        blipOnMiniMap.color = Color.green;
+        if (SelectedHorde != null && LockedHorde == null)
+        {
+            if (eventData.pointerPress.Equals(SelectedHorde))
+            {
+                LockedHorde = SelectedHorde;
+                LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                SelectedHorde = null;
+                return;
+            }
+
+            SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+            SelectedHorde = eventData.pointerPress;
+            SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            return;
+        }
+
+        if (SelectedHorde != null && LockedHorde != null)
+        {
+            if (eventData.pointerPress.Equals(LockedHorde))
+                return;
+
+            if (eventData.pointerPress.Equals(SelectedHorde))
+            {
+                LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+                LockedHorde = SelectedHorde;
+                LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                SelectedHorde = null;
+                return;
+            }
+        }
+
     }
 
     private void followCenterOfMass()

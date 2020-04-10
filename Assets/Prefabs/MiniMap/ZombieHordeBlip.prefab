@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5887254788823721559}
   - component: {fileID: 6996439277856430823}
   - component: {fileID: 1521804609293986128}
-  - component: {fileID: 8350390717518111814}
+  - component: {fileID: -771375445674281921}
   m_Layer: 5
   m_Name: ZombieHordeBlip
   m_TagString: Untagged
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
---- !u!114 &8350390717518111814
+--- !u!114 &-771375445674281921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
