@@ -14,6 +14,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     GameObject miniMap;
     GameObject cameraHandler;
     GameObject hordeManager;
+    bool followHorde = true;
 
     private void Start()
     {
@@ -34,6 +35,14 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 
+        if (SelectedHorde == null && LockedHorde != null)
+        {
+            if (eventData.pointerPress.Equals(LockedHorde))
+            {
+                followHorde = true;
+                return;
+            }
+        }
 
         if (SelectedHorde == null)
         {
@@ -48,6 +57,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
             {
                 LockedHorde = SelectedHorde;
                 LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                followHorde = true;
                 SelectedHorde = null;
                 return;
             }
@@ -68,6 +78,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
                 LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
                 LockedHorde = SelectedHorde;
                 LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                followHorde = true;
                 SelectedHorde = null;
                 return;
             }
@@ -80,7 +91,13 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         if (blipOnMiniMap.color != Color.green)
             return;
 
-        cameraHandler.GetComponent<CameraMovement>().GoalPos = calculateCenterOfMass();
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            followHorde = false;
+
+        if (followHorde)
+            cameraHandler.GetComponent<CameraMovement>().GoalPos = calculateCenterOfMass();
+
     }
 
     Vector3 calculateCenterOfMass()

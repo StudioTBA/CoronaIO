@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+using UnityEngine.UI;
 public class DeselectZombieHorde : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!eventData.pointerPress.name.Contains("ZombieHordeBlip"))
         {
+
+            if (eventData.button != PointerEventData.InputButton.Left)
+                return;
+
             if (ClickAndGoToHorde.SelectedHorde != null)
             {
                 ClickAndGoToHorde.SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
