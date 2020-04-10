@@ -64,10 +64,8 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
                 return;
             }
 
-            HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
-            HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
-            followHorde = true;
-            HordeHelper.Instance.SelectedHorde = null;
+            HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
+            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
             return;
         }
 
