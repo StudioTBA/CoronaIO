@@ -331,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
         type: 3}
       propertyPath: maxHordes
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
         type: 3}

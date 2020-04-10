@@ -107,11 +107,12 @@ public class FlockManager : MonoBehaviour
 
             while (zombieList.Count > amount)
             {
+                zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 newHorde.AttachZombie(zombieList[0]);
                 RemoveZombie(zombieList[0]);
             }
 
-            active = false;
+            newHorde.active = false;
 
             newHorde.CopyState(this);
 
@@ -126,6 +127,7 @@ public class FlockManager : MonoBehaviour
         //Change target of all zombies in other horde
 
         //Add them to appropriate list
+
 
         foreach (Flocker zombie in otherHorde.zombieList)
         {
