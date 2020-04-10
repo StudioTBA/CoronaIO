@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class DeselectZombieHorde : MonoBehaviour, IPointerClickHandler
 {
+
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!eventData.pointerPress.name.Contains("ZombieHordeBlip"))
@@ -14,16 +16,16 @@ public class DeselectZombieHorde : MonoBehaviour, IPointerClickHandler
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
 
-            if (ClickAndGoToHorde.SelectedHorde != null)
+            if (HordeHelper.Instance.SelectedHorde != null)
             {
-                ClickAndGoToHorde.SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
-                ClickAndGoToHorde.SelectedHorde = null;
+                HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+                HordeHelper.Instance.SelectedHorde = null;
             }
 
-            if (ClickAndGoToHorde.LockedHorde != null)
+            if (HordeHelper.Instance.LockedHorde != null)
             {
-                ClickAndGoToHorde.LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
-                ClickAndGoToHorde.LockedHorde = null;
+                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+                HordeHelper.Instance.LockedHorde = null;
             }
 
             return;

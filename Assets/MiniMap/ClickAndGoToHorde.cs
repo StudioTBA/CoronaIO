@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 {
-    public static GameObject SelectedHorde { get; set; }
-    public static GameObject LockedHorde { get; set; }
     Color originalColor;
     public Image blipOnMiniMap;
     GameObject miniMap;
@@ -20,8 +18,6 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     {
         blipOnMiniMap = this.GetComponent<Image>();
         originalColor = blipOnMiniMap.color;
-        SelectedHorde = null;
-        LockedHorde = null;
         miniMap = GameObject.Find("MiniMap");
         cameraHandler = GameObject.Find("CameraHandler");
         hordeManager = this.GetComponent<MiniMapIcon>().target.gameObject;
@@ -35,55 +31,78 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        if (SelectedHorde == null && LockedHorde != null)
+        Debug.Log("0Selected Horde: " + HordeHelper.Instance.SelectedHorde);
+        Debug.Log("0Locked Horde:" + HordeHelper.Instance.LockedHorde);
+
+        if (HordeHelper.Instance.SelectedHorde != null && HordeHelper.Instance.LockedHorde != null)
         {
-            if (eventData.pointerPress.Equals(LockedHorde))
+            Debug.Log("4Selected Horde: " + HordeHelper.Instance.SelectedHorde);
+            Debug.Log("4Locked Horde:" + HordeHelper.Instance.LockedHorde);
+
+            if (eventData.pointerPress.Equals(HordeHelper.Instance.LockedHorde))
+                return;
+
+            if (eventData.pointerPress.Equals(HordeHelper.Instance.SelectedHorde))
             {
+                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+                HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
+                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
                 followHorde = true;
+                HordeHelper.Instance.SelectedHorde = null;
                 return;
             }
         }
 
-        if (SelectedHorde == null)
+        if (HordeHelper.Instance.SelectedHorde == null && HordeHelper.Instance.LockedHorde != null)
         {
-            SelectedHorde = eventData.pointerPress;
-            SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            Debug.Log("1Selected Horde: " + HordeHelper.Instance.SelectedHorde);
+            Debug.Log("1Locked Horde:" + HordeHelper.Instance.LockedHorde);
+
+            if (eventData.pointerPress.Equals(HordeHelper.Instance.LockedHorde))
+            {
+                followHorde = true;
+                return;
+            }
+
+            HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
+            HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+            followHorde = true;
+            HordeHelper.Instance.SelectedHorde = null;
             return;
         }
 
-        if (SelectedHorde != null && LockedHorde == null)
+        if (HordeHelper.Instance.SelectedHorde == null)
         {
-            if (eventData.pointerPress.Equals(SelectedHorde))
-            {
-                LockedHorde = SelectedHorde;
-                LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
-                followHorde = true;
-                SelectedHorde = null;
-                return;
-            }
+            HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
+            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
 
-            SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
-            SelectedHorde = eventData.pointerPress;
-            SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            Debug.Log("2Selected Horde: " + HordeHelper.Instance.SelectedHorde);
+            Debug.Log("2Locked Horde:" + HordeHelper.Instance.LockedHorde);
+
+
             return;
         }
 
-        if (SelectedHorde != null && LockedHorde != null)
+        if (HordeHelper.Instance.SelectedHorde != null && HordeHelper.Instance.LockedHorde == null)
         {
-            if (eventData.pointerPress.Equals(LockedHorde))
-                return;
-
-            if (eventData.pointerPress.Equals(SelectedHorde))
+            if (eventData.pointerPress.Equals(HordeHelper.Instance.SelectedHorde))
             {
-                LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
-                LockedHorde = SelectedHorde;
-                LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
+                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
                 followHorde = true;
-                SelectedHorde = null;
+                HordeHelper.Instance.SelectedHorde = null;
+
+                Debug.Log("3Selected Horde: " + HordeHelper.Instance.SelectedHorde);
+                Debug.Log("3Locked Horde:" + HordeHelper.Instance.LockedHorde);
+
                 return;
             }
-        }
 
+            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+            HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
+            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            return;
+        }
     }
 
     private void followCenterOfMass()
