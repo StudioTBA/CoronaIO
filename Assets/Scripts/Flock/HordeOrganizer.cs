@@ -8,7 +8,7 @@ public class HordeOrganizer : MonoBehaviour
 
     List<FlockManager> hordeList;
     public Dropdown dropDownMenu;
-    [SerializeField][Min(1)] int maxHordes = 1;
+    [SerializeField] [Min(1)] int maxHordes = 1;
 
     private int activeHorde = 0;
 
@@ -22,7 +22,7 @@ public class HordeOrganizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift) && hordeList.Count<maxHordes)
+        if (Input.GetKeyDown(KeyCode.RightShift) && hordeList.Count < maxHordes)
         {
             FlockManager temp;
 
@@ -42,13 +42,19 @@ public class HordeOrganizer : MonoBehaviour
             int hordeToAbsorb = IndexOfClosestHorde();
             if (hordeToAbsorb >= 0)
             {
+
+                foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
+                {
+                    zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                }
+
                 hordeList[activeHorde].AbsorbHorde(hordeList[hordeToAbsorb]);
                 hordeList.RemoveAt(hordeToAbsorb);
 
                 if (hordeToAbsorb < activeHorde)
                     activeHorde--;
 
-                dropDownMenu.options.RemoveAt(dropDownMenu.options.Count-1);
+                dropDownMenu.options.RemoveAt(dropDownMenu.options.Count - 1);
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
@@ -61,7 +67,7 @@ public class HordeOrganizer : MonoBehaviour
         float tempDistance;
         int index = -1;
 
-        for (int i = 0; i<hordeList.Count; i++)
+        for (int i = 0; i < hordeList.Count; i++)
         {
             if (index < 0 && activeHorde != i)
             {
@@ -76,7 +82,7 @@ public class HordeOrganizer : MonoBehaviour
                     index = i;
                     distance = tempDistance;
                 }
-                    
+
             }
 
         }
@@ -93,7 +99,7 @@ public class HordeOrganizer : MonoBehaviour
 
     private void UpdateDropDown()
     {
-        for(int i = 0; i < hordeList.Count; i++)
+        for (int i = 0; i < hordeList.Count; i++)
         {
             dropDownMenu.options[i].text = "Horde: " + i + " Size: " + hordeList[i].HordeSize();
         }
