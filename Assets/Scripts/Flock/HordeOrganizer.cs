@@ -31,9 +31,10 @@ public class HordeOrganizer : MonoBehaviour
             if (temp)
             {
                 hordeList.Add(temp);
-                activeHorde = hordeList.IndexOf(temp);
+                //activeHorde = hordeList.IndexOf(temp);
                 dropDownMenu.options.Add(new Dropdown.OptionData());
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
+                SwitchActive();
             }
         }
 

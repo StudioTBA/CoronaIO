@@ -91,7 +91,7 @@ public class FlockManager : MonoBehaviour
                 RemoveZombie(zombieList[0]);
             }
 
-            active = false;
+            newHorde.active = false;
 
             return newHorde;
         }
