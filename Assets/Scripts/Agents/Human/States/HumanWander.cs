@@ -49,7 +49,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         private void WanderToNewPosition()
         {
             Vector3 newPos = RandomPoint(transform.position, 200f, -1);
-            Debug.Log("Wandering to new position: " + newPos);
+            //Debug.Log("Wandering to new position: " + newPos);
             this._dataHolder.NavMeshAgent.SetDestination(newPos);
         }
 

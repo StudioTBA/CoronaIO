@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Com.StudioTBD.CoronaIO.Agent.Zombie;
+using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
 using UnityEngine;
 
 public class FlockManager : MonoBehaviour
@@ -9,16 +11,19 @@ public class FlockManager : MonoBehaviour
     public float flockMoveSpeed;
 
     public int minHordeSizeToSplit;
-    public GameObject flockManagerPrefab;
 
     private List<Flocker> zombieList = new List<Flocker>();
 
     public bool active = true;
 
+    public bool always_flee;
+    public bool attack_if_able;
+    public bool stop;
+
     // Start is called before the first frame update
     void Start()
     {
-     
+
     }
 
     // Update is called once per frame
@@ -34,9 +39,9 @@ public class FlockManager : MonoBehaviour
                 randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
                 GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
                     Quaternion.identity);
-                
+
                 Swarmling.transform.parent = flockHolder.transform;
-                
+
                 AttachZombie(Swarmling.GetComponent<Flocker>());
             }
 
@@ -57,6 +62,22 @@ public class FlockManager : MonoBehaviour
                 direction += new Vector3(1.0f, 0, 0);
             }
 
+            //Keys to control individual horde behavior
+            //probably need a visual cue to indicate what their strategy is
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                always_flee = !always_flee;
+                attack_if_able = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                attack_if_able = !attack_if_able;
+                always_flee = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                stop = !stop;
+            }
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
         }
@@ -73,12 +94,12 @@ public class FlockManager : MonoBehaviour
         zombieList.Remove(zombie);
     }
 
-    public FlockManager SplitHorde()
+    public FlockManager SplitHorde(FlockManager newHorde)
     {
         if (zombieList.Count >= minHordeSizeToSplit)
         {
-            FlockManager newHorde = Instantiate(flockManagerPrefab).GetComponent<FlockManager>();
-            
+            newHorde.transform.parent = transform.parent;
+
             newHorde.flockHolder = flockHolder;
             newHorde.transform.position = transform.position;
 
@@ -86,11 +107,14 @@ public class FlockManager : MonoBehaviour
 
             while (zombieList.Count > amount)
             {
+                zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 newHorde.AttachZombie(zombieList[0]);
                 RemoveZombie(zombieList[0]);
             }
 
-            active = false;
+            newHorde.active = false;
+
+            newHorde.CopyState(this);
 
             return newHorde;
         }
@@ -104,7 +128,8 @@ public class FlockManager : MonoBehaviour
 
         //Add them to appropriate list
 
-        foreach(Flocker zombie in otherHorde.zombieList)
+
+        foreach (Flocker zombie in otherHorde.zombieList)
         {
             AttachZombie(zombie);
         }
@@ -116,5 +141,17 @@ public class FlockManager : MonoBehaviour
     public int HordeSize()
     {
         return zombieList.Count;
+    }
+
+    public List<Flocker> getZombieList()
+    {
+        return zombieList;
+    }
+
+    public void CopyState(FlockManager other)
+    {
+        always_flee = other.always_flee;
+        attack_if_able = other.attack_if_able;
+        stop = other.stop;
     }
 }

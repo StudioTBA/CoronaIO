@@ -20,6 +20,7 @@ public class CameraMovement : MonoBehaviour
     [Header("Handler")]
     [SerializeField] float handlerSpeed = 0.25f;
     Vector3 goalPos = Vector3.zero;
+    public Vector3 GoalPos { set { goalPos = value; } }
     Vector3 initMouseRot = Vector3.zero;
     Vector3 mousePosDirRot = Vector3.zero;
     [SerializeField] float rotateSpeed = 10.0f;
