@@ -30,15 +30,8 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
-        Debug.Log("0Selected Horde: " + HordeHelper.Instance.SelectedHorde);
-        Debug.Log("0Locked Horde:" + HordeHelper.Instance.LockedHorde);
-
         if (HordeHelper.Instance.SelectedHorde != null && HordeHelper.Instance.LockedHorde != null)
         {
-            Debug.Log("4Selected Horde: " + HordeHelper.Instance.SelectedHorde);
-            Debug.Log("4Locked Horde:" + HordeHelper.Instance.LockedHorde);
-
             if (eventData.pointerPress.Equals(HordeHelper.Instance.LockedHorde))
                 return;
 
@@ -55,9 +48,6 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
         if (HordeHelper.Instance.SelectedHorde == null && HordeHelper.Instance.LockedHorde != null)
         {
-            Debug.Log("1Selected Horde: " + HordeHelper.Instance.SelectedHorde);
-            Debug.Log("1Locked Horde:" + HordeHelper.Instance.LockedHorde);
-
             if (eventData.pointerPress.Equals(HordeHelper.Instance.LockedHorde))
             {
                 followHorde = true;
@@ -73,11 +63,6 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         {
             HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
             HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
-
-            Debug.Log("2Selected Horde: " + HordeHelper.Instance.SelectedHorde);
-            Debug.Log("2Locked Horde:" + HordeHelper.Instance.LockedHorde);
-
-
             return;
         }
 
@@ -89,10 +74,6 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
                 HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
                 followHorde = true;
                 HordeHelper.Instance.SelectedHorde = null;
-
-                Debug.Log("3Selected Horde: " + HordeHelper.Instance.SelectedHorde);
-                Debug.Log("3Locked Horde:" + HordeHelper.Instance.LockedHorde);
-
                 return;
             }
 
