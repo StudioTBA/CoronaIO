@@ -31,18 +31,11 @@ public class FlockManager : MonoBehaviour
     {
         if (active)
         {
-            Vector3 randomPosInACube;
             Vector3 direction = Vector3.zero;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
-                GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
-                    Quaternion.identity);
-
-                Swarmling.transform.parent = flockHolder.transform;
-
-                AttachZombie(Swarmling.GetComponent<Flocker>());
+                CreateZombie();
             }
 
             if (Input.GetKey(KeyCode.I))
@@ -81,6 +74,19 @@ public class FlockManager : MonoBehaviour
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
         }
+    }
+
+    public void CreateZombie()
+    {
+        Vector3 randomPosInACube;
+
+        randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
+        GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
+            Quaternion.identity);
+
+        Swarmling.transform.parent = flockHolder.transform;
+
+        AttachZombie(Swarmling.GetComponent<Flocker>());
     }
 
     public void AttachZombie(Flocker zombie)

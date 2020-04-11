@@ -12,6 +12,9 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float cohesionQueryRadius;
     public float alignmentFactor;
 
+    [Tooltip("Percentage of human health inflicted on collision")]
+    public int damageToHuman;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,11 +101,19 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Agent")
+        // Infection
+        if (collision.gameObject.tag == "Agent")
         {
-            //This line is likely to change for when damage is implemented
-            //This was added to ensure that the FSM for Zombies properly switched from Attack to Idle/Wander as appropriate
-            Destroy(collision.gameObject);
+            HealthBar civilianHealth = collision.gameObject.GetComponentInChildren<HealthBar>();
+            civilianHealth.TakeDamage(damageToHuman);
+
+            if (civilianHealth.GetHealth() == 0)
+            {
+                //Debug.Log("Infected");
+
+                target.GetComponent<FlockManager>().CreateZombie();
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
