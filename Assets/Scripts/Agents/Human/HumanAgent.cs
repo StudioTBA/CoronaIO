@@ -23,8 +23,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
 
         public override void Consume(Event.Event @event)
         {
-            if (@event is HumanEvent)
+            HumanEvent humanEvent = @event as HumanEvent;
+            if (humanEvent != null)
             {
+                if (humanEvent.EventType == HumanEvent.HumanEventType.PoliceAlert)
+                {
+                    Debug.Log("Police just alerted us");
+                }
+
                 base.Consume(@event);
             }
         }

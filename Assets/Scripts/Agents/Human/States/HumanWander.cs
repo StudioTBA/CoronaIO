@@ -27,10 +27,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             CancelInvoke();
             base.OnStateExit();
         }
+
         protected override string SetStateName()
         {
             return "HumanWander";
         }
+
         protected override void OnStart()
         {
             // StateName = "HumanWander";
@@ -77,6 +79,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                     this.ChangeState(_seekShelter);
                     break;
                 case HumanEvent.HumanEventType.PoliceAlert:
+                    this._dataHolder.Target = @event.Producer;
+                    this.ChangeState(_seekShelter);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
