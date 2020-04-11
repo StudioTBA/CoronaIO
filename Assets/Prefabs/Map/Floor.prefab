@@ -109,9 +109,9 @@ MonoBehaviour:
   floorScale: 30
   baseTilePrefab: {fileID: 3567180526418297993, guid: 6925d7cd59da74d8580d257b7e6fa2ca,
     type: 3}
-  streetTilePrefab: {fileID: 844231464565017071, guid: 70b6f2d12b5ff4569a78da7fb8015cd3,
+  streetTilePrefab: {fileID: 7104491652336302364, guid: 70b6f2d12b5ff4569a78da7fb8015cd3,
     type: 3}
-  buildingTilePrefab: {fileID: 5882095421328724627, guid: d55cec2e611914770bc8e9ae236231d2,
+  buildingTilePrefab: {fileID: 7784098587770238653, guid: 703e978be3e264b7d88c5b2f93adf76d,
     type: 3}
   obstructionTilePrefabs:
   - {fileID: 4098254081353838211, guid: 94a30283fe1664ac3820a0c36ecc3d8b, type: 3}

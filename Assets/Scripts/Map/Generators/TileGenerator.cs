@@ -27,8 +27,10 @@ public class TileGenerator : MonoBehaviour
     private float tileSize;
     private int buildingPosition = 2;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Cover the floor by placing tiles on top
+    /// </summary>
+    public void GenerateTiles()
     {
         // Set floor scale and tiles per row
         gameObject.transform.localScale = new Vector3(floorScale, floorScale, floorScale);
@@ -36,15 +38,6 @@ public class TileGenerator : MonoBehaviour
         tilesPerHalf = (int) Mathf.Floor(tilesPerRow / 2.0f);
         tileSize = baseTilePrefab.transform.localScale.x * 10.0f;
 
-        // Place tiles
-        GenerateTiles();
-    }
-
-    /// <summary>
-    /// Cover the floor by placing tiles on top
-    /// </summary>
-    private void GenerateTiles()
-    {
         // Variables
         float tileBound;
         float tilePositionX;
