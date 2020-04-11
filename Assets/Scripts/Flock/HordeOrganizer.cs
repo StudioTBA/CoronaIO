@@ -10,6 +10,7 @@ public class HordeOrganizer : MonoBehaviour
     public Dropdown dropDownMenu;
     [SerializeField][Min(1)] int maxHordes = 1;
     public GameObject flockManagerPrefab;
+    public Text hordeHealth;
 
     private int activeHorde = 0;
 
@@ -61,6 +62,7 @@ public class HordeOrganizer : MonoBehaviour
             }
         }
         UpdateDropDown();
+        UpdateHealth();
     }
 
     public int IndexOfClosestHorde()
@@ -106,5 +108,10 @@ public class HordeOrganizer : MonoBehaviour
             dropDownMenu.options[i].text = "Horde: " + i + " Size: " + hordeList[i].HordeSize();
         }
         dropDownMenu.captionText.text = "Horde: " + activeHorde + " Size: " + hordeList[activeHorde].HordeSize();
+    }
+
+    public void UpdateHealth()
+    {
+        hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
     }
 }

@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(1f);
     }
 
-    public void SetHealth(int health)
+    private void SetHealth(int health)
     {
         slider.value = health;
 
@@ -30,4 +30,18 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
+    public int GetHealth()
+    {
+        return Mathf.RoundToInt(slider.value);
+    }
+
+    /// <summary>
+    /// Used to infict damage on agents.
+    /// </summary>
+    /// <param name="damagePercentage">If human has 100 units of health
+    /// and damagePercentage is 20 (20%), 20 units will be removed.</param>
+    public void TakeDamage(int damagePercentage)
+    {
+        SetHealth(Mathf.RoundToInt(slider.value) - Mathf.RoundToInt(slider.maxValue * damagePercentage / 100.0f));
+    }
 }
