@@ -8,12 +8,9 @@ namespace Com.StudioTBD.CoronaIO
     {
         #region Properties
 
-
+        // Generators
         public TileGenerator tileGenerator;
-
-        // Prefabs
-        public GameObject humanPrefab;
-        public GameObject policePrefab;
+        public CivilianGenerator civilianGenerator;
 
         // Map objects
         public GameObject[] Shelters { get; private set; }
@@ -70,7 +67,6 @@ namespace Com.StudioTBD.CoronaIO
             yield return null;
         }
 
-
         IEnumerator GenerateTiles()
         {
             tileGenerator.GenerateTiles();
@@ -79,14 +75,7 @@ namespace Com.StudioTBD.CoronaIO
 
         IEnumerator GenerateCivilians()
         {
-            foreach(GameObject spawn in spawns)
-            {
-                float spawningProbability = UnityEngine.Random.Range(0.0f, 1.0f);
-
-                if (spawningProbability > 0.8f)
-                    Instantiate(humanPrefab, spawn.transform);
-            }
-
+            civilianGenerator.GenerateCivilians();
             yield return null;
         }
 

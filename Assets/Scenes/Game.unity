@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308688800}
   - component: {fileID: 308688801}
+  - component: {fileID: 308688802}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -164,6 +165,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileGenerator: {fileID: 3023379428997182521}
+  civilianGenerator: {fileID: 308688802}
+--- !u!114 &308688802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308688799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a315f08ef6f3a4da0ad40f25f18e7045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   humanPrefab: {fileID: 74938544372652180, guid: 9932633c7c95b4271bc0dc5e75f1b585,
     type: 3}
   policePrefab: {fileID: 2061467936605828971, guid: b274b5a28e642a741b3f13d0d83f99f2,
@@ -391,6 +405,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586887455}
   m_CullTransparentMesh: 0
+  spawningProbability: 20
+  policeProbability: 20
 --- !u!23 &593708177 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3985910458322886148, guid: a54db522f4c054a2ca59062037332679,
