@@ -51,6 +51,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         private GameManager _gameManager;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
 
+        public bool IsDebug = false;
+
         protected override void Awake()
         {
             base.Awake();
@@ -83,43 +85,58 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
                     Vector3 smallestpos = colliders[0].transform.position;
 
-
                     RaycastHit hit;
 
                     // All of this are zombies
                     foreach (Collider c in colliders)
                     {
-                        // var targetPosition = c.transform.position;
-                        // Vector3 targetDir = targetPosition - transform.position;
-                        // Debug.DrawRay(transform.position, targetPosition, Color.red);
-                        // if (Physics.Raycast(transform.position, targetDir, out hit,
-                        //     2000))
-                        // {
-                        //     Debug.Log($"Collided with {hit.collider.name}");
-                        //     // 1. Raycast check if in sight
-                        //     if (hit.collider.GetComponent<ZombieAgent>() != null)
-                        //     {
-                        //        
-                        //     }
-                        // }
-                        // else
-                        // {
-                        //     continue;
-                        // }
+                        var targetRawPos = c.transform.position;
+                        var ownRawPos = this.transform.position;
+                        var targetPosition = new Vector3(targetRawPos.x, 20f, targetRawPos.z);
+                        var ownPosition = new Vector3(ownRawPos.x, 20f, ownRawPos.z);
+                        
+                        Vector3 targetDir = targetPosition - ownPosition;
+                        Debug.DrawRay(ownPosition, targetDir, Color.red);
+                        if (Physics.Raycast(ownPosition, targetDir, out hit,
+                            1000f))
+                        {
+                            Debug.Log($"Collided with {hit.collider.name}");
+                            // 1. Raycast check if in sight
+                            if (hit.collider.GetComponent<Flocker>() != null)
+                            {
+                                Debug.Log("Zombie in sight");
+                                // Found enemy
+                                Vector3 temppos = c.transform.position;
+
+                                smallestpos =
+                                    Vector3.Distance(ownPosition, temppos) <
+                                    Vector3.Distance(ownPosition, smallestpos)
+                                        ? targetPosition
+                                        : smallestpos;
+
+                                _dataHolder.EnemyPosition = smallestpos;
+                                // Notify closest humans
+                                StartCoroutine(AlertClosestHumansInRange(1000f));
+                            }
+                        }
+                        else
+                        {
+                            // continue;
+                        }
 
 
-                        // Found enemy
-                        Vector3 temppos = c.transform.position;
-
-                        smallestpos =
-                            Vector3.Distance(transform.position, temppos) <
-                            Vector3.Distance(transform.position, smallestpos)
-                                ? c.transform.position
-                                : smallestpos;
-
-                        _dataHolder.EnemyPosition = smallestpos;
-                        // Notify closest humans
-                        StartCoroutine(AlertClosestHumansInRange(1000f));
+                        // // Found enemy
+                        // Vector3 temppos = c.transform.position;
+                        //
+                        // smallestpos =
+                        //     Vector3.Distance(ownPosition, temppos) <
+                        //     Vector3.Distance(ownPosition, smallestpos)
+                        //         ? targetPosition
+                        //         : smallestpos;
+                        //
+                        // _dataHolder.EnemyPosition = smallestpos;
+                        // // Notify closest humans
+                        // StartCoroutine(AlertClosestHumansInRange(1000f));
                     }
                 }
             }
@@ -164,6 +181,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
         private void OnDrawGizmos()
         {
+            if (!IsDebug) return;
             Gizmos.color = new Color(.5f, .5f, .5f, .2f);
             Gizmos.DrawSphere(transform.position, 1000);
         }
