@@ -2830,6 +2830,11 @@ PrefabInstance:
       propertyPath: retreatDistance
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2061467936605828974, guid: b274b5a28e642a741b3f13d0d83f99f2,
+        type: 3}
+      propertyPath: SightDistance
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8318042000819579633, guid: b274b5a28e642a741b3f13d0d83f99f2,
         type: 3}
       propertyPath: m_AnchorMax.y

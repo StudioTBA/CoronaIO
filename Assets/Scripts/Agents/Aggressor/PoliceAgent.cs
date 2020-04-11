@@ -168,7 +168,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             if (closestZombie != null)
             {
                 _dataHolder.EnemyPosition = closestZombie.transform.position;
-                Debug.DrawRay(thisPosition, targetDir, Color.red, 10f);
+                // Debug.DrawRay(thisPosition, targetDir, Color.red, 10f);
                 StartCoroutine(AlertClosestHumansInRange(sightRange));
             }
         }
@@ -206,6 +206,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             if (!IsDebug) return;
             Gizmos.color = new Color(.5f, .5f, .5f, .2f);
             Gizmos.DrawSphere(transform.position, SightDistance);
+            
+            if (!_dataHolder.EnemyPosition.HasValue) return;
+            Gizmos.color = new Color(1f, 1f, 1f, 1f);
+            Gizmos.DrawLine(this.transform.position, _dataHolder.EnemyPosition.Value);
         }
     }
 }
