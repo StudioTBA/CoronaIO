@@ -48,6 +48,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         [SerializeField] private LayerMask defencelayer;
         [SerializeField] private float retreatDistance;
         [SerializeField] private Weapon weapon;
+        [SerializeField] public float SightDistance = 1000f;
         private GameManager _gameManager;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
 
@@ -78,77 +79,97 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 //wait for a second before continuing to update path 
                 yield return new WaitForSeconds(1.0f);
 
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 1000, _dataHolder.enemyLayer.Value);
-                if (colliders.Length > 0)
+                // Find all zombies in an area
+                Collider[] colliders =
+                    Physics.OverlapSphere(transform.position, SightDistance, _dataHolder.enemyLayer.Value);
+
+                if (colliders.Length == 0)
                 {
-                    // Gizmos.DrawSphere(this.gameObject.transform.position, 2000);
-
-                    Vector3 smallestpos = colliders[0].transform.position;
-
-                    RaycastHit hit;
-
-                    // All of this are zombies
-                    foreach (Collider c in colliders)
-                    {
-                        var targetRawPos = c.transform.position;
-                        var ownRawPos = this.transform.position;
-                        var targetPosition = new Vector3(targetRawPos.x, 20f, targetRawPos.z);
-                        var ownPosition = new Vector3(ownRawPos.x, 20f, ownRawPos.z);
-                        
-                        Vector3 targetDir = targetPosition - ownPosition;
-                        Debug.DrawRay(ownPosition, targetDir, Color.red);
-                        if (Physics.Raycast(ownPosition, targetDir, out hit,
-                            1000f))
-                        {
-                            Debug.Log($"Collided with {hit.collider.name}");
-                            // 1. Raycast check if in sight
-                            if (hit.collider.GetComponent<Flocker>() != null)
-                            {
-                                Debug.Log("Zombie in sight");
-                                // Found enemy
-                                Vector3 temppos = c.transform.position;
-
-                                smallestpos =
-                                    Vector3.Distance(ownPosition, temppos) <
-                                    Vector3.Distance(ownPosition, smallestpos)
-                                        ? targetPosition
-                                        : smallestpos;
-
-                                _dataHolder.EnemyPosition = smallestpos;
-                                // Notify closest humans
-                                StartCoroutine(AlertClosestHumansInRange(1000f));
-                            }
-                        }
-                        else
-                        {
-                            // continue;
-                        }
-
-
-                        // // Found enemy
-                        // Vector3 temppos = c.transform.position;
-                        //
-                        // smallestpos =
-                        //     Vector3.Distance(ownPosition, temppos) <
-                        //     Vector3.Distance(ownPosition, smallestpos)
-                        //         ? targetPosition
-                        //         : smallestpos;
-                        //
-                        // _dataHolder.EnemyPosition = smallestpos;
-                        // // Notify closest humans
-                        // StartCoroutine(AlertClosestHumansInRange(1000f));
-                    }
+                    _dataHolder.EnemyPosition = null;
+                    continue;
                 }
+                else
+                {
+                    GetClosestZombieInSight(colliders, SightDistance);
+                }
+
+
+                // Vector3 smallestpos = colliders[0].transform.position;
+                //
+                // RaycastHit hit;
             }
         }
 
-        public void GetClosestZombieInSight(int range)
+        // foreach (Collider c in colliders)
+        // {
+        //     var targetRawPos = c.transform.position;
+        //     var ownRawPos = this.transform.position;
+        //     var targetPosition = new Vector3(targetRawPos.x, 20f, targetRawPos.z);
+        //     var ownPosition = new Vector3(ownRawPos.x, 20f, ownRawPos.z);
+        //
+        //     Vector3 targetDir = targetPosition - ownPosition;
+        //     Debug.DrawRay(ownPosition, targetDir, Color.red);
+        //
+        //     if (Physics.Raycast(ownPosition, targetDir, out hit,
+        //         SightDistance))
+        //     {
+        //         // Raycast check if in sight
+        //         if (hit.collider.GetComponent<Flocker>() != null)
+        //         {
+        //             Vector3 temppos = c.transform.position;
+        //
+        //             smallestpos =
+        //                 Vector3.Distance(ownPosition, temppos) <
+        //                 Vector3.Distance(ownPosition, smallestpos)
+        //                     ? targetPosition
+        //                     : smallestpos;
+        //
+        //             _dataHolder.EnemyPosition = smallestpos;
+        //             // Notify closest humans
+        //             StartCoroutine(AlertClosestHumansInRange(SightDistance));
+        //         }
+        //     }
+        // }
+
+        public void GetClosestZombieInSight(Collider[] zombies, float sightRange)
         {
-            Collider[] possibleTargets = Physics.OverlapSphere(transform.position, 2000, _dataHolder.enemyLayer.Value);
+            RaycastHit hit;
+            List<GameObject> inSight = new List<GameObject>();
 
+            var thisRawPos = this.transform.position;
+            var thisPosition = new Vector3(thisRawPos.x, 10f, thisRawPos.z);
 
-            foreach (var zombie in possibleTargets)
+            GameObject closestZombie = null;
+            float smallestDistance = float.MaxValue;
+            Vector3 targetDir = Vector3.forward;
+            // Get all in sight
+            foreach (var zombie in zombies)
             {
+                var targetRawPos = zombie.transform.position;
+                var targetPosition = new Vector3(targetRawPos.x, 10f, targetRawPos.z);
+                var direction = targetPosition - thisPosition;
+
+                if (Physics.Raycast(thisPosition, direction, out hit, sightRange))
+                {
+                    if (hit.collider.GetComponent<Flocker>() != null)
+                    {
+                        inSight.Add(zombie.gameObject);
+                        var distance = Vector3.Distance(thisRawPos, targetRawPos);
+                        if (smallestDistance > distance)
+                        {
+                            targetDir = direction;
+                            smallestDistance = distance;
+                            closestZombie = zombie.gameObject;
+                        }
+                    }
+                }
+            }
+
+            if (closestZombie != null)
+            {
+                _dataHolder.EnemyPosition = closestZombie.transform.position;
+                Debug.DrawRay(thisPosition, targetDir, Color.red, 10f);
+                StartCoroutine(AlertClosestHumansInRange(sightRange));
             }
         }
 
@@ -156,6 +177,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         public IEnumerator AlertClosestHumansInRange(float range)
         {
             var civilians = new List<HumanAgent>();
+
             var humans = _gameManager.Humans;
             foreach (var human in humans)
             {
@@ -183,7 +205,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         {
             if (!IsDebug) return;
             Gizmos.color = new Color(.5f, .5f, .5f, .2f);
-            Gizmos.DrawSphere(transform.position, 1000);
+            Gizmos.DrawSphere(transform.position, SightDistance);
         }
     }
 }
