@@ -9,6 +9,7 @@ TagManager:
   - ShelterFloor
   - Agent
   - Zombie
+  - Spawn
   layers:
   - Default
   - TransparentFX
