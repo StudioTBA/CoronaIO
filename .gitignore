@@ -68,4 +68,4 @@ crashlytics-build.properties
 .history
 
 Assets/MiniMap/MapPic.png
-Assets/MiniMap/MapPic.meta
+Assets/MiniMap/MapPic.png.meta
