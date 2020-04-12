@@ -9,6 +9,7 @@ public class FlockManager : MonoBehaviour
     public GameObject flockPrefab;
     public GameObject flockHolder;
     public float flockMoveSpeed;
+    [SerializeField][Min(0)] int Initial_Horde_Size;
 
     public int minHordeSizeToSplit;
 
@@ -23,7 +24,11 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        while (Initial_Horde_Size > 0)
+        {
+            CreateZombie();
+            Initial_Horde_Size--;
+        }
     }
 
     // Update is called once per frame
@@ -33,10 +38,10 @@ public class FlockManager : MonoBehaviour
         {
             Vector3 direction = Vector3.zero;
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                CreateZombie();
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    CreateZombie();
+            //}
 
             if (Input.GetKey(KeyCode.I))
             {
