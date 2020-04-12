@@ -149,23 +149,31 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             //     Physics.OverlapSphere(transform.position, SightDistance, LayerMask.GetMask(GameManager.Tags.HumanTag));
 
 
+            var humans = Physics.OverlapSphere(transform.position, range,
+                LayerMask.GetMask(GameManager.Tags.HumanTag));
+
+
             var civilians = new List<HumanAgent>();
 
             // if (_gameManager == null) yield return null;
-
-            var humans = Physics.OverlapSphere(transform.position, SightDistance,
-                LayerMask.GetMask(GameManager.Tags.HumanTag));
-
             foreach (var human in humans)
             {
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
                 if (distance < range)
                 {
-                    HumanAgent humanAgent = human.GetComponent<HumanAgent>();
+                    Debug.Log("In range");
+                    Debug.Log($"In range {human.name}");
+                    
+                    HumanAgent humanAgent = human.transform.parent.GetComponent<HumanAgent>();
+
                     if (humanAgent != null)
                     {
                         civilians.Add(humanAgent);
                     }
+                }
+                else
+                {
+                    Debug.Log("Not in range");
                 }
             }
 

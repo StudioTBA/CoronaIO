@@ -1227,8 +1227,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383867611}
-  m_LocalRotation: {x: 0.5389993, y: -0, z: -0, w: 0.8423062}
-  m_LocalPosition: {x: 0, y: 2915, z: -1345}
+  m_LocalRotation: {x: 0.40241873, y: -0, z: -0, w: 0.9154557}
+  m_LocalPosition: {x: 0, y: 19065.004, z: -17495.004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 629670985}
@@ -1758,8 +1758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolateTime: 5
-  height: 2915
-  distance: 1345
+  height: 19065.004
+  distance: 17495.004
   FOV: 10
   zoomSpeed: 50
   handlerSpeed: 50
@@ -3126,7 +3126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374822974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7723827, y: 25, z: 0.95563006}
+  m_LocalPosition: {x: -1203, y: 25, z: -101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 314805946}
@@ -4866,6 +4866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon.Range
       value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061467936605828974, guid: b274b5a28e642a741b3f13d0d83f99f2,
+        type: 3}
+      propertyPath: IsDebug
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2061467937542423274, guid: b274b5a28e642a741b3f13d0d83f99f2,
         type: 3}
