@@ -10,6 +10,7 @@ TagManager:
   - Agent
   - Zombie
   - Spawn
+  - Human
   layers:
   - Default
   - TransparentFX

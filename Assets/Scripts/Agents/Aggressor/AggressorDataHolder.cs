@@ -20,6 +20,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         public LayerMask? defenceLayer;
 
         public float retreatDistance = 3.0f;
+        
+        public GameManager gameManager;
 
     }
 }

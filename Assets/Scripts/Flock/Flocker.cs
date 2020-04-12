@@ -18,12 +18,11 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {  
+    {
         Cohesion();
         Repulsion();
         Alignment();
@@ -37,9 +36,10 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         Vector3 avgPos = new Vector3(0.0f, 0.0f, 0.0f);
         foreach (Collider neighbor in nearbyColliders)
         {
-            if(neighbor.gameObject.GetComponent<Flocker>())
+            if (neighbor.gameObject.GetComponent<Flocker>())
                 avgPos += neighbor.transform.position;
         }
+
         avgPos /= nearbyColliders.Length;
         Vector3 forceVec = (avgPos - transform.position) * cohesionFactor;
         //transform.position += forceVec.normalized * Time.deltaTime;
@@ -57,6 +57,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (neighbor.gameObject.GetComponent<Flocker>())
                 avgPos += neighbor.transform.position;
         }
+
         avgPos /= nearbyColliders.Length;
         Vector3 forceVec = -(avgPos - transform.position) * repulsionFactor;
         //transform.position += forceVec.normalized * Time.deltaTime;
@@ -67,10 +68,10 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     private void Alignment()
     {
         Vector3 targetPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        
-        if(target != null)
+
+        if (target != null)
         {
-            targetPosition = (target.transform.position-transform.position);
+            targetPosition = (target.transform.position - transform.position);
             targetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
         }
         else
@@ -96,13 +97,13 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     //This function is specifically allowing zombies to be removed form horde lists
     public bool Equals(Flocker other)
     {
-        return (transform.position==other.transform.position);
+        return (transform.position == other.transform.position);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // Infection
-        if (collision.gameObject.tag == "Agent")
+        if (collision.gameObject.CompareTag("Human"))
         {
             HealthBar civilianHealth = collision.gameObject.GetComponentInChildren<HealthBar>();
             civilianHealth.TakeDamage(damageToHuman);

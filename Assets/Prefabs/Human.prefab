@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 1787034196}
   - component: {fileID: 1787034197}
   - component: {fileID: 1787034198}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Human
-  m_TagString: Agent
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 74938544984489663}
   - component: {fileID: 74938544984489662}
   - component: {fileID: 74938544984489649}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,6 +239,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 74938544372652181}
     m_Modifications:
+    - target: {fileID: 4766209938505766911, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4766209938885577522, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -363,6 +368,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766209938885577678, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766209938907064542, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766209939218459938, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4766209939218459941, guid: e2bb87907016541ad9a5ff5cc9f35e5a,
         type: 3}

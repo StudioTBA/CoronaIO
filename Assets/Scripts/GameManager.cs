@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+using Boo.Lang;
+using Com.StudioTBD.CoronaIO.Agent.Aggressors;
+using Com.StudioTBD.CoronaIO.Agent.Human;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO
@@ -13,6 +16,7 @@ namespace Com.StudioTBD.CoronaIO
         public CivilianGenerator civilianGenerator;
 
         // Map objects
+        private static string _humanTag = "HumanTag";
         public GameObject[] Shelters { get; private set; }
         private GameObject[] spawns;
 
@@ -22,6 +26,8 @@ namespace Com.StudioTBD.CoronaIO
 
         #region MonoBehaviour Callbacks
 
+
+        public List<GameObject> Humans { get; private set; } = new List<GameObject>();
 
         private void Start()
         {
@@ -63,6 +69,7 @@ namespace Com.StudioTBD.CoronaIO
         {
             FindSpawns();
             FindShelters();
+            FindAllHumans();
 
             yield return null;
         }
@@ -93,5 +100,18 @@ namespace Com.StudioTBD.CoronaIO
 
 
         #endregion
+
+        private void FindAllHumans()
+        {
+            foreach (var humanAgent in FindObjectsOfType<HumanAgent>())
+            {
+                Humans.Add(humanAgent.gameObject);
+            }
+
+            foreach (var humanAgent in FindObjectsOfType<PoliceAgent>())
+            {
+                Humans.Add(humanAgent.gameObject);
+            }
+        }
     }
 }
