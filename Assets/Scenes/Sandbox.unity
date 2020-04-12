@@ -1090,6 +1090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a1abf3e22854997be98ccf52e7a8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileGenerator: {fileID: 0}
+  civilianGenerator: {fileID: 0}
 --- !u!1 &411951320
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,6 +4531,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 74938544372652181, guid: 9932633c7c95b4271bc0dc5e75f1b585,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 74938544372652181, guid: 9932633c7c95b4271bc0dc5e75f1b585,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 74938544372652181, guid: 9932633c7c95b4271bc0dc5e75f1b585,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4620150001237218873, guid: 9932633c7c95b4271bc0dc5e75f1b585,
         type: 3}
