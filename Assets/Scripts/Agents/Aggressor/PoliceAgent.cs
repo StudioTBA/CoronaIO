@@ -7,6 +7,8 @@ using Com.StudioTBD.CoronaIO.FMS.Aggressors;
 using System;
 using Com.StudioTBD.CoronaIO.Agent.Human;
 using Com.StudioTBD.CoronaIO.Agent.Zombie;
+using JetBrains.Annotations;
+using UnityEngine.AI;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 {
@@ -49,7 +51,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         [SerializeField] private float retreatDistance;
         [SerializeField] private Weapon weapon;
         [SerializeField] public float SightDistance = 1000f;
-        private GameManager _gameManager;
+        [SerializeField] public float SightHeight = 1f;
+        [CanBeNull] private GameManager _gameManager;
         private AggressorDataHolder _dataHolder = new AggressorDataHolder();
 
         public bool IsDebug = false;
@@ -63,6 +66,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             _dataHolder.defenceLayer = defencelayer;
             _dataHolder.weapon = weapon;
             _dataHolder.retreatDistance = retreatDistance;
+            _dataHolder.agent_sight = SightDistance;
+            _dataHolder.NavMeshAgent = GetComponent<NavMeshAgent>();
             _gameManager = FindObjectOfType<GameManager>();
             StartCoroutine(checkforEnemies());
         }
@@ -72,7 +77,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             //wait for the game to load before starting the coroutine
             if (Time.timeSinceLevelLoad < 0.3f)
                 yield return new WaitForSeconds(0.3f);
-
 
             while (true)
             {
@@ -86,50 +90,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 if (colliders.Length == 0)
                 {
                     _dataHolder.EnemyPosition = null;
+                    if (IsDebug) Debug.Log($"Not collided");
                     continue;
                 }
                 else
                 {
+                    if (IsDebug) Debug.Log($"Found {colliders.Length} colliders");
                     GetClosestZombieInSight(colliders, SightDistance);
                 }
-
-
-                // Vector3 smallestpos = colliders[0].transform.position;
-                //
-                // RaycastHit hit;
             }
         }
-
-        // foreach (Collider c in colliders)
-        // {
-        //     var targetRawPos = c.transform.position;
-        //     var ownRawPos = this.transform.position;
-        //     var targetPosition = new Vector3(targetRawPos.x, 20f, targetRawPos.z);
-        //     var ownPosition = new Vector3(ownRawPos.x, 20f, ownRawPos.z);
-        //
-        //     Vector3 targetDir = targetPosition - ownPosition;
-        //     Debug.DrawRay(ownPosition, targetDir, Color.red);
-        //
-        //     if (Physics.Raycast(ownPosition, targetDir, out hit,
-        //         SightDistance))
-        //     {
-        //         // Raycast check if in sight
-        //         if (hit.collider.GetComponent<Flocker>() != null)
-        //         {
-        //             Vector3 temppos = c.transform.position;
-        //
-        //             smallestpos =
-        //                 Vector3.Distance(ownPosition, temppos) <
-        //                 Vector3.Distance(ownPosition, smallestpos)
-        //                     ? targetPosition
-        //                     : smallestpos;
-        //
-        //             _dataHolder.EnemyPosition = smallestpos;
-        //             // Notify closest humans
-        //             StartCoroutine(AlertClosestHumansInRange(SightDistance));
-        //         }
-        //     }
-        // }
 
         public void GetClosestZombieInSight(Collider[] zombies, float sightRange)
         {
@@ -137,7 +107,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             List<GameObject> inSight = new List<GameObject>();
 
             var thisRawPos = this.transform.position;
-            var thisPosition = new Vector3(thisRawPos.x, 10f, thisRawPos.z);
+            var thisPosition = new Vector3(thisRawPos.x, SightHeight, thisRawPos.z);
 
             GameObject closestZombie = null;
             float smallestDistance = float.MaxValue;
@@ -146,39 +116,46 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             foreach (var zombie in zombies)
             {
                 var targetRawPos = zombie.transform.position;
-                var targetPosition = new Vector3(targetRawPos.x, 10f, targetRawPos.z);
+                var targetPosition = new Vector3(targetRawPos.x, SightHeight, targetRawPos.z);
                 var direction = targetPosition - thisPosition;
 
-                if (Physics.Raycast(thisPosition, direction, out hit, sightRange))
+                if (!Physics.Raycast(thisPosition, direction, out hit, sightRange)) continue;
+                if (hit.collider.GetComponent<Flocker>() == null) continue;
+                inSight.Add(zombie.gameObject);
+                var distance = Vector3.Distance(thisRawPos, targetRawPos);
+
+                if (smallestDistance > distance)
                 {
-                    if (hit.collider.GetComponent<Flocker>() != null)
-                    {
-                        inSight.Add(zombie.gameObject);
-                        var distance = Vector3.Distance(thisRawPos, targetRawPos);
-                        if (smallestDistance > distance)
-                        {
-                            targetDir = direction;
-                            smallestDistance = distance;
-                            closestZombie = zombie.gameObject;
-                        }
-                    }
+                    targetDir = direction;
+                    smallestDistance = distance;
+                    closestZombie = zombie.gameObject;
                 }
             }
 
-            if (closestZombie != null)
+            if (closestZombie == null)
             {
-                _dataHolder.EnemyPosition = closestZombie.transform.position;
-                // Debug.DrawRay(thisPosition, targetDir, Color.red, 10f);
-                StartCoroutine(AlertClosestHumansInRange(sightRange));
+                this._dataHolder.EnemyPosition = null;
+                return;
             }
+
+            _dataHolder.EnemyPosition = closestZombie.transform.position;
+            StartCoroutine(AlertClosestHumansInRange(sightRange));
         }
 
 
         public IEnumerator AlertClosestHumansInRange(float range)
         {
+            // Collider[] humans =
+            //     Physics.OverlapSphere(transform.position, SightDistance, LayerMask.GetMask(GameManager.Tags.HumanTag));
+
+
             var civilians = new List<HumanAgent>();
 
-            var humans = _gameManager.Humans;
+            // if (_gameManager == null) yield return null;
+
+            var humans = Physics.OverlapSphere(transform.position, SightDistance,
+                LayerMask.GetMask(GameManager.Tags.HumanTag));
+
             foreach (var human in humans)
             {
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
@@ -204,9 +181,52 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         private void OnDrawGizmos()
         {
             if (!IsDebug) return;
-            Gizmos.color = new Color(.5f, .5f, .5f, .2f);
-            Gizmos.DrawSphere(transform.position, SightDistance);
-            
+            var Radius = SightDistance;
+            var T = transform;
+            Gizmos.color = Color.white;
+            var theta = 0f;
+            var x = Radius * Mathf.Cos(theta);
+            var y = Radius * Mathf.Sin(theta);
+            var pos = T.position + new Vector3(x, 0, y);
+            var newPos = pos;
+            var lastPos = pos;
+            for (theta = 0.1f; theta < Mathf.PI * 2; theta += 0.1f)
+            {
+                x = Radius * Mathf.Cos(theta);
+                y = Radius * Mathf.Sin(theta);
+                newPos = T.position + new Vector3(x, 0, y);
+                Gizmos.DrawLine(pos, newPos);
+                pos = newPos;
+            }
+
+            Gizmos.DrawLine(pos, lastPos);
+
+            //
+            // Gizmos.color = new Color(.5f, .5f, .5f, .2f);
+            // Gizmos.DrawSphere(transform.position, SightDistance);
+
+            // if (!IsDebug) return;
+            // Gizmos.color = new Color(.5f, .5f, .2f, .2f);
+            // Gizmos.DrawSphere(transform.position, weapon.Range);
+            Radius = weapon.Range;
+            T = transform;
+            theta = 0f;
+            x = Radius * Mathf.Cos(theta);
+            y = Radius * Mathf.Sin(theta);
+            pos = T.position + new Vector3(x, 0, y);
+            newPos = pos;
+            lastPos = pos;
+            for (theta = 0.1f; theta < Mathf.PI * 2; theta += 0.1f)
+            {
+                x = Radius * Mathf.Cos(theta);
+                y = Radius * Mathf.Sin(theta);
+                newPos = T.position + new Vector3(x, 0, y);
+                Gizmos.DrawLine(pos, newPos);
+                pos = newPos;
+            }
+
+            Gizmos.DrawLine(pos, lastPos);
+
             if (!_dataHolder.EnemyPosition.HasValue) return;
             Gizmos.color = new Color(1f, 1f, 1f, 1f);
             Gizmos.DrawLine(this.transform.position, _dataHolder.EnemyPosition.Value);

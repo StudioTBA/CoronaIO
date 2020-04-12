@@ -70,7 +70,6 @@ namespace Com.StudioTBD.CoronaIO.FMS
         public virtual void OnStateEnter()
         {
             Debug.Log($"[{StateName}] Enabling state");
-            // this.enabled = true;
         }
 
         /// <summary>

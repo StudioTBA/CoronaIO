@@ -25,11 +25,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             _attackandretreat = GetComponent<AttackAndRetreatState>();
             _walkingState = GetComponent<AggressorWalkingState>();
         }
-        
+
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            Debug.Log("Entering " + this.GetType().FullName);
             fireing = true;
             DataHolder = DataHolder == null ? (_stateMachine as AggressorFsm).dataHolder : DataHolder;
             StartCoroutine(shoot());
@@ -40,6 +39,12 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
+            if (!DataHolder.EnemyPosition.HasValue)
+            {
+                this.ResetToDefaultState();
+                return;
+            }
+
             //turn to look at enemy 
             Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
 

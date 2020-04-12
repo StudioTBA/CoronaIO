@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 1101168748}
   - component: {fileID: 1101168747}
   - component: {fileID: 1101168746}
+  - component: {fileID: 1101168750}
   m_Layer: 8
   m_Name: Target
   m_TagString: Zombie
@@ -630,6 +631,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1101168750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101168745}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90feabcdcfa4ba841aeef7345fbda27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  seekSpeed: 0
+  repulsionFactor: 0
+  cohesionFactor: 0
+  repulsionQueryRadius: 0
+  cohesionQueryRadius: 0
+  alignmentFactor: 0
+  damageToHuman: 0
 --- !u!1 &1780353402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1117,16 @@ PrefabInstance:
     - target: {fileID: 2061467936605828973, guid: b274b5a28e642a741b3f13d0d83f99f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061467936605828974, guid: b274b5a28e642a741b3f13d0d83f99f2,
+        type: 3}
+      propertyPath: IsDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318042000819579633, guid: b274b5a28e642a741b3f13d0d83f99f2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

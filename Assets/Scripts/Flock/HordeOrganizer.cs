@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HordeOrganizer : MonoBehaviour
 {
-
     List<FlockManager> hordeList;
-    public Dropdown dropDownMenu;
-    [SerializeField][Min(1)] int maxHordes = 1;
+    [CanBeNull] public Dropdown dropDownMenu;
+    [SerializeField] [Min(1)] int maxHordes = 1;
     public GameObject flockManagerPrefab;
-    public Text hordeHealth;
+    [CanBeNull] public Text hordeHealth;
 
     private int activeHorde = 0;
 
@@ -32,8 +32,8 @@ public class HordeOrganizer : MonoBehaviour
             {
                 hordeList.Add(temp);
                 //activeHorde = hordeList.IndexOf(temp);
-                dropDownMenu.options.Add(new Dropdown.OptionData());
-                dropDownMenu.SetValueWithoutNotify(activeHorde);
+                dropDownMenu?.options.Add(new Dropdown.OptionData());
+                dropDownMenu?.SetValueWithoutNotify(activeHorde);
                 SwitchActive();
             }
             else
@@ -45,7 +45,6 @@ public class HordeOrganizer : MonoBehaviour
             int hordeToAbsorb = IndexOfClosestHorde();
             if (hordeToAbsorb >= 0)
             {
-
                 foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
                 {
                     zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
@@ -61,6 +60,7 @@ public class HordeOrganizer : MonoBehaviour
                 dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
+
         UpdateDropDown();
         UpdateHealth();
     }
@@ -86,9 +86,7 @@ public class HordeOrganizer : MonoBehaviour
                     index = i;
                     distance = tempDistance;
                 }
-                    
             }
-
         }
 
         return index;
@@ -103,15 +101,18 @@ public class HordeOrganizer : MonoBehaviour
 
     private void UpdateDropDown()
     {
+        if (dropDownMenu == null) return;
         for (int i = 0; i < hordeList.Count; i++)
         {
             dropDownMenu.options[i].text = "Horde: " + i + " Size: " + hordeList[i].HordeSize();
         }
+
         dropDownMenu.captionText.text = "Horde: " + activeHorde + " Size: " + hordeList[activeHorde].HordeSize();
     }
 
     public void UpdateHealth()
     {
+        if (hordeHealth == null) return;
         hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
     }
 }

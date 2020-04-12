@@ -14,8 +14,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         private State _idle;
         private State _flee;
         public float range;
+
         [Tooltip("If the value obtained by dividing the number of humans around target to the horde size " +
-            "is less than this value, the horde will attack. Otherwise it will flee")]
+                 "is less than this value, the horde will attack. Otherwise it will flee")]
         public float minRatioToAttack;
 
 
@@ -63,21 +64,21 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         private void FindClosestHuman()
         {
-            GameObject[] agents = GameObject.FindGameObjectsWithTag("Agent");
+            GameObject[] agents = GameObject.FindGameObjectsWithTag(GameManager.Tags.HumanTag);
 
             GameObject temp = null;
 
             float dist = float.MaxValue;
             float toCompare;
 
-            foreach(GameObject obj in agents)
+            foreach (GameObject obj in agents)
             {
-               toCompare = (obj.transform.position - transform.position).magnitude;
-               if (toCompare<range && toCompare < dist)
-               {
+                toCompare = (obj.transform.position - transform.position).magnitude;
+                if (toCompare < range && toCompare < dist)
+                {
                     temp = obj;
                     dist = toCompare;
-               }
+                }
             }
 
             _dataHolder.Target = temp;
@@ -89,9 +90,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             int numOfHumans = 1;
 
-            foreach(Collider coll in colliders)
+            foreach (Collider coll in colliders)
             {
-                if(coll.gameObject.tag == "Agent")
+                if (coll.gameObject.CompareTag(GameManager.Tags.HumanTag))
                 {
                     numOfHumans++;
                 }
@@ -99,7 +100,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             int numOfZombies = _dataHolder.FlockManager.getZombieList().Count;
 
-            return numOfHumans / (numOfZombies == 0 ? numOfHumans : numOfZombies)<minRatioToAttack;
+            return numOfHumans / (numOfZombies == 0 ? numOfHumans : numOfZombies) < minRatioToAttack;
         }
     }
 }

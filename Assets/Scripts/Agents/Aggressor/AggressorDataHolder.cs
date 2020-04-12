@@ -21,6 +21,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
         public float retreatDistance = 3.0f;
         
+        public float agent_sight;
+        
         public GameManager gameManager;
 
     }
