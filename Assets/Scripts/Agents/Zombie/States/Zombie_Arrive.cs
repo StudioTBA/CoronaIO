@@ -38,6 +38,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                 {
                     if (!dataHolder.NavMeshAgent.hasPath || dataHolder.NavMeshAgent.velocity.sqrMagnitude == 0f)
                     {
+                        Destroy(dataHolder.myArriveParticleFX);
                         this.ChangeState(wander);
                     }
                 }

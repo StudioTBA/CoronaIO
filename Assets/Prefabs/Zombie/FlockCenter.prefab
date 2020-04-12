@@ -123,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: -2065199842865550999}
   healthBar: {fileID: 0}
+  arriveParticleFXPrefab: {fileID: 1135362113894539182, guid: 960b9b99926ff884db0495e55e49c638,
+    type: 3}
 --- !u!114 &-2065199842865550999
 MonoBehaviour:
   m_ObjectHideFlags: 0
