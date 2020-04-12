@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Com.StudioTBD.CoronaIO;
 
 public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 {
@@ -14,6 +15,8 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 
     [Tooltip("Percentage of human health inflicted on collision")]
     public int damageToHuman;
+    [Tooltip("Percentage of shelter health inflicted on collision")]
+    public int damageShelter;
 
     // Start is called before the first frame update
     void Start()
@@ -111,9 +114,21 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (civilianHealth.GetHealth() == 0)
             {
                 //Debug.Log("Infected");
-
+                
                 target.GetComponent<FlockManager>().CreateZombie();
                 Destroy(collision.gameObject);
+            }
+        }
+        if (collision.gameObject.GetComponentInParent<Shelter>())
+        {
+            HealthBar shelterHealth = collision.gameObject.GetComponentInParent<Shelter>().healthBar;
+            shelterHealth.TakeDamage(damageShelter);
+
+            print("hit");
+
+            if (shelterHealth.GetHealth() == 0)
+            {
+                collision.gameObject.transform.parent.gameObject.GetComponent<Shelter>().RemoveFromNavmesh();
             }
         }
     }
