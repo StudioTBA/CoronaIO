@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Com.StudioTBD.CoronaIO;
 using UnityEngine;
 
 public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
@@ -42,9 +43,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 
         avgPos /= nearbyColliders.Length;
         Vector3 forceVec = (avgPos - transform.position) * cohesionFactor;
-        //transform.position += forceVec.normalized * Time.deltaTime;
         GetComponent<Rigidbody>().velocity = forceVec.normalized;
-        //GetComponent<Rigidbody>().AddForce(forceVec);
     }
 
     private void Repulsion()
@@ -103,9 +102,16 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     private void OnCollisionEnter(Collision collision)
     {
         // Infection
-        if (collision.gameObject.CompareTag("Human"))
+        // Debug.Log($"[Collision] {collision.gameObject.name}");
+        // Debug.Log($"[Collider] {collision.collider.gameObject.name}");
+        if (collision.collider.CompareTag(GameManager.Tags.HumanTag))
         {
-            HealthBar civilianHealth = collision.gameObject.GetComponentInChildren<HealthBar>();
+            GameObject parent = collision.collider.transform.parent.gameObject;
+            parent.GetComponentInChildren<HealthBar>();
+            Debug.Log($"Proper human {parent.name}", this);
+            // GameObject human = collision.collider.GetComponent<HealthBar>();
+            // HealthBar civilianHealth = collision.collider.GetComponentInChildren<HealthBar>();
+            HealthBar civilianHealth = parent.GetComponentInChildren<HealthBar>();
             civilianHealth.TakeDamage(damageToHuman);
 
             if (civilianHealth.GetHealth() == 0)
@@ -113,7 +119,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
                 //Debug.Log("Infected");
 
                 target.GetComponent<FlockManager>().CreateZombie();
-                Destroy(collision.gameObject);
+                Destroy(parent);
             }
         }
     }

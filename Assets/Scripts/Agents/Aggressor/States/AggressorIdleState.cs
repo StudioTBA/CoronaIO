@@ -13,6 +13,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         private State _attackingState;
 
         private AggressorDataHolder DataHolder;
+
         protected override string SetStateName()
         {
             return "Idle";
@@ -20,27 +21,12 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         protected override void OnStart()
         {
-            
             _walkingState = GetComponent<AggressorWalkingState>();
             _attackingState = GetComponent<AttackingState>();
 
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
         }
 
-        public override void OnStateEnter()
-        {
-            base.OnStateEnter();
-            Debug.Log("Entering " + this.GetType().FullName);
-        }
-
-
-        /// <summary>
-        /// 
-        /// checks if there is an enemy nearby
-        /// if enemy is within range will change state to attacking 
-        /// else if directional input is given will walk to a destination
-        /// </summary>
-        /// 
         public override void Execute()
         {
             if (DataHolder.EnemyPosition != null)
@@ -50,34 +36,12 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                     this.ChangeState(_attackingState);
                 }
             }
-
-
-            if (HandleMouseClick())
-            {
-                this.ChangeState(_walkingState);
-            }
         }
 
         public override void OnStateExit()
         {
             base.OnStateExit();
             Debug.Log("Exiting " + this.GetType().FullName);
-        }
-
-        private bool HandleMouseClick()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    DataHolder.move_target = new Vector3(hit.point.x, .5f, hit.point.z);
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         public override void Consume(Event.Event @event)
