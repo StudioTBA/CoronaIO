@@ -33,13 +33,17 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void OnStateEnter()
         {
-            InvokeRepeating("WanderToNewPosition",0,2);
-            
+            InvokeRepeating("WanderToNewPosition", 0, 2);
+
             base.OnStateEnter();
         }
 
         public override void Execute()
         {
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
+
             timer += Time.deltaTime;
 
             //Must get here from idle state only if not currently controlled by player

@@ -3,6 +3,7 @@ using System.Collections;
 using Boo.Lang;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using Com.StudioTBD.CoronaIO.Agent.Human;
+using Com.StudioTBD.CoronaIO.FMS;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO
@@ -15,55 +16,70 @@ namespace Com.StudioTBD.CoronaIO
         public TileGenerator tileGenerator;
         public CivilianGenerator civilianGenerator;
 
-        // Map objects
-        private static string _humanTag = "HumanTag";
+        public static bool isSandbox = false;
+
         public GameObject[] Shelters { get; private set; }
         private GameObject[] spawns;
+        public List<GameObject> Humans { get; private set; } = new List<GameObject>();
 
+        #endregion
+
+        // Map objects
+
+        #region GameTags
+
+        public static class Tags
+        {
+            public static string HumanTag = "Human";
+            public static string EnemyTag = "Enemy";
+            public static string SpawnTag = "Spawn";
+            public static string ShelterTag = "Shelter";
+        }
 
         #endregion
 
 
         #region MonoBehaviour Callbacks
 
-
-        public List<GameObject> Humans { get; private set; } = new List<GameObject>();
-
         private void Start()
         {
-            // Create map
-            StartCoroutine("GenerateTiles");
+            if (isSandbox)
+            {
+                // Create map
+                StartCoroutine("GenerateTiles");
 
-            // Find objects
-            StartCoroutine("FindObjects");
+                // Find objects
+                StartCoroutine("FindObjects");
 
-            // Create civilians
-            StartCoroutine("GenerateCivilians");
+                // Create civilians
+                StartCoroutine("GenerateCivilians");
+            }
+            else
+            {
+                // Find objects
+                StartCoroutine("FindObjects");
+            }
         }
-
 
         #endregion
 
 
         #region Finders
 
-
         private void FindSpawns()
         {
-            spawns = GameObject.FindGameObjectsWithTag("Spawn");
+            spawns = GameObject.FindGameObjectsWithTag(Tags.SpawnTag);
         }
 
         private void FindShelters()
         {
-            Shelters = GameObject.FindGameObjectsWithTag("Shelter");
+            Shelters = GameObject.FindGameObjectsWithTag(Tags.ShelterTag);
         }
-
 
         #endregion
 
 
         #region Coroutines
-
 
         IEnumerator FindObjects()
         {
@@ -86,18 +102,15 @@ namespace Com.StudioTBD.CoronaIO
             yield return null;
         }
 
-
         #endregion
 
 
         #region Getters/Setters
 
-
         public GameObject[] GetSpawns()
         {
             return spawns;
         }
-
 
         #endregion
 

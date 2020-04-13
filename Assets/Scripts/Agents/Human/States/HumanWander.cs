@@ -35,7 +35,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         protected override void OnStart()
         {
-            // StateName = "HumanWander";
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _seekShelter = GetComponent<SeekShelter>();
         }
@@ -46,12 +45,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             // TODO: Wander around
         }
 
-        private bool isWandering = true;
-
         private void WanderToNewPosition()
         {
             Vector3 newPos = RandomPoint(transform.position, 200f, -1);
-            //Debug.Log("Wandering to new position: " + newPos);
             this._dataHolder.NavMeshAgent.SetDestination(newPos);
         }
 
