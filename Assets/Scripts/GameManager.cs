@@ -12,9 +12,6 @@ namespace Com.StudioTBD.CoronaIO
     {
         #region Properties
 
-        // Static
-        public static bool isSandbox = false;
-
         // Generators
         public TileGenerator tileGenerator;
         public CivilianGenerator civilianGenerator;
@@ -24,9 +21,6 @@ namespace Com.StudioTBD.CoronaIO
         public GameObject[] Shelters { get; private set; }
         public List<GameObject> Humans { get; private set; } = new List<GameObject>();
         private GameObject[] spawns;
-
-        // Other
-        private Menus.MenuManager menuManager;
 
         #endregion
 
@@ -60,7 +54,7 @@ namespace Com.StudioTBD.CoronaIO
 
         private void Start()
         {
-            if (!isSandbox)
+            if (!Menus.MenuManager.isTest)
             {
                 // Set values from Settings
                 tileGenerator.SetFloorScale(Menus.MenuManager.mapScale * 10);

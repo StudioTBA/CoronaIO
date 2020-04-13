@@ -44,8 +44,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
         {
             pauseMenu.SetActive(false);
 
-            HUD.SetActive(true);
-            minimap.SetActive(true);
+            if (HUD != null)
+                HUD.SetActive(true);
+
+            if (minimap != null)
+                minimap.SetActive(true);
 
             Time.timeScale = 1.0f;
             gameIsPaused = false;
@@ -55,8 +58,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
         {
             pauseMenu.SetActive(true);
 
-            HUD.SetActive(false);
-            minimap.SetActive(false);
+            if (HUD != null)
+                HUD.SetActive(false);
+
+            if (minimap != null)
+                minimap.SetActive(false);
 
             Time.timeScale = 0.0f;
             gameIsPaused = true;

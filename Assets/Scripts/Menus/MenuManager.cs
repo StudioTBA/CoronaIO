@@ -11,7 +11,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
     /// </summary>
     public class MenuManager : MonoBehaviour
     {
-        #region Properties
+        #region Static Properties
 
         // Settings
         public static int mapScale = 10;
@@ -31,6 +31,10 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public static int ZOMBIES_ATTACK = 9;
         public static int ZOMBIES_FLEE = 10;
         public static int ZOMBIES_WANDER = 11;
+
+        // Other
+        [Tooltip("Indicates if the scene loaded is a demo or not")]
+        public static bool isTest;
 
         #endregion
 
