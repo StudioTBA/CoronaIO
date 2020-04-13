@@ -19,12 +19,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         protected override void OnStart()
         {
-            wander = GetComponent<Zombie_Wander>();
+            wander = GetComponent<SeekClosestHuman>();
         }
 
         public override void OnStateEnter()
         {
             dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
+            dataHolder.Target = null;
         }
 
 

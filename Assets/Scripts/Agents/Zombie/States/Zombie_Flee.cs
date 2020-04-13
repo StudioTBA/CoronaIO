@@ -27,8 +27,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         public override void Execute()
         {
 
-            this.CheckAndTransitionToArrive(this, _dataHolder);
-
             //Run away from human target
             //Need to return to idle state once far enough away
             if (!_dataHolder.Target || (_dataHolder.Target.transform.position - transform.position).magnitude > flee_distance_goal)
@@ -39,6 +37,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             {
                 _dataHolder.NavMeshAgent.SetDestination(PointAwayFromTarget());
             }
+
+            this.CheckAndTransitionToArrive(this, _dataHolder);
         }
 
         public override void Consume([NotNull] Event.Event @event)
