@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Com.StudioTBD.CoronaIO.MainMenu
+namespace Com.StudioTBD.CoronaIO.Menus
 {
     public class Settings : MonoBehaviour
     {
         #region Properties
-
 
         // Values
         public int mapScale;
@@ -26,12 +25,15 @@ namespace Com.StudioTBD.CoronaIO.MainMenu
         public TMP_Text minSizeToSplitText;
         public TMP_Text maxNumOfHordesText;
 
-
         #endregion
 
 
         #region MonoBehaviour Callbacks
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
 
         private void Start()
         {
@@ -55,12 +57,10 @@ namespace Com.StudioTBD.CoronaIO.MainMenu
             maxNumOfHordesText.text = maxNumOfHordes.ToString();
         }
 
-
         #endregion
 
 
-        #region Getters
-
+        #region Getters/Setters
 
         public int GetMapScale()
         {
@@ -76,7 +76,6 @@ namespace Com.StudioTBD.CoronaIO.MainMenu
         {
             return maxNumOfHordes;
         }
-
 
         #endregion
     }
