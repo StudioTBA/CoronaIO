@@ -11,12 +11,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
     {
         private DataHolder _dataHolder = new DataHolder();
         private NavMeshAgent _navMeshAgent;
+        public GameObject PolicePrefab;
 
         protected override void Awake()
         {
             base.Awake();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
+            _dataHolder.PolicePrefab = PolicePrefab;
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }

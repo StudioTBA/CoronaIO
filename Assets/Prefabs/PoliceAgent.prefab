@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2061467936605828885}
   - component: {fileID: 2061467936605828882}
   - component: {fileID: 2061467936605828970}
+  - component: {fileID: -5873910382330321004}
   m_Layer: 10
   m_Name: PoliceAgent
   m_TagString: Human
@@ -154,6 +155,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516a09eff0f4baa4780a67446619d003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-5873910382330321004
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061467936605828971}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2061467937542423274
 GameObject:
   m_ObjectHideFlags: 0
