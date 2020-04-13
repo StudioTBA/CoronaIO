@@ -3802,11 +3802,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlockCenter
       objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5134,6 +5129,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3187935670252676934, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187935670914534773, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3187935670914534774, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
         type: 3}
       propertyPath: target
@@ -5203,6 +5208,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniMapManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187935671559886003, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187935671667298131, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187935671677878217, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b65c0ccd5cb8d8c499b83084f4a6c09b, type: 3}

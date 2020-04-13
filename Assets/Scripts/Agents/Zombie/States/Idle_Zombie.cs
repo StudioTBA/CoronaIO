@@ -35,6 +35,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
+
+            this.CheckAndTransitionToArrive(this, _dataHolder);
+
             if (!_dataHolder.FlockManager.stop)
             {
                 if (_dataHolder.FlockManager.always_flee)
