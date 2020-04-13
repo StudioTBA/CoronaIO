@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2444086077298788646}
   - component: {fileID: 6789009175304137784}
   - component: {fileID: 186361449705234212}
+  - component: {fileID: 3991184127833266252}
   - component: {fileID: -4411837927842115126}
   m_Layer: 0
   m_Name: FlockCenter
@@ -122,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: -2065199842865550999}
   healthBar: {fileID: 0}
+  arriveParticleFXPrefab: {fileID: 1135362113894539182, guid: 960b9b99926ff884db0495e55e49c638,
+    type: 3}
 --- !u!114 &-2065199842865550999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   minRatioToAttack: 0.2
+  range: 1000
+  minRatioToAttack: 1
 --- !u!114 &2444086077298788646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +213,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 4
+--- !u!114 &3991184127833266252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956756031875463285}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f81f6a65ef4e243a90051c39241eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-4411837927842115126
 MonoBehaviour:
   m_ObjectHideFlags: 0

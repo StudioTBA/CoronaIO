@@ -9,5 +9,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Extensions
         {
             currentState.StateMachine.ChangeState(newState);
         }
+
+        public static void ResetToDefaultState(this State state)
+        {
+            state.StateMachine.ResetToDefaultState();
+        }
     }
 }

@@ -25,8 +25,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void OnStateEnter()
         {
             base.OnStateEnter();
-            Debug.Log("Entering " + this.GetType().FullName);
-
             DataHolder = DataHolder == null ? (_stateMachine as AggressorFsm).dataHolder : DataHolder;
             StartCoroutine(shoot());
         }

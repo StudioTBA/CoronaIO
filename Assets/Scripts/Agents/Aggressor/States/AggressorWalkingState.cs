@@ -28,9 +28,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             Debug.Log("Entering " + this.GetType().FullName);
         }
 
-        /// <summary>
-        /// Example Execute function that transitions from Moving to Running.
-        /// </summary>
         public override void Execute()
         {
             HandleMouseClick();
@@ -44,8 +41,15 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             currentTarget = DataHolder.defend_target != null
                 ? DataHolder.defend_target.Value
                 : DataHolder.move_target.Value;
+
             if (transform.position != currentTarget)
             {
+                if (Vector3.Distance(transform.position, DataHolder.move_target.Value) < DataHolder.agent_sight)
+                {
+                    this.ResetToDefaultState();
+                    return;
+                }
+              
                 // Move to target
                 // Naive approach don't do it this way.
                 transform.position =
@@ -56,11 +60,6 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 // Reach destination
                 StateMachine.ResetToDefaultState();
             }
-
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    this.ChangeState(_runningState);
-            //}
         }
 
         public override void OnStateExit()
