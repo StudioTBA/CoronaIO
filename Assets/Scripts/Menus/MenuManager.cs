@@ -5,13 +5,23 @@ using UnityEngine.SceneManagement;
 
 namespace Com.StudioTBD.CoronaIO.Menus
 {
+    /// <summary>
+    /// This class is meant to only be used by one object that should be alive throughout
+    /// all scenes i.e. the entire run of the application
+    /// </summary>
     public class MenuManager : MonoBehaviour
     {
         #region Properties
 
-        public int mapScale;
-        public int minSizeToSplit;
-        public int maxNumOfHordes;
+        // Settings
+        public static int mapScale = 10;
+        public static int minSizeToSplit = 5;
+        public static int maxNumOfHordes = 10;
+
+        // Scenes
+        public static int LAUNCHER = 0;
+        public static int MAINMENU = 1;
+        public static int GAME = 2;
 
         #endregion
 
@@ -21,6 +31,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.LoadScene(MAINMENU);
         }
 
         #endregion
@@ -31,35 +42,9 @@ namespace Com.StudioTBD.CoronaIO.Menus
         /// <summary>
         /// Load main game
         /// </summary>
-        public void LoadGame()
+        public static void LoadGame()
         {
-            Settings settings = Resources.FindObjectsOfTypeAll<Settings>()[0] as Settings;
-
-            mapScale = settings.GetMapScale();
-            minSizeToSplit = settings.GetMinSizeToSplit();
-            maxNumOfHordes = settings.GetMaxNumOfHordes();
-
-            SceneManager.LoadScene(1);
-        }
-
-        #endregion
-
-
-        #region Getters/Setters
-
-        public int GetMapScale()
-        {
-            return mapScale;
-        }
-
-        public int GetMinSizeToSplit()
-        {
-            return minSizeToSplit;
-        }
-
-        public int GetMaxNumOfHordes()
-        {
-            return maxNumOfHordes;
+            SceneManager.LoadScene(GAME);
         }
 
         #endregion

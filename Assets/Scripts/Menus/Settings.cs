@@ -10,11 +10,6 @@ namespace Com.StudioTBD.CoronaIO.Menus
     {
         #region Properties
 
-        // Values
-        public int mapScale;
-        public int minSizeToSplit;
-        public int maxNumOfHordes;
-
         // Sliders
         public Slider mapScaleSlider;
         public Slider minSizeToSplitSlider;
@@ -37,44 +32,24 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         private void Start()
         {
-            mapScaleSlider.value = mapScale;
-            minSizeToSplitSlider.value = minSizeToSplit;
-            maxNumOfHordesSlider.value = maxNumOfHordes;
+            mapScaleSlider.value = MenuManager.mapScale;
+            minSizeToSplitSlider.value = MenuManager.minSizeToSplit;
+            maxNumOfHordesSlider.value = MenuManager.maxNumOfHordes;
 
-            mapScaleText.text = mapScale.ToString();
-            minSizeToSplitText.text = minSizeToSplit.ToString();
-            maxNumOfHordesText.text = maxNumOfHordes.ToString();
+            mapScaleText.text = MenuManager.mapScale.ToString();
+            minSizeToSplitText.text = MenuManager.minSizeToSplit.ToString();
+            maxNumOfHordesText.text = MenuManager.maxNumOfHordes.ToString();
         }
 
         private void Update()
         {
-            mapScale = (int) mapScaleSlider.value;
-            minSizeToSplit = (int) minSizeToSplitSlider.value;
-            maxNumOfHordes = (int) maxNumOfHordesSlider.value;
+            MenuManager.mapScale = (int) mapScaleSlider.value;
+            MenuManager.minSizeToSplit = (int) minSizeToSplitSlider.value;
+            MenuManager.maxNumOfHordes = (int) maxNumOfHordesSlider.value;
 
-            mapScaleText.text = mapScale.ToString();
-            minSizeToSplitText.text = minSizeToSplit.ToString();
-            maxNumOfHordesText.text = maxNumOfHordes.ToString();
-        }
-
-        #endregion
-
-
-        #region Getters/Setters
-
-        public int GetMapScale()
-        {
-            return mapScale;
-        }
-
-        public int GetMinSizeToSplit()
-        {
-            return minSizeToSplit;
-        }
-
-        public int GetMaxNumOfHordes()
-        {
-            return maxNumOfHordes;
+            mapScaleText.text = MenuManager.mapScale.ToString();
+            minSizeToSplitText.text = MenuManager.minSizeToSplit.ToString();
+            maxNumOfHordesText.text = MenuManager.maxNumOfHordes.ToString();
         }
 
         #endregion

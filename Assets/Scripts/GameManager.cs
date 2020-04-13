@@ -63,8 +63,7 @@ namespace Com.StudioTBD.CoronaIO
             if (!isSandbox)
             {
                 // Set values from Settings
-                Menus.MenuManager menuManager = FindObjectOfType<Menus.MenuManager>();
-                tileGenerator.SetFloorScale(menuManager.GetMapScale() * 10);
+                tileGenerator.SetFloorScale(Menus.MenuManager.mapScale * 10);
                 // TODO: Replace by line to set minSizeToSplit
                 // TODO: Replace by line to set maxNumOfHordes
 

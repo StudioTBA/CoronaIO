@@ -7,11 +7,18 @@ namespace Com.StudioTBD.CoronaIO.Menus
 {
     public class PauseMenu : MonoBehaviour
     {
+        #region Properties
+
         public GameObject pauseMenu;
         public GameObject HUD;
         public GameObject minimap;
 
         public static bool gameIsPaused = false;
+
+        #endregion
+
+
+        #region MonoBehaviour Callbacks
 
         void Update()
         {
@@ -27,6 +34,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
                 }
             }
         }
+
+        #endregion
+
+
+        #region Public Methods
 
         public void Resume()
         {
@@ -52,7 +64,9 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(0);
+            gameIsPaused = false;
+            Time.timeScale = 1.0f;
+            SceneManager.LoadScene(MenuManager.MAINMENU);
         }
 
         public void QuitGame()
@@ -62,5 +76,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
             else
                 Application.Quit();
         }
+
+        #endregion
     }
 }
