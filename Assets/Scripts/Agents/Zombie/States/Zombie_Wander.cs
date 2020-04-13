@@ -41,9 +41,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         public override void Execute()
         {
 
-            if (this.CheckAndTransitionToArrive(_dataHolder))
-                return;
-
             timer += Time.deltaTime;
 
             //Must get here from idle state only if not currently controlled by player
@@ -60,6 +57,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                 if (!_dataHolder.Target)
                     this.ChangeState(_seekClosestHuman);
             }
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
 
         }
 

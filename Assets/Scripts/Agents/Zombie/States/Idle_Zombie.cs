@@ -35,10 +35,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
-
-            if (this.CheckAndTransitionToArrive(_dataHolder))
-                return;
-
             if (!_dataHolder.FlockManager.stop)
             {
                 if (_dataHolder.FlockManager.always_flee)
@@ -46,6 +42,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                 else
                     this.ChangeState(_wander);
             }
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
         }
 
         public override void Consume([NotNull] Event.Event @event)

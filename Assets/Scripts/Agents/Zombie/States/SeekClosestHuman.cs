@@ -36,9 +36,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         public override void Execute()
         {
 
-            if (this.CheckAndTransitionToArrive(_dataHolder))
-                return;
-
             //Set target to closest human
             FindClosestHuman();
 
@@ -56,6 +53,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             }
             else
                 this.ChangeState(_idle);
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
         }
 
         public override void Consume([NotNull] Event.Event @event)

@@ -1227,8 +1227,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383867611}
-  m_LocalRotation: {x: 0.40241873, y: -0, z: -0, w: 0.9154557}
-  m_LocalPosition: {x: 0, y: 19065.004, z: -17495.004}
+  m_LocalRotation: {x: 0.38268343, y: -0, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 18000, z: -18000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 629670985}
@@ -1758,10 +1758,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolateTime: 5
-  height: 19065.004
-  distance: 17495.004
+  height: 18000
+  distance: 18000
   FOV: 10
-  zoomSpeed: 50
+  zoomSpeed: 500
   handlerSpeed: 50
   rotateSpeed: 10
   dragSpeed: 50

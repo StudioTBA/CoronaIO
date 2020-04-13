@@ -31,9 +31,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
-            if (this.CheckAndTransitionToArrive(dataHolder))
-                return;
-
             if (!dataHolder.NavMeshAgent.pathPending)
             {
                 if (dataHolder.NavMeshAgent.remainingDistance <= dataHolder.NavMeshAgent.stoppingDistance)
@@ -45,6 +42,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                     }
                 }
             }
+
+            if (this.CheckAndTransitionToArrive(dataHolder))
+                return;
         }
 
 
