@@ -14,9 +14,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         private State _idle;
         private State _flee;
         public float range;
-
         [Tooltip("If the value obtained by dividing the number of humans around target to the horde size " +
-                 "is less than this value, the horde will attack. Otherwise it will flee")]
+            "is less than this value, the horde will attack. Otherwise it will flee")]
         public float minRatioToAttack;
 
 
@@ -36,6 +35,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
+
             //Set target to closest human
             FindClosestHuman();
 

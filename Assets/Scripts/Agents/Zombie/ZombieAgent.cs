@@ -11,6 +11,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
     {
         private ZombieDataHolder _dataHolder = new ZombieDataHolder();
         private NavMeshAgent _navMeshAgent;
+        public GameObject arriveParticleFXPrefab;
+        private GameObject currentArriveParticleFX;
 
         protected override void Awake()
         {
@@ -18,6 +20,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
             _dataHolder.FlockManager = GetComponent<FlockManager>();
+            _dataHolder.arriveParticleFXPrefab = arriveParticleFXPrefab;
             stateMachine = new ZombieStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
