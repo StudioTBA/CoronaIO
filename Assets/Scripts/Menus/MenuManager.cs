@@ -7,14 +7,26 @@ namespace Com.StudioTBD.CoronaIO.Menus
 {
     public class MenuManager : MonoBehaviour
     {
+        #region Properties
+
         public int mapScale;
         public int minSizeToSplit;
         public int maxNumOfHordes;
+
+        #endregion
+
+
+        #region MonoBehaviour Callbacks
 
         private void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
         }
+
+        #endregion
+
+
+        #region Public Methods
 
         /// <summary>
         /// Load main game
@@ -30,6 +42,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
             SceneManager.LoadScene(1);
         }
 
+        #endregion
+
+
+        #region Getters/Setters
+
         public int GetMapScale()
         {
             return mapScale;
@@ -44,5 +61,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
         {
             return maxNumOfHordes;
         }
+
+        #endregion
     }
 }
