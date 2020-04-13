@@ -67,7 +67,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         private void FindClosestHuman()
         {
-            GameObject[] agents = GameObject.FindGameObjectsWithTag("Human");
             GameObject[] agents = GameObject.FindGameObjectsWithTag(GameManager.Tags.HumanTag);
 
             GameObject temp = null;
