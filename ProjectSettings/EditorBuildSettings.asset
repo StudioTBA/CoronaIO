@@ -14,4 +14,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 88af5117ed1aa43b2b9f6a0560264f23
+  - enabled: 1
+    path: Assets/Scenes/Demos/Humans/FindShelter.unity
+    guid: bf98a2a1f057c4ef4b42ab27d934769e
+  - enabled: 1
+    path: Assets/Scenes/Demos/Humans/Flee.unity
+    guid: e05ad9e8c325445f098ace1efd093311
+  - enabled: 1
+    path: Assets/Scenes/Demos/Humans/Wander.unity
+    guid: 4d2748e0fe2674277b521989334404d3
+  - enabled: 1
+    path: Assets/Scenes/Demos/Police/Defend.unity
+    guid: 65600b542c68a45af8c77acbb805ad53
+  - enabled: 1
+    path: Assets/Scenes/Demos/Police/Wander.unity
+    guid: 1206b0af921514096bd6020f52bda167
+  - enabled: 1
+    path: Assets/Scenes/Demos/Zombies/Arrive.unity
+    guid: 46fcb15b46fc04b0e86b6730c2d35bad
+  - enabled: 1
+    path: Assets/Scenes/Demos/Zombies/Attack.unity
+    guid: 098c663d4ab9d47a5b971047beab00f8
+  - enabled: 1
+    path: Assets/Scenes/Demos/Zombies/Flee.unity
+    guid: cacfb59d3ac324850813369faf93d854
+  - enabled: 1
+    path: Assets/Scenes/Demos/Zombies/Wander.unity
+    guid: 57baf5113f30946378b9f41964cee060
   m_configObjects: {}
