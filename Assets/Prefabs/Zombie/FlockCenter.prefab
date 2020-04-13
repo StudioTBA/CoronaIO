@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b0457bbc4fdfd41b75ca930fdb3dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 1000
   minRatioToAttack: 0.2
 --- !u!114 &2444086077298788646
 MonoBehaviour:
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7b081a5e8e2994999f2f39e53cc795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flee_distance_goal: 10
+  flee_distance_goal: 1000
 --- !u!114 &186361449705234212
 MonoBehaviour:
   m_ObjectHideFlags: 0
