@@ -26,6 +26,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
+
             //Use Navmesh to head towards Human target
             if (_dataHolder.Target && !_dataHolder.FlockManager.always_flee)
                 _dataHolder.NavMeshAgent.SetDestination(_dataHolder.Target.transform.position);
@@ -34,7 +38,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
                 this.ChangeState(_wander);
             }
 
-            this.CheckAndTransitionToArrive(this, _dataHolder);
+
 
         }
 

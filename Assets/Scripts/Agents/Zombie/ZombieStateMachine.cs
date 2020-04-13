@@ -31,18 +31,18 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
         static float clickTimerCountdown = clickTimer;
         static bool arrive = false;
         public static bool clickedOnMiniMap;
-        public static void CheckAndTransitionToArrive(this State state, State currentState, ZombieDataHolder dataHolder)
+        public static bool CheckAndTransitionToArrive(this State state, ZombieDataHolder dataHolder)
         {
             if (!HordeHelper.Instance?.LockedHorde || clickedOnMiniMap)
             {
                 clickedOnMiniMap = false;
-                return;
+                return false;
             }
 
             GameObject flockCenter = HordeHelper.Instance.LockedHorde.GetComponent<MiniMapIcon>().target.gameObject;
 
-            if (!flockCenter.Equals(currentState.gameObject))
-                return;
+            if (!flockCenter.Equals(state.gameObject))
+                return false;
 
             checkMouseClick();
 
@@ -58,10 +58,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
                     GameObject.Destroy(dataHolder.myArriveParticleFX);
                     dataHolder.myArriveParticleFX = GameObject.Instantiate(dataHolder.arriveParticleFXPrefab, new Vector3(hit.point.x, 25, hit.point.z), dataHolder.arriveParticleFXPrefab.transform.rotation);
                     dataHolder.NavMeshAgent.SetDestination(new Vector3(hit.point.x, 0, hit.point.z));
-                    currentState.CancelInvoke();
-                    currentState.ChangeState(currentState.GetComponent<Zombie_Arrive>());
+                    state.CancelInvoke();
+                    state.ChangeState(state.GetComponent<Zombie_Arrive>());
+                    return true;
                 }
             }
+
+            return false;
         }
 
         static void checkMouseClick()

@@ -31,7 +31,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
-            this.CheckAndTransitionToArrive(this, dataHolder);
+            if (this.CheckAndTransitionToArrive(dataHolder))
+                return;
 
             if (!dataHolder.NavMeshAgent.pathPending)
             {
