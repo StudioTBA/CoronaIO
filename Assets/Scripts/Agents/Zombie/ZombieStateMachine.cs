@@ -29,15 +29,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
         static int mouseCLick;
         static float clickTimer = 0.5f;
         static float clickTimerCountdown = clickTimer;
-        static bool arrive = false;
+        static bool didDoubleClick = false;
         public static bool clickedOnMiniMap;
         public static bool CheckAndTransitionToArrive(this State state, ZombieDataHolder dataHolder)
         {
-            if (!HordeHelper.Instance?.LockedHorde || clickedOnMiniMap)
-            {
-                clickedOnMiniMap = false;
+            if (!HordeHelper.Instance?.LockedHorde)
                 return false;
-            }
 
             GameObject flockCenter = HordeHelper.Instance.LockedHorde.GetComponent<MiniMapIcon>().target.gameObject;
 
@@ -46,18 +43,21 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
 
             checkMouseClick();
 
-            if (arrive && HordeHelper.Instance?.LockedHorde)
+            if (didDoubleClick)
             {
+                didDoubleClick = false;
+
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    arrive = false;
-                    dataHolder.NavMeshAgent.ResetPath();
                     GameObject.Destroy(dataHolder.myArriveParticleFX);
                     dataHolder.myArriveParticleFX = GameObject.Instantiate(dataHolder.arriveParticleFXPrefab, new Vector3(hit.point.x, 25, hit.point.z), dataHolder.arriveParticleFXPrefab.transform.rotation);
+
+                    dataHolder.NavMeshAgent.ResetPath();
                     dataHolder.NavMeshAgent.SetDestination(new Vector3(hit.point.x, 0, hit.point.z));
+
                     state.CancelInvoke();
                     state.ChangeState(state.GetComponent<Zombie_Arrive>());
                     return true;
@@ -76,16 +76,16 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
             if (mouseCLick == 1)
                 clickTimerCountdown -= Time.deltaTime;
 
-            if (clickTimerCountdown <= 0 || arrive)
+            if (clickTimerCountdown <= 0 || didDoubleClick)
             {
                 clickTimerCountdown = clickTimer;
-                arrive = false;
+                didDoubleClick = false;
                 mouseCLick = 0;
             }
 
             if (mouseCLick == 2)
             {
-                arrive = true;
+                didDoubleClick = true;
                 mouseCLick = 0;
                 clickTimerCountdown = clickTimer;
             }
