@@ -31,10 +31,6 @@ public class HordeOrganizer : MonoBehaviour
             if (hordeList[activeHorde].SplitHorde(temp))
             {
                 hordeList.Add(temp);
-                //activeHorde = hordeList.IndexOf(temp);
-                //dropDownMenu.options.Add(new Dropdown.OptionData());
-                //dropDownMenu.SetValueWithoutNotify(activeHorde);
-                //SwitchActive();
                 dropDownMenu?.options.Add(new Dropdown.OptionData());
                 dropDownMenu?.SetValueWithoutNotify(activeHorde);
                 SwitchActive();
@@ -58,12 +54,8 @@ public class HordeOrganizer : MonoBehaviour
 
                 if (hordeToAbsorb < activeHorde)
                     activeHorde--;
-
-                //dropDownMenu.options.RemoveAt(dropDownMenu.options.Count - 1);
-                //dropDownMenu.SetValueWithoutNotify(activeHorde);
             }
         }
-        //UpdateDropDown();
 
         UpdateDropDown();
         UpdateHealth();
