@@ -10,5 +10,10 @@ namespace Com.StudioTBD.CoronaIO.Menus
         {
             MenuManager.LoadGame();
         }
+
+        public void QuitGame()
+        {
+            MenuManager.QuitGame();
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
         #endregion
 
 
-        #region Public Methods
+        #region Public Static Methods
 
         /// <summary>
         /// Load main game
@@ -45,6 +45,14 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public static void LoadGame()
         {
             SceneManager.LoadScene(GAME);
+        }
+
+        public static void QuitGame()
+        {
+            if (Application.isEditor)
+                UnityEditor.EditorApplication.isPlaying = false;
+            else
+                Application.Quit();
         }
 
         #endregion

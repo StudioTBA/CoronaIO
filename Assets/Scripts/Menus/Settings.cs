@@ -25,11 +25,6 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         #region MonoBehaviour Callbacks
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
         private void Start()
         {
             mapScaleSlider.value = MenuManager.mapScale;

@@ -71,10 +71,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         public void QuitGame()
         {
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.isPlaying = false;
-            else
-                Application.Quit();
+            MenuManager.QuitGame();
         }
 
         #endregion
