@@ -10,6 +10,7 @@ public class FlockManager : MonoBehaviour
     public GameObject flockHolder;
     public float flockMoveSpeed;
     [SerializeField][Min(0)] int Initial_Horde_Size;
+    [SerializeField] private bool TestMode;
 
     public int minHordeSizeToSplit;
 
@@ -38,26 +39,29 @@ public class FlockManager : MonoBehaviour
         {
             Vector3 direction = Vector3.zero;
 
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    CreateZombie();
-            //}
+            if (TestMode)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    CreateZombie();
+                }
 
-            if (Input.GetKey(KeyCode.I))
-            {
-                direction += new Vector3(0, 0, 1.0f);
-            }
-            if (Input.GetKey(KeyCode.J))
-            {
-                direction += new Vector3(-1.0f, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.K))
-            {
-                direction += new Vector3(0, 0, -1.0f);
-            }
-            if (Input.GetKey(KeyCode.L))
-            {
-                direction += new Vector3(1.0f, 0, 0);
+                if (Input.GetKey(KeyCode.I))
+                {
+                    direction += new Vector3(0, 0, 1.0f);
+                }
+                if (Input.GetKey(KeyCode.J))
+                {
+                    direction += new Vector3(-1.0f, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.K))
+                {
+                    direction += new Vector3(0, 0, -1.0f);
+                }
+                if (Input.GetKey(KeyCode.L))
+                {
+                    direction += new Vector3(1.0f, 0, 0);
+                }
             }
 
             //Keys to control individual horde behavior
