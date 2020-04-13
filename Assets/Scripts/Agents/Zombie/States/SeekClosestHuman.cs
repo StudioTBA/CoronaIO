@@ -63,7 +63,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         private void FindClosestHuman()
         {
-            GameObject[] agents = GameObject.FindGameObjectsWithTag("Agent");
+            GameObject[] agents = GameObject.FindGameObjectsWithTag("Human");
 
             GameObject temp = null;
 
@@ -91,7 +91,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             foreach(Collider coll in colliders)
             {
-                if(coll.gameObject.tag == "Agent")
+                if(coll.gameObject.tag == "Human")
                 {
                     numOfHumans++;
                 }
