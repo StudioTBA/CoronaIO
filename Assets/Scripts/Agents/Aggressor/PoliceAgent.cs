@@ -68,6 +68,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             _dataHolder.retreatDistance = retreatDistance;
             _dataHolder.agent_sight = SightDistance;
             _dataHolder.NavMeshAgent = GetComponent<NavMeshAgent>();
+            _dataHolder.Animator = GetComponentInChildren<Animator>();
             _gameManager = FindObjectOfType<GameManager>();
             StartCoroutine(checkforEnemies());
         }

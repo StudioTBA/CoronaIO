@@ -44,8 +44,10 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
             if (transform.position != currentTarget)
             {
+                DataHolder.Animator.SetBool("Walking", true);
                 if (Vector3.Distance(transform.position, DataHolder.move_target.Value) < DataHolder.agent_sight)
                 {
+                    DataHolder.Animator.SetBool("Walking", false);
                     this.ResetToDefaultState();
                     return;
                 }
@@ -58,6 +60,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             else
             {
                 // Reach destination
+                DataHolder.Animator.SetBool("Walking", false);
                 StateMachine.ResetToDefaultState();
             }
         }
