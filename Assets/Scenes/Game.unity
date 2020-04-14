@@ -847,6 +847,11 @@ PrefabInstance:
       propertyPath: TestMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: flockMoveSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Name
