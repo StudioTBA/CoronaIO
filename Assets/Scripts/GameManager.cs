@@ -31,13 +31,25 @@ namespace Com.StudioTBD.CoronaIO
         public static class Tags
         {
             public static string HumanTag = "Human";
-            public static string EnemyTag = "Enemy";
+            public static string EnemyTag = "Zombie";
             public static string SpawnTag = "Spawn";
             public static string ShelterTag = "Shelter";
         }
 
+        public static class Layers
+        {
+            public static string Enemy = "enemy";
+            public static string Defences = "Defences";
+            public static string Human = "Human";
+        }
+
         #endregion
 
+        #region Scales
+
+        public static float HumanScale = 50f;
+
+        #endregion
 
         #region MonoBehaviour Callbacks
 

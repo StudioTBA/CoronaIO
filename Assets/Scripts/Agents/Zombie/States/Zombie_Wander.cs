@@ -57,7 +57,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             {
 
                 timer = 0;
-                if (!_dataHolder.Target)
+                //if (!_dataHolder.Target)
                     this.ChangeState(_seekClosestHuman);
             }
 
