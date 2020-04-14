@@ -12,6 +12,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
     GameObject miniMap;
     GameObject cameraHandler;
     GameObject hordeManager;
+    HordeOrganizer hordeOrganizer;
     bool followHorde = true;
 
     private void Start()
@@ -20,6 +21,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         originalColor = blipOnMiniMap.color;
         miniMap = GameObject.Find("MiniMap");
         cameraHandler = GameObject.Find("CameraHandler");
+        hordeOrganizer = GameObject.Find("HordeOrganizer").GetComponent<HordeOrganizer>();
         hordeManager = this.GetComponent<MiniMapIcon>().target.gameObject;
     }
 
@@ -40,6 +42,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
                 HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
                 HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
                 HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponent<FlockManager>());
                 followHorde = true;
                 HordeHelper.Instance.SelectedHorde = null;
                 return;
@@ -72,6 +75,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
             {
                 HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
                 HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponent<FlockManager>());
                 followHorde = true;
                 HordeHelper.Instance.SelectedHorde = null;
                 return;
