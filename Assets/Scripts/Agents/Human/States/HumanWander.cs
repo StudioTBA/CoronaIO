@@ -55,7 +55,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         private void WanderToNewPosition()
         {
-            Vector3 newPos = RandomPoint(transform.position, 200f, -1);
+            Vector3 newPos = RandomPoint(transform.position, gameObject.transform.localScale.x*20.0f, -1);
             this._dataHolder.NavMeshAgent.SetDestination(newPos);
             
         }
