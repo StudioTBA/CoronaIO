@@ -1569,7 +1569,7 @@ MonoBehaviour:
   height: 19065.004
   distance: 17495.004
   FOV: 10
-  zoomSpeed: 50
+  zoomSpeed: 500
   handlerSpeed: 50
   rotateSpeed: 10
   dragSpeed: 50
@@ -3461,6 +3461,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Initial_Horde_Size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: TestMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}

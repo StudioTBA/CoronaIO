@@ -19,12 +19,16 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public int damageToHuman;
     [Tooltip("Percentage of shelter health inflicted on collision")]
     public int damageShelter;
-
+    MiniMapPicHandler miniMapPicHandler;
     // Start is called before the first frame update
     void Start()
     {
+
         animator = GetComponent<Animator>();
         animator.SetBool("Walking", true);
+
+        miniMapPicHandler = GameObject.Find("MiniMapManager").GetComponent<MiniMapPicHandler>();
+
     }
 
     // Update is called once per frame
@@ -123,7 +127,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (civilianHealth.GetHealth() == 0)
             {
                 //Debug.Log("Infected");
-                
+
                 target.GetComponent<FlockManager>().CreateZombie();
                 Destroy(parent);
             }
@@ -138,6 +142,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (shelterHealth.GetHealth() == 0)
             {
                 collision.gameObject.transform.parent.gameObject.GetComponent<Shelter>().RemoveFromNavmesh();
+                StartCoroutine(miniMapPicHandler.takePictureAndSetTexture());
             }
         }
     }
