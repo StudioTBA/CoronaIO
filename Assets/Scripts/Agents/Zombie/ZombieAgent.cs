@@ -57,7 +57,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
         {
             foreach(Flocker Zombie in _dataHolder.FlockManager.getZombieList())
             {
-                Zombie.Animator.SetBool(animation, isplaying);
+                Zombie.animator.SetBool(animation, isplaying);
             }
            
         }

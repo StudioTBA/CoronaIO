@@ -12,7 +12,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
     public float alignmentFactor;
-    public Animator Animator;
+    public Animator animator;
 
     [Tooltip("Percentage of human health inflicted on collision")]
     public int damageToHuman;
@@ -20,8 +20,8 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     // Start is called before the first frame update
     void Start()
     {
-        Animator = GetComponent<Animator>();
-        Animator.SetBool("Walking", true);
+        animator = GetComponent<Animator>();
+        animator.SetBool("Walking", true);
     }
 
     // Update is called once per frame
@@ -109,7 +109,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         // Debug.Log($"[Collider] {collision.collider.gameObject.name}");
         if (collision.collider.CompareTag(GameManager.Tags.HumanTag))
         {
-            GameObject parent = collision.collider.transform.parent.gameObject;
+            GameObject parent = collision.collider.gameObject;
             parent.GetComponentInChildren<HealthBar>();
             Debug.Log($"Proper human {parent.name}", this);
             // GameObject human = collision.collider.GetComponent<HealthBar>();

@@ -120,7 +120,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 var targetPosition = new Vector3(targetRawPos.x, SightHeight, targetRawPos.z);
                 var direction = targetPosition - thisPosition;
 
-                if (!Physics.Raycast(thisPosition, direction, out hit, sightRange)) continue;
+                if (!Physics.Raycast(thisPosition + new Vector3(0,5,0), direction, out hit, sightRange)) continue;
                 if (hit.collider.GetComponent<Flocker>() == null) continue;
                 inSight.Add(zombie.gameObject);
                 var distance = Vector3.Distance(thisRawPos, targetRawPos);
@@ -165,7 +165,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                     Debug.Log("In range");
                     Debug.Log($"In range {human.name}");
                     
-                    HumanAgent humanAgent = human.transform.parent.GetComponent<HumanAgent>();
+                    HumanAgent humanAgent = human.GetComponent<HumanAgent>();
 
                     if (humanAgent != null)
                     {
