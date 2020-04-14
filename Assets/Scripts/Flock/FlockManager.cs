@@ -86,6 +86,10 @@ public class FlockManager : MonoBehaviour
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
             //GetComponent<NavMeshAgent>().SetDestination((direction + transform.position)*flockMoveSpeed);
         }
+        if(zombieList.Count == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void CreateZombie()
@@ -176,6 +180,7 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+        transform.localScale = other.transform.localScale;
         minHordeSizeToSplit = other.minHordeSizeToSplit;
     }
 

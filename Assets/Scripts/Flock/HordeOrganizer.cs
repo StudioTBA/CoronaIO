@@ -31,9 +31,6 @@ public class HordeOrganizer : MonoBehaviour
             if (hordeList[activeHorde].SplitHorde(temp))
             {
                 hordeList.Add(temp);
-                dropDownMenu?.options.Add(new Dropdown.OptionData());
-                dropDownMenu?.SetValueWithoutNotify(activeHorde);
-                SwitchActive();
             }
             else
                 Destroy(temp.gameObject);
@@ -56,8 +53,6 @@ public class HordeOrganizer : MonoBehaviour
                     activeHorde--;
             }
         }
-        //UpdateDropDown();
-        UpdateDropDown();
         UpdateHealth();
     }
 
@@ -88,27 +83,26 @@ public class HordeOrganizer : MonoBehaviour
         return index;
     }
 
-    public void SwitchActive()
-    {
-        hordeList[activeHorde].active = false;
-        activeHorde = dropDownMenu.value;
-        hordeList[activeHorde].active = true;
-    }
-
     public void SetActiveHordeTo(FlockManager horde)
     {
         foreach(FlockManager flock in hordeList)
         {
-            flock.active = false;
+            if(flock)
+                flock.active = false;
         }
         horde.active = true;
 
-        for(int i = 0; i<hordeList.Count; i++)
+        for (int i = 0; i < hordeList.Count; i++)
+        {
+            if (!hordeList[i])
+                hordeList.RemoveAt(i);
+        }
+
+        for (int i = 0; i<hordeList.Count; i++)
         {
             if (hordeList[i].active)
             {
                 activeHorde = i;
-                return;
             }
         }
     }
