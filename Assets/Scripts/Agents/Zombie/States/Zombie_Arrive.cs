@@ -28,7 +28,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             dataHolder.Target = null;
         }
 
-
         public override void Execute()
         {
             if (this.CheckAndTransitionToArrive(dataHolder))

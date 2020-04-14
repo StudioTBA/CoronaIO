@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6996439277856430823}
   - component: {fileID: 1521804609293986128}
   - component: {fileID: -771375445674281921}
-  - component: {fileID: -193075634509782680}
   m_Layer: 5
   m_Name: ZombieHordeBlip
   m_TagString: Untagged
@@ -102,15 +101,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blipOnMiniMap: {fileID: 0}
---- !u!114 &-193075634509782680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4285239265992938837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99f3c573ef2443e489c4899c32d00b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

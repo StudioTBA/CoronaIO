@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Com.StudioTBD.CoronaIO;
+﻿using Com.StudioTBD.CoronaIO;
 using UnityEngine;
-using Com.StudioTBD.CoronaIO;
 
 public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 {
@@ -120,7 +117,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (civilianHealth.GetHealth() == 0)
             {
                 //Debug.Log("Infected");
-                
+
                 target.GetComponent<FlockManager>().CreateZombie();
                 Destroy(parent);
             }

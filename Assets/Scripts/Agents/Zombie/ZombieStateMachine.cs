@@ -30,7 +30,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
         static float clickTimer = 0.5f;
         static float clickTimerCountdown = clickTimer;
         static bool didDoubleClick = false;
-        public static bool clickedOnMiniMap;
         public static bool CheckAndTransitionToArrive(this State state, ZombieDataHolder dataHolder)
         {
             if (!HordeHelper.Instance?.LockedHorde)
@@ -69,9 +68,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
 
         static void checkMouseClick()
         {
-
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
+            {
                 mouseCLick++;
+            }
 
             if (mouseCLick == 1)
                 clickTimerCountdown -= Time.deltaTime;

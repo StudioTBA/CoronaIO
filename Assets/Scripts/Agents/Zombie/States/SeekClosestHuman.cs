@@ -35,10 +35,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         public override void Execute()
         {
-
-            if (this.CheckAndTransitionToArrive(_dataHolder))
-                return;
-
             //Set target to closest human
             FindClosestHuman();
 
@@ -56,6 +52,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             }
             else
                 this.ChangeState(_idle);
+
+            if (this.CheckAndTransitionToArrive(_dataHolder))
+                return;
         }
 
         public override void Consume([NotNull] Event.Event @event)
@@ -95,11 +94,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             foreach (Collider coll in colliders)
             {
-                if(coll.gameObject.tag == "Human")
-                if (coll.gameObject.CompareTag(GameManager.Tags.HumanTag))
-                {
-                    numOfHumans++;
-                }
+                if (coll.gameObject.tag == "Human")
+                    if (coll.gameObject.CompareTag(GameManager.Tags.HumanTag))
+                    {
+                        numOfHumans++;
+                    }
             }
 
             int numOfZombies = _dataHolder.FlockManager.getZombieList().Count;
