@@ -39,11 +39,16 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void Execute()
         {
 
-           //stop animation if velocity is zero
-            if (DataHolder.NavMeshAgent.velocity == Vector3.zero)
-                this.DataHolder.Animator.SetBool("Walking", false);
+            //stop animation if velocity is zero
+            if (DataHolder.NavMeshAgent.remainingDistance <= DataHolder.NavMeshAgent.stoppingDistance)
+            {
+                if (!DataHolder.NavMeshAgent.hasPath || DataHolder.NavMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    DataHolder.Animator.SetBool("Walking", false);
+                }
+            }
             else
-                this.DataHolder.Animator.SetBool("Walking", true);
+                DataHolder.Animator.SetBool("Walking", true);
 
             if (DataHolder.EnemyPosition != null)
             {

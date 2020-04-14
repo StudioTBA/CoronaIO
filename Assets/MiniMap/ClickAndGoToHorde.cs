@@ -125,7 +125,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
         foreach (Flocker zombie in zombiesInHorde)
         {
-            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+            //zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
         }
     }
 
