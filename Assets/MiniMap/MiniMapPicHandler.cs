@@ -17,7 +17,7 @@ public class MiniMapPicHandler : MonoBehaviour
         StartCoroutine("takePictureAndSetTexture");
     }
 
-    IEnumerator takePictureAndSetTexture()
+    public IEnumerator takePictureAndSetTexture()
     {
 
         yield return new WaitForEndOfFrame();
@@ -54,7 +54,7 @@ public class MiniMapPicHandler : MonoBehaviour
 
         setMapImg();
 
-        Destroy(miniMapCamera);
+        //Destroy(miniMapCamera);
     }
 
     void setMapImg()
