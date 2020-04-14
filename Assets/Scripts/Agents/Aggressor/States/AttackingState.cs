@@ -40,6 +40,24 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
+            //stop animation if velocity is zero
+            if (DataHolder.NavMeshAgent.remainingDistance <= DataHolder.NavMeshAgent.stoppingDistance)
+            {
+                if (!DataHolder.NavMeshAgent.hasPath || DataHolder.NavMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    DataHolder.Animator.SetBool("Walking", false);
+                }
+            }
+            else
+                DataHolder.Animator.SetBool("Walking", true);
+
+
+            if (DataHolder.weapon.type == weaponType.shortrange)
+                this.DataHolder.Animator.SetBool("ShootingPistol", true);
+            else
+                this.DataHolder.Animator.SetBool("ShootingRifle", true);
+
+
             if (!DataHolder.EnemyPosition.HasValue)
             {
                 this.ResetToDefaultState();
@@ -54,6 +72,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             //if they are walking away keep them within attack distance
             if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.weapon.Range - 1)
             {
+                this.DataHolder.Animator.SetBool("Walking", true);
                 float distdiff = (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) -
                                   DataHolder.weapon.Range);
                 DataHolder.move_target = transform.position +

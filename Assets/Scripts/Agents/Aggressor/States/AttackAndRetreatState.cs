@@ -76,7 +76,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 return;
             }
 
-
+            DataHolder.Animator.SetBool("Walking", true);
             //if the target is null attempt to set a new target 
             if (DataHolder.defend_target == null && !movingToDefend)
             {
@@ -103,6 +103,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 {
                     // change state to defending
                     movingToDefend = false;
+                    DataHolder.Animator.SetBool("Walking", false);
                     StateMachine.ChangeState(_defendingState);
                     return;
                 }
@@ -127,6 +128,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 else
                 {
                     // Reach destination
+                    DataHolder.Animator.SetBool("Walking", false);
                     StateMachine.ResetToDefaultState();
                 }
             }

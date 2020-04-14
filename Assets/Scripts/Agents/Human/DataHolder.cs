@@ -15,7 +15,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
     {
         public GameObject Target;
         public NavMeshAgent NavMeshAgent;
+
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
+
+        public Animator Animator;
+        public Rigidbody rigidbody;
+
     }
 }

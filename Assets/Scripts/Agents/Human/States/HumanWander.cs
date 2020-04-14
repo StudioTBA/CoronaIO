@@ -44,6 +44,11 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         public override void Execute()
         {
+            //stop animation if velocity is zero
+            if (_dataHolder.NavMeshAgent.velocity == Vector3.zero)
+                this._dataHolder.Animator.SetBool("Walking", false);
+            else
+                this._dataHolder.Animator.SetBool("Walking", true);
             // Do nothing.
             // TODO: Wander around
         }
@@ -52,6 +57,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         {
             Vector3 newPos = RandomPoint(transform.position, 200f, -1);
             this._dataHolder.NavMeshAgent.SetDestination(newPos);
+            
         }
 
         private Vector3 RandomPoint(Vector3 origin, float dist, int layermask)

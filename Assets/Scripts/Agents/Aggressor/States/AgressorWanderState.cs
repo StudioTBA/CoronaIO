@@ -38,10 +38,23 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         public override void Execute()
         {
+
+            //stop animation if velocity is zero
+            if (DataHolder.NavMeshAgent.remainingDistance <= DataHolder.NavMeshAgent.stoppingDistance)
+            {
+                if (!DataHolder.NavMeshAgent.hasPath || DataHolder.NavMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    DataHolder.Animator.SetBool("Walking", false);
+                }
+            }
+            else
+                DataHolder.Animator.SetBool("Walking", true);
+
             if (DataHolder.EnemyPosition != null)
             {
                 if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) <= DataHolder.weapon.Range)
                 {
+                    
                     this.ChangeState(_attackingState);
                 }
             }

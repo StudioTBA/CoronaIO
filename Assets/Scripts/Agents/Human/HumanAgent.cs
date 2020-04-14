@@ -18,8 +18,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             base.Awake();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
+
             _dataHolder.PolicePrefab = PolicePrefab;
             _dataHolder.BecomeAggressorProbability = BecomeAggressorProbability;
+
+            _dataHolder.Animator = GetComponentInChildren<Animator>();
+            _dataHolder.rigidbody = GetComponent<Rigidbody>();
+
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
