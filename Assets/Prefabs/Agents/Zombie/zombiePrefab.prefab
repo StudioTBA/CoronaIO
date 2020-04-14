@@ -710,14 +710,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  seekSpeed: 300
-  repulsionFactor: 500
-  cohesionFactor: 450
-  repulsionQueryRadius: 600
-  cohesionQueryRadius: 800
+  seekSpeed: 40
+  repulsionFactor: 50
+  cohesionFactor: 45
+  repulsionQueryRadius: 60
+  cohesionQueryRadius: 80
   alignmentFactor: 10
   animator: {fileID: 0}
   damageToHuman: 10
+  damageShelter: 0
 --- !u!136 &34760104060911546
 CapsuleCollider:
   m_ObjectHideFlags: 0
