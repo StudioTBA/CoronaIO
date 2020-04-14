@@ -1080,24 +1080,17 @@ PrefabInstance:
         type: 3}
       propertyPath: minimap
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 1003792465}
-=======
       objectReference: {fileID: 0}
->>>>>>> 1bf3eb0dd0336b50ed59c3ae1aea471cfd06d98d
     - target: {fileID: 63809615877939542, guid: 1f4d67f08cef745b583be9ebeed9f7d9,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-=======
     - target: {fileID: 63809615934302372, guid: 1f4d67f08cef745b583be9ebeed9f7d9,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
->>>>>>> 1bf3eb0dd0336b50ed59c3ae1aea471cfd06d98d
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4d67f08cef745b583be9ebeed9f7d9, type: 3}
 --- !u!1001 &3023379428997182520

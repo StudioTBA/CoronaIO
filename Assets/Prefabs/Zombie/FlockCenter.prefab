@@ -103,13 +103,9 @@ MonoBehaviour:
   flockPrefab: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
     type: 3}
   flockHolder: {fileID: 0}
-<<<<<<< HEAD
-  flockMoveSpeed: 400
+  flockMoveSpeed: 40
   Initial_Horde_Size: 0
   TestMode: 0
-=======
-  flockMoveSpeed: 40
->>>>>>> 1bf3eb0dd0336b50ed59c3ae1aea471cfd06d98d
   minHordeSizeToSplit: 2
   active: 1
   always_flee: 0
