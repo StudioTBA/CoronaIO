@@ -32,7 +32,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             //Use Navmesh to head towards Human target
             if (_dataHolder.Target && !_dataHolder.FlockManager.always_flee)
-                _dataHolder.NavMeshAgent.SetDestination(_dataHolder.Target.transform.position);
+                _dataHolder.NavMeshAgent.Warp(_dataHolder.Target.transform.position);
             else
             {
                 this.ChangeState(_wander);

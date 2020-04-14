@@ -451,6 +451,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5942c309471a65646b176c376636f47a, type: 2}
+  - {fileID: 2100000, guid: a0cbd90becfabdc4b8f97bba2a1b0678, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -718,7 +719,7 @@ MonoBehaviour:
   alignmentFactor: 10
   animator: {fileID: 0}
   damageToHuman: 10
-  damageShelter: 0
+  damageShelter: 10
 --- !u!136 &34760104060911546
 CapsuleCollider:
   m_ObjectHideFlags: 0

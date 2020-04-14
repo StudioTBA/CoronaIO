@@ -43,7 +43,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             }
             else
             {
-                _dataHolder.NavMeshAgent.SetDestination(PointAwayFromTarget());
+                _dataHolder.NavMeshAgent.Warp(PointAwayFromTarget());
             }
 
 
