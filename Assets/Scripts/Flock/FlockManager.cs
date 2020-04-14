@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Com.StudioTBD.CoronaIO.Agent.Zombie;
 using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
+using Com.StudioTBD.CoronaIO.Menus;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,6 +28,9 @@ public class FlockManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UntrapZombies", 5, 5);
+        float value = MenuManager.mapScale;
+        if(Initial_Horde_Size>0)
+            transform.position = new Vector3(value * 40, transform.position.y, value * 40);
         while (Initial_Horde_Size > 0)
         {
             CreateZombie();
