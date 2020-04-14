@@ -176,6 +176,7 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+        minHordeSizeToSplit = other.minHordeSizeToSplit;
     }
 
     private void UntrapZombies()
