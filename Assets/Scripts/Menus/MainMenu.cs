@@ -24,21 +24,21 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public void LoadHumansFindShelter()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.HUMANS_FIND_SHELTER);
         }
 
         public void LoadHumansFlee()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.HUMANS_FLEE);
         }
 
         public void LoadHumansWander()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.HUMANS_WANDER);
         }
 
@@ -47,14 +47,14 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public void LoadPoliceDefend()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.POLICE_DEFEND);
         }
 
         public void LoadPoliceWander()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.POLICE_WANDER);
         }
 
@@ -62,28 +62,28 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public void LoadZombiesArrive()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.ZOMBIES_ARRIVE);
         }
 
         public void LoadZombiesAttack()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.ZOMBIES_ATTACK);
         }
 
         public void LoadZombiesFlee()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.ZOMBIES_FLEE);
         }
 
         public void LoadZombiesWander()
         {
             MenuManager.mapScale = 3;
-            MenuManager.isTest = true;
+            MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.ZOMBIES_WANDER);
         }
     }

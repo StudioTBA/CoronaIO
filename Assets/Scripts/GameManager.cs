@@ -57,8 +57,6 @@ namespace Com.StudioTBD.CoronaIO
             {
                 // Set values from Settings
                 tileGenerator.SetFloorScale(Menus.MenuManager.mapScale * 10);
-                // TODO: Replace by line to set minSizeToSplit
-                // TODO: Replace by line to set maxNumOfHordes
 
                 // Create map
                 StartCoroutine("GenerateTiles");
