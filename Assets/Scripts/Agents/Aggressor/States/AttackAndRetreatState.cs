@@ -52,7 +52,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 var bulletGameObject =
                     Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
                 var bullet = bulletGameObject.GetComponent<Bullet>();
-                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.transform.localScale = transform.localScale;
                 bullet.Shoot(transform.forward);
             }
         }
