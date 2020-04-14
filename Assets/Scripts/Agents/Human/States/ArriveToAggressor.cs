@@ -56,8 +56,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                 }
 
                 var aggressor = Instantiate(_dataHolder.PolicePrefab, position, civilianPos.rotation);
-                aggressor.transform.localScale = new Vector3(GameManager.HumanScale, GameManager.HumanScale,
-                    GameManager.HumanScale);
+                aggressor.transform.localScale = transform.localScale;
                 aggressor.GetComponent<NavMeshAgent>().Warp(position);
                 Destroy(this.gameObject);
             }
