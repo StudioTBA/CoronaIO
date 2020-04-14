@@ -75,7 +75,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         private bool MustSeekShelter()
         {
             var nextDouble = _random.NextDouble();
-            if (nextDouble < 0.5f)
+            if (nextDouble < _dataHolder.BecomeAggressorProbability)
             {
                 return true;
             }
