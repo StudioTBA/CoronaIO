@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 6956756031875463285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   flockPrefab: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
     type: 3}
   flockHolder: {fileID: 0}
-  flockMoveSpeed: 30
-  Initial_Horde_Size: 0
+  flockMoveSpeed: 20
+  Initial_Horde_Size: 5
   TestMode: 0
   minHordeSizeToSplit: 2
   active: 1
