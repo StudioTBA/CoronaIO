@@ -138,4 +138,9 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             }
         }
     }
+
+    public void GotHit()
+    {
+        target.GetComponent<FlockManager>().DestroyZombie(this);
+    }
 }
