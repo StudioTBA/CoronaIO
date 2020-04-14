@@ -56,7 +56,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
                     arrive = false;
                     dataHolder.NavMeshAgent.ResetPath();
                     GameObject.Destroy(dataHolder.myArriveParticleFX);
-                    dataHolder.myArriveParticleFX = GameObject.Instantiate(dataHolder.arriveParticleFXPrefab, new Vector3(hit.point.x, 25, hit.point.z), dataHolder.arriveParticleFXPrefab.transform.rotation);
+                    dataHolder.myArriveParticleFX = GameObject.Instantiate(dataHolder.arriveParticleFXPrefab, new Vector3(hit.point.x, 1, hit.point.z), dataHolder.arriveParticleFXPrefab.transform.rotation);
                     dataHolder.NavMeshAgent.SetDestination(new Vector3(hit.point.x, 0, hit.point.z));
                     state.CancelInvoke();
                     state.ChangeState(state.GetComponent<Zombie_Arrive>());
