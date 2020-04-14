@@ -41,10 +41,10 @@ public class HordeOrganizer : MonoBehaviour
             int hordeToAbsorb = IndexOfClosestHorde();
             if (hordeToAbsorb >= 0)
             {
-                //foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
-                //{
-                //    zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
-                //}
+                foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
+                {
+                    zombie.GetComponentInChildren<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                }
 
                 hordeList[activeHorde].AbsorbHorde(hordeList[hordeToAbsorb]);
                 hordeList.RemoveAt(hordeToAbsorb);
@@ -85,9 +85,9 @@ public class HordeOrganizer : MonoBehaviour
 
     public void SetActiveHordeTo(FlockManager horde)
     {
-        foreach(FlockManager flock in hordeList)
+        foreach (FlockManager flock in hordeList)
         {
-            if(flock)
+            if (flock)
                 flock.active = false;
         }
         horde.active = true;
@@ -98,7 +98,7 @@ public class HordeOrganizer : MonoBehaviour
                 hordeList.RemoveAt(i);
         }
 
-        for (int i = 0; i<hordeList.Count; i++)
+        for (int i = 0; i < hordeList.Count; i++)
         {
             if (hordeList[i].active)
             {
@@ -121,6 +121,6 @@ public class HordeOrganizer : MonoBehaviour
     public void UpdateHealth()
     {
         if (hordeHealth == null) return;
-            hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
+        hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
     }
 }

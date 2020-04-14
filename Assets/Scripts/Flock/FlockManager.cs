@@ -10,7 +10,7 @@ public class FlockManager : MonoBehaviour
     public GameObject flockPrefab;
     public GameObject flockHolder;
     public float flockMoveSpeed;
-    [SerializeField][Min(0)] int Initial_Horde_Size;
+    [SerializeField] [Min(0)] int Initial_Horde_Size;
     [SerializeField] private bool TestMode;
 
     public int minHordeSizeToSplit;
@@ -86,7 +86,7 @@ public class FlockManager : MonoBehaviour
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
             //GetComponent<NavMeshAgent>().SetDestination((direction + transform.position)*flockMoveSpeed);
         }
-        if(zombieList.Count == 0)
+        if (zombieList.Count == 0)
         {
             Destroy(this.gameObject);
         }
@@ -98,7 +98,7 @@ public class FlockManager : MonoBehaviour
 
         float sizeFactor = transform.localScale.x;
 
-        randomPosInACube = new Vector3(Random.Range(-sizeFactor*2, sizeFactor*2), sizeFactor/1.2f, Random.Range(-sizeFactor*2, sizeFactor*2));
+        randomPosInACube = new Vector3(Random.Range(-sizeFactor * 2, sizeFactor * 2), sizeFactor / 1.2f, Random.Range(-sizeFactor * 2, sizeFactor * 2));
         GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
             Quaternion.identity);
 
@@ -133,7 +133,7 @@ public class FlockManager : MonoBehaviour
 
             while (zombieList.Count > amount)
             {
-                //zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                zombieList[0].GetComponentInChildren<SkinnedMeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 newHorde.AttachZombie(zombieList[0]);
                 RemoveZombie(zombieList[0]);
             }
