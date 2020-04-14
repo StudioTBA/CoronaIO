@@ -56,7 +56,7 @@ public class HordeOrganizer : MonoBehaviour
                     activeHorde--;
             }
         }
-
+        //UpdateDropDown();
         UpdateDropDown();
         UpdateHealth();
     }

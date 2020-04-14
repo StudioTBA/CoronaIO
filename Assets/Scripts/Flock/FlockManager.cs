@@ -89,7 +89,7 @@ public class FlockManager : MonoBehaviour
     {
         Vector3 randomPosInACube;
 
-        randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
+        randomPosInACube = new Vector3(Random.Range(-5.0f, 5.0f), 25f, Random.Range(-5.0f, 5.0f));
         GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
             Quaternion.identity);
 

@@ -88,6 +88,9 @@ MonoBehaviour:
     attackdamage: 1
     rateOfFire: 0.5
     AOE_radius: 0
+  SightDistance: 10
+  IsDebug: 0
+--- !u!114 &2061467936605828887
   SightDistance: 1000
   SightHeight: 1
   IsDebug: 1
