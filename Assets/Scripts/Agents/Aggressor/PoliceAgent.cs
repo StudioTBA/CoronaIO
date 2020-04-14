@@ -23,6 +23,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
     [Serializable]
     public struct Weapon
     {
+        public GameObject BulletPrefab;
+
         public weaponType type;
 
         public float Range;
@@ -34,8 +36,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         //if applicable
         public float AOE_radius;
 
-        public Weapon(weaponType weapontype, float range, float damage, float rateoffire, float radius)
+        public Weapon(GameObject bulletPrefab, weaponType weapontype, float range, float damage, float rateoffire,
+            float radius)
         {
+            this.BulletPrefab = bulletPrefab;
             this.type = weapontype;
             this.Range = range;
             this.attackdamage = damage;
@@ -143,17 +147,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
         public IEnumerator AlertClosestHumansInRange(float range)
         {
-            // Collider[] humans =
-            //     Physics.OverlapSphere(transform.position, SightDistance, LayerMask.GetMask(GameManager.Tags.HumanTag));
-
-
             var humans = Physics.OverlapSphere(transform.position, range,
                 LayerMask.GetMask(GameManager.Tags.HumanTag));
 
 
             var civilians = new List<HumanAgent>();
 
-            // if (_gameManager == null) yield return null;
             foreach (var human in humans)
             {
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
@@ -198,14 +197,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             }
 
             Gizmos.DrawLine(pos, lastPos);
-
-            //
-            // Gizmos.color = new Color(.5f, .5f, .5f, .2f);
-            // Gizmos.DrawSphere(transform.position, SightDistance);
-
-            // if (!IsDebug) return;
-            // Gizmos.color = new Color(.5f, .5f, .2f, .2f);
-            // Gizmos.DrawSphere(transform.position, weapon.Range);
+            
             Radius = weapon.Range;
             T = transform;
             theta = 0f;

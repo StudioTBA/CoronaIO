@@ -3,6 +3,7 @@ using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using System;
+using Agents.Aggressor;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
@@ -83,12 +84,21 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 yield return new WaitForSeconds(0.3f);
             //stand still and fire at the enmey 
             //probably want to trigger an effect here not just draw line
+
             while (fireing)
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
+                
+                var position = transform.position + (transform.forward * 50f);
+                var bulletGameObject =
+                    Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
+                var bullet = bulletGameObject.GetComponent<Bullet>();
+                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.Shoot(transform.forward);
+                // bullet.Shoot(DataHolder.EnemyPosition.Value - transform.position);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
-                    DataHolder.weapon.rateOfFire * 1 / 2, true);
+                // Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
+                //     DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 

@@ -153,6 +153,7 @@ public class FlockManager : MonoBehaviour
 
         Destroy(otherHorde.gameObject);
     }
+
     public int HordeSize()
     {
         return zombieList.Count;
@@ -168,5 +169,11 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+    }
+
+    public void DestroyZombie(Flocker other)
+    {
+        zombieList.Remove(other);
+        Destroy(other.gameObject);
     }
 }
