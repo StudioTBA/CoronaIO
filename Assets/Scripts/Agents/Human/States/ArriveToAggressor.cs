@@ -49,6 +49,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             {
                 var civilianPos = transform;
                 var position = civilianPos.position;
+                if (_dataHolder.PolicePrefab == null)
+                {
+                    Debug.Log("ERROR");
+                    return;
+                }
+
                 var aggressor = Instantiate(_dataHolder.PolicePrefab, position, civilianPos.rotation);
                 aggressor.transform.localScale = new Vector3(GameManager.HumanScale, GameManager.HumanScale,
                     GameManager.HumanScale);
