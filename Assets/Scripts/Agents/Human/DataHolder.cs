@@ -19,8 +19,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
 
+
         public Animator Animator;
         public Rigidbody rigidbody;
+
+
+        public float SeekShelterRange;
 
     }
 }
