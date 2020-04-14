@@ -88,7 +88,7 @@ MonoBehaviour:
     BulletPrefab: {fileID: 7243392206702830715, guid: ab4cdd904fa134fe18b8b43253d959ec,
       type: 3}
     type: 2
-    Range: 1000
+    Range: 50
     attackdamage: 1
     rateOfFire: 0.5
     AOE_radius: 0

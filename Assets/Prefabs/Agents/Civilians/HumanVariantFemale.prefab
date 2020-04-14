@@ -80,6 +80,7 @@ MonoBehaviour:
   PolicePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
     type: 3}
   BecomeAggressorProbability: 0.7
+  SeekShelterRange: 100
 --- !u!114 &74938544372652176
 MonoBehaviour:
   m_ObjectHideFlags: 0

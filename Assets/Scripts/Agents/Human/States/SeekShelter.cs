@@ -59,7 +59,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             // GameObject[] shelters = _gameManager.Shelters;
             float smallestDistance = float.MaxValue;
             int smallestDistanceIndex = 0;
-
+           
             for (var index = 0; index < colliders.Length; index++)
             {
                 var shelter = colliders[index].transform.GetChild(0).GetComponent<Shelter>();
@@ -81,7 +81,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                 agent.isStopped = true;
             }
 
-            if (smallestDistanceIndex >= 0)
+            if (smallestDistanceIndex >= 0 && colliders.Length > 0)
             {
                 Debug.Log("Closest Shelter: " + colliders[smallestDistanceIndex]);
                 _dataHolder.Target =
