@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropDownMenu: {fileID: 0}
-  maxHordes: 2
+  maxHordes: 5
+  flockManagerPrefab: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
+    type: 3}
+  hordeHealth: {fileID: 0}

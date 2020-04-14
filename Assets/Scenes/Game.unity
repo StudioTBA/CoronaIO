@@ -215,8 +215,8 @@ MonoBehaviour:
     type: 3}
   policePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
     type: 3}
-  spawningProbability: 20
-  policeProbability: 20
+  spawningProbability: 2
+  policeProbability: 50
 --- !u!23 &593708177 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3985910458322886148, guid: a54db522f4c054a2ca59062037332679,
@@ -600,22 +600,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
         type: 3}
-      propertyPath: dropDownMenu
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
-        type: 3}
-      propertyPath: maxHordes
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
-        type: 3}
-      propertyPath: flockManagerPrefab
-      value: 
-      objectReference: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-    - target: {fileID: 7792908464881585271, guid: 0a3cdcd69cb9a5847bdf3dfdc00774c0,
-        type: 3}
       propertyPath: hordeHealth
       value: 
       objectReference: {fileID: 63809615427766490}
@@ -786,31 +770,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 27225808}
     m_Modifications:
-    - target: {fileID: -4411837927842115126, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: blipPrefab
-      value: 
-      objectReference: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
-        type: 3}
-    - target: {fileID: -2065199842865550999, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -389106778850904027, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -389106778850904027, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flee
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 186361449705234212, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2007735678254268511, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
@@ -822,16 +785,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2444086077298788646, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789009175304137784, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
@@ -839,18 +792,8 @@ PrefabInstance:
       objectReference: {fileID: 752727027}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
-      propertyPath: Initial_Horde_Size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
       propertyPath: TestMode
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: flockMoveSpeed
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
@@ -896,36 +839,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 085535e0d4b9d1448903471c117edab5, type: 3}
