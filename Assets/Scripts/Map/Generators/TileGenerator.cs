@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class TileGenerator : MonoBehaviour
 {
+    #region Properties
+
     // Size of the map. Scale should be a multiple of 10
     public int floorScale;
 
@@ -27,6 +29,11 @@ public class TileGenerator : MonoBehaviour
     private float tileSize;
     private int buildingPosition = 2;
 
+    #endregion
+
+
+    #region Public Methods
+
     /// <summary>
     /// Cover the floor by placing tiles on top
     /// </summary>
@@ -35,7 +42,7 @@ public class TileGenerator : MonoBehaviour
         // Set floor scale and tiles per row
         gameObject.transform.localScale = new Vector3(floorScale, floorScale, floorScale);
         tilesPerRow = gameObject.transform.localScale.x / baseTilePrefab.transform.localScale.x;
-        tilesPerHalf = (int) Mathf.Floor(tilesPerRow / 2.0f);
+        tilesPerHalf = (int)Mathf.Floor(tilesPerRow / 2.0f);
         tileSize = baseTilePrefab.transform.localScale.x * 10.0f;
 
         // Variables
@@ -101,7 +108,7 @@ public class TileGenerator : MonoBehaviour
             {
                 // Select tile
                 string key = j.ToString();
-                GameObject tile = (GameObject) tileMap[key];
+                GameObject tile = (GameObject)tileMap[key];
 
                 // Check if tile is Building
                 if (tile == buildingTilePrefab)
@@ -140,6 +147,55 @@ public class TileGenerator : MonoBehaviour
             tileMap.Clear();
         }
     }
+
+    public void SetFloorScale(int scale)
+    {
+        floorScale = scale;
+    }
+
+    #endregion
+
+
+    #region Private Methods
+
+    /// <summary>
+    /// Considering a probability of spawning an obstruction tile prefab,
+    /// select one of the obstructors in obstructionTilePrefabs and return it,
+    /// otherwise return the base tile prefab
+    /// </summary>
+    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
+    private GameObject ObstructionSelector()
+    {
+        int index = Random.Range(0, 2);
+
+        if (index == 1)
+        {
+            index = Random.Range(0, obstructionTilePrefabs.Length);
+            return obstructionTilePrefabs[index];
+        }
+
+        return baseTilePrefab;
+    }
+
+    /// <summary>
+    /// Considering a probability of spawning a building tile prefab,
+    /// return it, otherwise return the base tile prefab 
+    /// </summary>
+    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
+    private GameObject BuildingSelector()
+    {
+        int index = Random.Range(0, 2);
+
+        if (index == 1)
+            return buildingTilePrefab;
+
+        return baseTilePrefab;
+    }
+
+    #endregion
+
+
+    #region Coroutines
 
     /// <summary>
     /// Sets a row's tile map to determine what tile prefab goes in what position
@@ -211,37 +267,5 @@ public class TileGenerator : MonoBehaviour
         yield return null;
     }
 
-    /// <summary>
-    /// Considering a probability of spawning an obstruction tile prefab,
-    /// select one of the obstructors in obstructionTilePrefabs and return it,
-    /// otherwise return the base tile prefab
-    /// </summary>
-    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
-    private GameObject ObstructionSelector()
-    {
-        int index = Random.Range(0, 2);
-
-        if (index == 1)
-        {
-            index = Random.Range(0, obstructionTilePrefabs.Length);
-            return obstructionTilePrefabs[index];
-        }
-
-        return baseTilePrefab;
-    }
-
-    /// <summary>
-    /// Considering a probability of spawning a building tile prefab,
-    /// return it, otherwise return the base tile prefab 
-    /// </summary>
-    /// <returns>A randomly selected obstructionPrefab or the baseTilePrefab</returns>
-    private GameObject BuildingSelector()
-    {
-        int index = Random.Range(0, 2);
-
-        if (index == 1)
-            return buildingTilePrefab;
-
-        return baseTilePrefab;
-    }
+    #endregion
 }

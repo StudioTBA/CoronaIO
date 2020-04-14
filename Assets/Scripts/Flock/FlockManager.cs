@@ -10,6 +10,8 @@ public class FlockManager : MonoBehaviour
     public GameObject flockPrefab;
     public GameObject flockHolder;
     public float flockMoveSpeed;
+    [SerializeField][Min(0)] int Initial_Horde_Size;
+    [SerializeField] private bool TestMode;
 
     public int minHordeSizeToSplit;
 
@@ -25,6 +27,11 @@ public class FlockManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UntrapZombies", 5, 5);
+        while (Initial_Horde_Size > 0)
+        {
+            CreateZombie();
+            Initial_Horde_Size--;
+        }
     }
 
     // Update is called once per frame
@@ -34,26 +41,29 @@ public class FlockManager : MonoBehaviour
         {
             Vector3 direction = Vector3.zero;
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (TestMode)
             {
-                CreateZombie();
-            }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    CreateZombie();
+                }
 
-            if (Input.GetKey(KeyCode.I))
-            {
-                direction += new Vector3(0, 0, 1.0f);
-            }
-            if (Input.GetKey(KeyCode.J))
-            {
-                direction += new Vector3(-1.0f, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.K))
-            {
-                direction += new Vector3(0, 0, -1.0f);
-            }
-            if (Input.GetKey(KeyCode.L))
-            {
-                direction += new Vector3(1.0f, 0, 0);
+                if (Input.GetKey(KeyCode.I))
+                {
+                    direction += new Vector3(0, 0, 1.0f);
+                }
+                if (Input.GetKey(KeyCode.J))
+                {
+                    direction += new Vector3(-1.0f, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.K))
+                {
+                    direction += new Vector3(0, 0, -1.0f);
+                }
+                if (Input.GetKey(KeyCode.L))
+                {
+                    direction += new Vector3(1.0f, 0, 0);
+                }
             }
 
             //Keys to control individual horde behavior
@@ -150,6 +160,7 @@ public class FlockManager : MonoBehaviour
 
         Destroy(otherHorde.gameObject);
     }
+
     public int HordeSize()
     {
         return zombieList.Count;
@@ -176,7 +187,7 @@ public class FlockManager : MonoBehaviour
 
         Flocker furthest = null;
 
-        foreach(Flocker zombie in zombieList)
+        foreach (Flocker zombie in zombieList)
         {
             dist = (transform.position - zombie.transform.position).magnitude;
 
@@ -198,6 +209,11 @@ public class FlockManager : MonoBehaviour
             furthest.transform.position = newPos;
         }
 
+    }
 
+    public void DestroyZombie(Flocker other)
+    {
+        zombieList.Remove(other);
+        Destroy(other.gameObject);
     }
 }

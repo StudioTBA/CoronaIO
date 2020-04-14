@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1787034196}
   - component: {fileID: 1787034197}
   - component: {fileID: 1787034198}
+  - component: {fileID: 6838521611430355273}
   m_Layer: 10
   m_Name: Human
   m_TagString: Human
@@ -49,7 +50,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
+<<<<<<< HEAD
   m_Speed: 20
+=======
+  m_Speed: 10
+>>>>>>> 0657261391681bafb6f87ae56621689544f3cc90
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -75,6 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: 74938544372652176}
   healthBar: {fileID: 4620150001237218874}
+  PolicePrefab: {fileID: 2061467936605828971, guid: b274b5a28e642a741b3f13d0d83f99f2,
+    type: 3}
+  BecomeAggressorProbability: 0.7
 --- !u!114 &74938544372652176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +145,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7ccb63b863446158f48175e849944f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6838521611430355273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74938544372652180}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1d271af41747a2b6dcb0d70abb5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &74938544984489651

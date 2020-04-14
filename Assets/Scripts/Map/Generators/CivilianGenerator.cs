@@ -8,7 +8,6 @@ namespace Com.StudioTBD.CoronaIO
     {
         #region Properties
 
-
         // Prefabs
         public GameObject humanPrefab;
         public GameObject policePrefab;
@@ -24,24 +23,20 @@ namespace Com.StudioTBD.CoronaIO
 
         private GameManager gameManager;
 
-
         #endregion
 
 
         #region MonoBehaviour Callbacks
-
 
         private void Awake()
         {
             gameManager = GetComponent<GameManager>();
         }
 
-
         #endregion
 
 
         #region Public Methods
-
 
         public void GenerateCivilians()
         {
@@ -63,7 +58,6 @@ namespace Com.StudioTBD.CoronaIO
                 }
             }
         }
-
 
         #endregion
     }

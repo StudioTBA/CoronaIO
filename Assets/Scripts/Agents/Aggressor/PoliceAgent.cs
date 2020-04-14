@@ -23,6 +23,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
     [Serializable]
     public struct Weapon
     {
+        public GameObject BulletPrefab;
+
         public weaponType type;
 
         public float Range;
@@ -34,8 +36,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         //if applicable
         public float AOE_radius;
 
-        public Weapon(weaponType weapontype, float range, float damage, float rateoffire, float radius)
+        public Weapon(GameObject bulletPrefab, weaponType weapontype, float range, float damage, float rateoffire,
+            float radius)
         {
+            this.BulletPrefab = bulletPrefab;
             this.type = weapontype;
             this.Range = range;
             this.attackdamage = damage;
@@ -60,14 +64,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
         protected override void Awake()
         {
             base.Awake();
-            stateMachine = new AggressorFsm(_dataHolder);
-            stateMachine.Setup(gameObject, defaultState);
+            _dataHolder.NavMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.enemyLayer = enemylayer;
             _dataHolder.defenceLayer = defencelayer;
             _dataHolder.weapon = weapon;
             _dataHolder.retreatDistance = retreatDistance;
             _dataHolder.agent_sight = SightDistance;
-            _dataHolder.NavMeshAgent = GetComponent<NavMeshAgent>();
+            stateMachine = new AggressorFsm(_dataHolder);
+            stateMachine.Setup(gameObject, defaultState);
             _gameManager = FindObjectOfType<GameManager>();
             StartCoroutine(checkforEnemies());
         }
@@ -90,12 +94,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 if (colliders.Length == 0)
                 {
                     _dataHolder.EnemyPosition = null;
-                    if (IsDebug) Debug.Log($"Not collided");
                     continue;
                 }
                 else
                 {
-                    if (IsDebug) Debug.Log($"Found {colliders.Length} colliders");
                     GetClosestZombieInSight(colliders, SightDistance);
                 }
             }
@@ -145,17 +147,12 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
 
         public IEnumerator AlertClosestHumansInRange(float range)
         {
-            // Collider[] humans =
-            //     Physics.OverlapSphere(transform.position, SightDistance, LayerMask.GetMask(GameManager.Tags.HumanTag));
-
-
             var humans = Physics.OverlapSphere(transform.position, range,
                 LayerMask.GetMask(GameManager.Tags.HumanTag));
 
 
             var civilians = new List<HumanAgent>();
 
-            // if (_gameManager == null) yield return null;
             foreach (var human in humans)
             {
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
@@ -208,14 +205,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             }
 
             Gizmos.DrawLine(pos, lastPos);
-
-            //
-            // Gizmos.color = new Color(.5f, .5f, .5f, .2f);
-            // Gizmos.DrawSphere(transform.position, SightDistance);
-
-            // if (!IsDebug) return;
-            // Gizmos.color = new Color(.5f, .5f, .2f, .2f);
-            // Gizmos.DrawSphere(transform.position, weapon.Range);
+            
             Radius = weapon.Range;
             T = transform;
             theta = 0f;

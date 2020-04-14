@@ -95,6 +95,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             foreach (Collider coll in colliders)
             {
+                if(coll.gameObject.tag == "Human")
                 if (coll.gameObject.CompareTag(GameManager.Tags.HumanTag))
                 {
                     numOfHumans++;
