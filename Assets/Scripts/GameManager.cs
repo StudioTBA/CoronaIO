@@ -38,6 +38,11 @@ namespace Com.StudioTBD.CoronaIO
 
         #endregion
 
+        #region Scales
+
+        public static float HumanScale = 50f;
+
+        #endregion
 
         #region MonoBehaviour Callbacks
 

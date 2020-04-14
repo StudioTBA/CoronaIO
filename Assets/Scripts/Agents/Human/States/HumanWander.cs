@@ -1,19 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
+using RandomUnity = UnityEngine.Random;
+using RandomSystem = System.Random;
 
 namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 {
     public class HumanWander : State
     {
+        private static RandomSystem _random = new RandomSystem();
+
         private DataHolder _dataHolder;
         private State _seekShelter;
+        private State _arriveToAggressor;
 
 
         public override void OnStateEnter()
@@ -37,6 +39,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         {
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             _seekShelter = GetComponent<SeekShelter>();
+            _arriveToAggressor = GetComponent<ArriveToAggressor>();
         }
 
         public override void Execute()
@@ -53,7 +56,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         private Vector3 RandomPoint(Vector3 origin, float dist, int layermask)
         {
-            Vector3 randDirection = Random.insideUnitSphere * dist;
+            Vector3 randDirection = RandomUnity.insideUnitSphere * dist;
 
             randDirection += origin;
 
@@ -64,19 +67,38 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             return navHit.position;
         }
 
+        /// <summary>
+        /// At the moment of writing this code, there is a 50% chance of fleeing,
+        /// 50% of anything else (i.e: arrive to officer).
+        /// </summary>
+        /// <returns>True if it must go flee, false otherwise</returns>
+        private bool MustSeekShelter()
+        {
+            var nextDouble = _random.NextDouble();
+            if (nextDouble < _dataHolder.BecomeAggressorProbability)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public override void Consume([NotNull] Event.Event @event)
         {
             if (!(@event is HumanEvent humanEvent)) return;
-
             switch (humanEvent.EventType)
             {
-                case HumanEvent.HumanEventType.SpottedZombie:
-                    this._dataHolder.Target = @event.Producer;
-                    this.ChangeState(_seekShelter);
-                    break;
                 case HumanEvent.HumanEventType.PoliceAlert:
                     this._dataHolder.Target = @event.Producer;
-                    this.ChangeState(_seekShelter);
+                    if (MustSeekShelter())
+                    {
+                        this.ChangeState(_seekShelter);
+                    }
+                    else
+                    {
+                        this.ChangeState(_arriveToAggressor);
+                    }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

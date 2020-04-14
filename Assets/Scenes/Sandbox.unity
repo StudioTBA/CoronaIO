@@ -4626,6 +4626,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74938544372652177, guid: 9932633c7c95b4271bc0dc5e75f1b585,
+        type: 3}
+      propertyPath: BecomeAggressorProbability
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 74938544372652180, guid: 9932633c7c95b4271bc0dc5e75f1b585,
         type: 3}
       propertyPath: m_Name
