@@ -112,7 +112,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 var bulletGameObject =
                     Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
                 var bullet = bulletGameObject.GetComponent<Bullet>();
-                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.transform.localScale = transform.localScale;
                 bullet.Shoot(transform.forward);
                 // bullet.Shoot(DataHolder.EnemyPosition.Value - transform.position);
 
@@ -124,7 +124,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void OnStateExit()
         {
             base.OnStateExit();
-            Debug.Log("Exiting " + this.GetType().FullName);
+            //Debug.Log("Exiting " + this.GetType().FullName);
             fireing = false;
             StopCoroutine(shoot());
             //StopAllCoroutines();

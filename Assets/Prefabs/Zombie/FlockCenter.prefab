@@ -103,9 +103,13 @@ MonoBehaviour:
   flockPrefab: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
     type: 3}
   flockHolder: {fileID: 0}
+<<<<<<< HEAD
   flockMoveSpeed: 400
   Initial_Horde_Size: 0
   TestMode: 0
+=======
+  flockMoveSpeed: 40
+>>>>>>> 1bf3eb0dd0336b50ed59c3ae1aea471cfd06d98d
   minHordeSizeToSplit: 2
   active: 1
   always_flee: 0
@@ -149,8 +153,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 400
-  m_Acceleration: 200
+  m_Speed: 40
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -173,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b0457bbc4fdfd41b75ca930fdb3dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1000
-  minRatioToAttack: 0.2
+  range: 100
+  minRatioToAttack: 1
 --- !u!114 &2444086077298788646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7b081a5e8e2994999f2f39e53cc795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flee_distance_goal: 1000
+  flee_distance_goal: 100
 --- !u!114 &186361449705234212
 MonoBehaviour:
   m_ObjectHideFlags: 0

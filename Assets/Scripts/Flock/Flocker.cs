@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Com.StudioTBD.CoronaIO;
+﻿using Com.StudioTBD.CoronaIO;
 using UnityEngine;
-using Com.StudioTBD.CoronaIO;
 
 public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 {
@@ -112,13 +109,13 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     private void OnCollisionEnter(Collision collision)
     {
         // Infection
-        // Debug.Log($"[Collision] {collision.gameObject.name}");
+        //Debug.Log($"[Collision] {collision.gameObject.name}");
         // Debug.Log($"[Collider] {collision.collider.gameObject.name}");
         if (collision.collider.CompareTag(GameManager.Tags.HumanTag))
         {
             GameObject parent = collision.collider.gameObject;
             parent.GetComponentInChildren<HealthBar>();
-            Debug.Log($"Proper human {parent.name}", this);
+            //Debug.Log($"Proper human {parent.name}", this);
             // GameObject human = collision.collider.GetComponent<HealthBar>();
             // HealthBar civilianHealth = collision.collider.GetComponentInChildren<HealthBar>();
             HealthBar civilianHealth = parent.GetComponentInChildren<HealthBar>();

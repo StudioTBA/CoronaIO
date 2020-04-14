@@ -173,10 +173,15 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                         civilians.Add(humanAgent);
                     }
                 }
+                else
+                {
+                    //Debug.Log("Not in range");
+                }
             }
 
             foreach (var civilian in civilians)
             {
+                //Debug.Log($"Alerting civilian in range {civilian.name}", this);
                 civilian.Consume(new HumanEvent(this.gameObject, HumanEvent.HumanEventType.PoliceAlert));
             }
 

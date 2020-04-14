@@ -109,11 +109,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  seekSpeed: 300
-  repulsionFactor: 500
-  cohesionFactor: 450
-  repulsionQueryRadius: 600
-  cohesionQueryRadius: 800
+  seekSpeed: 30
+  repulsionFactor: 50
+  cohesionFactor: 45
+  repulsionQueryRadius: 60
+  cohesionQueryRadius: 80
   alignmentFactor: 10
   damageToHuman: 10
   damageShelter: 10

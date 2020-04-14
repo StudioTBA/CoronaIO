@@ -45,7 +45,7 @@ namespace Com.StudioTBD.CoronaIO
 
         #region Scales
 
-        public static float HumanScale = 50f;
+        public static float HumanScale = 5f;
 
         #endregion
 

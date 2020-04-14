@@ -49,7 +49,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         /// <returns></returns>
         private IEnumerator FindShelter()
         {
-            Debug.Log("Start Coroutine: Find shelter", this);
+            //Debug.Log("Start Coroutine: Find shelter", this);
             NavMeshPath shortestPath = new NavMeshPath();
 
             var colliders = Physics.OverlapSphere(transform.position, _dataHolder.SeekShelterRange,

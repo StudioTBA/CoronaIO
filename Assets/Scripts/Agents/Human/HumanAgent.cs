@@ -41,7 +41,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             {
                 if (humanEvent.EventType == HumanEvent.HumanEventType.PoliceAlert)
                 {
-                    Debug.Log("Police just alerted us");
+                    //Debug.Log("Police just alerted us");
                 }
 
                 base.Consume(@event);

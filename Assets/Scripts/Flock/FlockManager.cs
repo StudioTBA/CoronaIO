@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Com.StudioTBD.CoronaIO.Agent.Zombie;
 using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FlockManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("UntrapZombies", 5, 5);
         while (Initial_Horde_Size > 0)
         {
             CreateZombie();
@@ -82,6 +84,11 @@ public class FlockManager : MonoBehaviour
             }
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
+            //GetComponent<NavMeshAgent>().SetDestination((direction + transform.position)*flockMoveSpeed);
+        }
+        if(zombieList.Count == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -89,9 +96,13 @@ public class FlockManager : MonoBehaviour
     {
         Vector3 randomPosInACube;
 
-        randomPosInACube = new Vector3(Random.Range(-5.0f, 5.0f), 25f, Random.Range(-5.0f, 5.0f));
+        float sizeFactor = transform.localScale.x;
+
+        randomPosInACube = new Vector3(Random.Range(-sizeFactor*2, sizeFactor*2), sizeFactor/1.25f, Random.Range(-sizeFactor*2, sizeFactor*2));
         GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
             Quaternion.identity);
+
+        Swarmling.transform.localScale = transform.localScale;
 
         Swarmling.transform.parent = flockHolder.transform;
 
@@ -169,6 +180,41 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+        transform.localScale = other.transform.localScale;
+        minHordeSizeToSplit = other.minHordeSizeToSplit;
+    }
+
+    private void UntrapZombies()
+    {
+        float dist;
+
+        float maxDist = float.MinValue;
+        float minDist = float.MaxValue;
+
+        Flocker furthest = null;
+
+        foreach (Flocker zombie in zombieList)
+        {
+            dist = (transform.position - zombie.transform.position).magnitude;
+
+            if (dist > maxDist)
+            {
+                furthest = zombie;
+                maxDist = dist;
+            }
+            if (dist < minDist)
+                minDist = dist;
+        }
+
+        if (maxDist / minDist > 50.0f)
+        {
+            Vector3 newPos = (transform.position - furthest.transform.position) / 2 + furthest.transform.position;
+
+            newPos = new Vector3(newPos.x, transform.localScale.x, newPos.z);
+
+            furthest.transform.position = newPos;
+        }
+
     }
 
     public void DestroyZombie(Flocker other)
