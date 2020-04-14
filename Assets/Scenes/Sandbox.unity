@@ -215,8 +215,8 @@ MonoBehaviour:
     type: 3}
   policePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
     type: 3}
-  spawningProbability: 20
-  policeProbability: 20
+  spawningProbability: 2
+  policeProbability: 50
 --- !u!23 &593708177 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3985910458322886148, guid: a54db522f4c054a2ca59062037332679,
