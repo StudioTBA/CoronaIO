@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using Com.StudioTBD.CoronaIO.Menus;
 
 public class HordeOrganizer : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class HordeOrganizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHordes = MenuManager.maxNumOfHordes;
+
         hordeList = new List<FlockManager>();
         hordeList.Add(transform.parent.GetComponentInChildren<FlockManager>());
     }

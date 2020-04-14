@@ -5,6 +5,7 @@ using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
 using Com.StudioTBD.CoronaIO.Menus;
 using UnityEngine;
 using UnityEngine.AI;
+using Com.StudioTBD.CoronaIO.Menus;
 
 public class FlockManager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        minHordeSizeToSplit = MenuManager.minSizeToSplit;
+
         InvokeRepeating("UntrapZombies", 5, 5);
         float value = MenuManager.mapScale;
         if(Initial_Horde_Size>0)
