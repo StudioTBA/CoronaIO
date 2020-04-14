@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using System;
+using Agents.Aggressor;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
@@ -47,8 +48,12 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
-                    DataHolder.weapon.rateOfFire * 1 / 2, true);
+                var position = transform.position + (transform.forward * 50f);
+                var bulletGameObject =
+                    Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
+                var bullet = bulletGameObject.GetComponent<Bullet>();
+                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.Shoot(transform.forward);
             }
         }
 
@@ -57,11 +62,18 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
+            if (!DataHolder.EnemyPosition.HasValue)
+            {
+                StateMachine.ResetToDefaultState();
+                return;
+            }
+
             if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance &&
                 DataHolder.defend_target == null)
             {
                 //DataHolder.defend_target = null;
                 StateMachine.ResetToDefaultState();
+                return;
             }
 
 
@@ -92,6 +104,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                     // change state to defending
                     movingToDefend = false;
                     StateMachine.ChangeState(_defendingState);
+                    return;
                 }
             }
             else
