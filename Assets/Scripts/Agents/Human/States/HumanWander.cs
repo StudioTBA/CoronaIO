@@ -20,6 +20,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
         public override void OnStateEnter()
         {
+            _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
             InvokeRepeating("WanderToNewPosition", 0f, 2f);
             base.OnStateEnter();
         }
