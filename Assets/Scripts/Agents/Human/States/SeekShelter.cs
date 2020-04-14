@@ -52,14 +52,17 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             Debug.Log("Start Coroutine: Find shelter", this);
             NavMeshPath shortestPath = new NavMeshPath();
 
+            var colliders = Physics.OverlapSphere(transform.position, _dataHolder.SeekShelterRange,
+                LayerMask.GetMask("Shelter"));
+            Debug.Log($"Found {colliders.Length} shelters");
             NavMeshAgent agent = _dataHolder.NavMeshAgent;
-            GameObject[] shelters = _gameManager.Shelters;
+            // GameObject[] shelters = _gameManager.Shelters;
             float smallestDistance = float.MaxValue;
             int smallestDistanceIndex = 0;
 
-            for (var index = 0; index < shelters.Length; index++)
+            for (var index = 0; index < colliders.Length; index++)
             {
-                var shelter = shelters[index].GetComponent<Shelter>();
+                var shelter = colliders[index].transform.GetChild(0).GetComponent<Shelter>();
                 var position = shelter.floorMeshRenderer.transform.position;
                 agent.CalculatePath(position, shortestPath);
 
@@ -80,9 +83,9 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
             if (smallestDistanceIndex >= 0)
             {
-                Debug.Log("Closest Shelter: " + shelters[smallestDistanceIndex]);
+                Debug.Log("Closest Shelter: " + colliders[smallestDistanceIndex]);
                 _dataHolder.Target =
-                    shelters[smallestDistanceIndex];
+                    colliders[smallestDistanceIndex].transform.GetChild(0).gameObject;
                 this.ChangeState(_fleeToShelterState);
             }
             else

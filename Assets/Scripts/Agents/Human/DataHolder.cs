@@ -17,5 +17,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         public NavMeshAgent NavMeshAgent;
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
+        public float SeekShelterRange;
     }
 }

@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3228891afc5824f74b669ca2c06a1f38, type: 2}
+  - {fileID: 2100000, guid: 9ca4aaafd22254c08b9e5ae44e438876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,7 +332,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3228891afc5824f74b669ca2c06a1f38, type: 2}
+  - {fileID: 2100000, guid: 9ca4aaafd22254c08b9e5ae44e438876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -441,7 +441,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3228891afc5824f74b669ca2c06a1f38, type: 2}
+  - {fileID: 2100000, guid: 9ca4aaafd22254c08b9e5ae44e438876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -550,7 +550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3228891afc5824f74b669ca2c06a1f38, type: 2}
+  - {fileID: 2100000, guid: 9ca4aaafd22254c08b9e5ae44e438876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -710,7 +710,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3228891afc5824f74b669ca2c06a1f38, type: 2}
+  - {fileID: 2100000, guid: 9ca4aaafd22254c08b9e5ae44e438876, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -920,7 +920,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fcd41b4ed088b4fdb8f469df38e516e8, type: 2}
+  - {fileID: 2100000, guid: 96eb20b4b20114e57b3ffec37d2b8194, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -949,10 +949,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7020986414246861803}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7784098587770238653
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 5817724676803004579}
   - component: {fileID: 4094414178721851109}
   - component: {fileID: 1878053774450934038}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Building
   m_TagString: Tile
   m_Icon: {fileID: 0}

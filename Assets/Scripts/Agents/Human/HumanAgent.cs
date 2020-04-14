@@ -13,6 +13,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         private NavMeshAgent _navMeshAgent;
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
+        public float SeekShelterRange;
         protected override void Awake()
         {
             base.Awake();
@@ -20,6 +21,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             _dataHolder.NavMeshAgent = _navMeshAgent;
             _dataHolder.PolicePrefab = PolicePrefab;
             _dataHolder.BecomeAggressorProbability = BecomeAggressorProbability;
+            _dataHolder.SeekShelterRange = SeekShelterRange;
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
