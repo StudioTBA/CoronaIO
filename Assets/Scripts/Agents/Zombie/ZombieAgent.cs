@@ -39,7 +39,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
 
         public override void OnStateChange(State oldState, State newState)
         {
-            Debug.Log($"{oldState?.StateName} - {newState?.StateName}", this);
+            //Debug.Log($"{oldState?.StateName} - {newState?.StateName}", this);
         }
 
         public override void OnStateExit(State oldState)

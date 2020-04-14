@@ -161,8 +161,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
                 if (distance < range)
                 {
-                    Debug.Log("In range");
-                    Debug.Log($"In range {human.name}");
+                    //Debug.Log("In range");
+                    //Debug.Log($"In range {human.name}");
                     
                     HumanAgent humanAgent = human.transform.parent.GetComponent<HumanAgent>();
 
@@ -173,13 +173,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 }
                 else
                 {
-                    Debug.Log("Not in range");
+                    //Debug.Log("Not in range");
                 }
             }
 
             foreach (var civilian in civilians)
             {
-                Debug.Log($"Alerting civilian in range {civilian.name}", this);
+                //Debug.Log($"Alerting civilian in range {civilian.name}", this);
                 civilian.Consume(new HumanEvent(this.gameObject, HumanEvent.HumanEventType.PoliceAlert));
             }
 

@@ -49,7 +49,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         /// <returns></returns>
         private IEnumerator FindShelter()
         {
-            Debug.Log("Start Coroutine: Find shelter", this);
+            //Debug.Log("Start Coroutine: Find shelter", this);
             NavMeshPath shortestPath = new NavMeshPath();
 
             NavMeshAgent agent = _dataHolder.NavMeshAgent;
@@ -80,7 +80,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
 
             if (smallestDistanceIndex >= 0)
             {
-                Debug.Log("Closest Shelter: " + shelters[smallestDistanceIndex]);
+                //Debug.Log("Closest Shelter: " + shelters[smallestDistanceIndex]);
                 _dataHolder.Target =
                     shelters[smallestDistanceIndex];
                 this.ChangeState(_fleeToShelterState);

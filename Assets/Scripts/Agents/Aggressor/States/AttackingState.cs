@@ -95,7 +95,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void OnStateExit()
         {
             base.OnStateExit();
-            Debug.Log("Exiting " + this.GetType().FullName);
+            //Debug.Log("Exiting " + this.GetType().FullName);
             fireing = false;
             StopCoroutine(shoot());
             //StopAllCoroutines();

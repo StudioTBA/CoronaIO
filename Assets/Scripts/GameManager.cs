@@ -16,7 +16,7 @@ namespace Com.StudioTBD.CoronaIO
         public TileGenerator tileGenerator;
         public CivilianGenerator civilianGenerator;
 
-        public static bool isSandbox = false;
+        public static bool isSandbox = true;
 
         public GameObject[] Shelters { get; private set; }
         private GameObject[] spawns;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Com.StudioTBD.CoronaIO.Agent.Zombie;
 using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FlockManager : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class FlockManager : MonoBehaviour
             }
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
+            //GetComponent<NavMeshAgent>().SetDestination((direction + transform.position)*flockMoveSpeed);
         }
     }
 
@@ -80,9 +82,13 @@ public class FlockManager : MonoBehaviour
     {
         Vector3 randomPosInACube;
 
-        randomPosInACube = new Vector3(Random.Range(-100.0f, 100.0f), 25.0f, Random.Range(-100.0f, 100.0f));
+        float sizeFactor = transform.localScale.x;
+
+        randomPosInACube = new Vector3(Random.Range(-sizeFactor*2, sizeFactor*2), sizeFactor/2, Random.Range(-sizeFactor*2, sizeFactor*2));
         GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
             Quaternion.identity);
+
+        Swarmling.transform.localScale = transform.localScale;
 
         Swarmling.transform.parent = flockHolder.transform;
 
