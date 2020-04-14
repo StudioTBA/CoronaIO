@@ -10,6 +10,7 @@ public class ZombieHordeBlipCreator : MonoBehaviour
     public GameObject Blip { get { return blip; } }
     public GameObject blipPrefab;
     ZombieHordeCenterOfMass centerOfMass;
+    public GameObject comPrefab;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class ZombieHordeBlipCreator : MonoBehaviour
         centerOfMass = this.GetComponent<ZombieHordeCenterOfMass>();
         blipManager = GameObject.Find("ZombieHordeBlips");
         blip = Instantiate(blipPrefab, blipManager.transform);
-        centerOfMass.createCenterOfMassGO(blip);
+        centerOfMass.createCenterOfMassGO(comPrefab, blip);
     }
 
     private void Update()

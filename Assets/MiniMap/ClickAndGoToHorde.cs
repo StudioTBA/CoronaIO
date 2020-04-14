@@ -22,7 +22,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         miniMap = GameObject.Find("MiniMap");
         cameraHandler = GameObject.Find("CameraHandler");
         hordeOrganizer = GameObject.Find("HordeOrganizer").GetComponent<HordeOrganizer>();
-        hordeManager = this.GetComponent<MiniMapIcon>().target.parent.gameObject;
+        hordeManager = this.GetComponent<MiniMapIcon>().target.GetComponent<COMFlockCenter>().FlockCenter;
     }
 
     private void Update()

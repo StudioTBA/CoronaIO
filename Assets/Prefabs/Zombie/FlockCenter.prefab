@@ -240,6 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blipPrefab: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
     type: 3}
+  comPrefab: {fileID: 4480060841421301538, guid: 0ed5e1ff584e30043965840d82709ddc,
+    type: 3}
 --- !u!114 &1319676019
 MonoBehaviour:
   m_ObjectHideFlags: 0

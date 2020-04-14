@@ -7,12 +7,10 @@ public class ZombieHordeCenterOfMass : MonoBehaviour
     GameObject com;
     public Transform ComTransform { get; private set; }
 
-    public void createCenterOfMassGO(GameObject blip)
+    public void createCenterOfMassGO(GameObject centerOfMass, GameObject blip)
     {
-        GameObject temp = new GameObject("Center Of Mass");
-        com = Instantiate(temp, this.transform);
-        Destroy(temp);
-
+        com = Instantiate(centerOfMass, GameObject.Find("CenterOfMasses").transform);
+        com.GetComponent<COMFlockCenter>().FlockCenter = this.gameObject;
         blip.GetComponent<MiniMapIcon>().target = com.transform;
     }
 
