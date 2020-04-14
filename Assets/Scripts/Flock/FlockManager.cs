@@ -24,7 +24,7 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        InvokeRepeating("UntrapZombies", 5, 5);
     }
 
     // Update is called once per frame
@@ -165,5 +165,39 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+    }
+
+    private void UntrapZombies()
+    {
+        float dist;
+
+        float maxDist = float.MinValue;
+        float minDist = float.MaxValue;
+
+        Flocker furthest = null;
+
+        foreach(Flocker zombie in zombieList)
+        {
+            dist = (transform.position - zombie.transform.position).magnitude;
+
+            if (dist > maxDist)
+            {
+                furthest = zombie;
+                maxDist = dist;
+            }
+            if (dist < minDist)
+                minDist = dist;
+        }
+
+        if (maxDist / minDist > 50.0f)
+        {
+            Vector3 newPos = (transform.position - furthest.transform.position) / 2 + furthest.transform.position;
+
+            newPos = new Vector3(newPos.x, transform.localScale.x, newPos.z);
+
+            furthest.transform.position = newPos;
+        }
+
+
     }
 }
