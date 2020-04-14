@@ -21,18 +21,18 @@ namespace Com.StudioTBD.CoronaIO.Menus
         }
 
         // Humans
+        public void LoadHumansBecomePolice()
+        {
+            MenuManager.mapScale = 3;
+            MenuManager.isTest = false;
+            SceneManager.LoadScene(MenuManager.HUMANS_BECOME_POLICE);
+        }
+
         public void LoadHumansFindShelter()
         {
             MenuManager.mapScale = 3;
             MenuManager.isTest = false;
             SceneManager.LoadScene(MenuManager.HUMANS_FIND_SHELTER);
-        }
-
-        public void LoadHumansFlee()
-        {
-            MenuManager.mapScale = 3;
-            MenuManager.isTest = false;
-            SceneManager.LoadScene(MenuManager.HUMANS_FLEE);
         }
 
         public void LoadHumansWander()
