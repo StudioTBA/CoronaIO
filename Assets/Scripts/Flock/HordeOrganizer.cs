@@ -41,10 +41,10 @@ public class HordeOrganizer : MonoBehaviour
             int hordeToAbsorb = IndexOfClosestHorde();
             if (hordeToAbsorb >= 0)
             {
-                foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
-                {
-                    zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
-                }
+                //foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
+                //{
+                //    zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                //}
 
                 hordeList[activeHorde].AbsorbHorde(hordeList[hordeToAbsorb]);
                 hordeList.RemoveAt(hordeToAbsorb);

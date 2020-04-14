@@ -133,7 +133,7 @@ public class FlockManager : MonoBehaviour
 
             while (zombieList.Count > amount)
             {
-                zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                //zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 newHorde.AttachZombie(zombieList[0]);
                 RemoveZombie(zombieList[0]);
             }
