@@ -114,7 +114,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         foreach (Flocker zombie in zombiesInHorde)
         {
             centerOfMass += zombie.transform.position;
-            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 250f);
+            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 2.0f);
         }
 
         return centerOfMass /= zombiesInHorde.Count;
