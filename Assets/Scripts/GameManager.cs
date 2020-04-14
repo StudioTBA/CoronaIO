@@ -3,7 +3,6 @@ using System.Collections;
 using Boo.Lang;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using Com.StudioTBD.CoronaIO.Agent.Human;
-using Com.StudioTBD.CoronaIO.FMS;
 using UnityEngine;
 
 namespace Com.StudioTBD.CoronaIO
@@ -19,12 +18,11 @@ namespace Com.StudioTBD.CoronaIO
         public static bool isSandbox = true;
 
         public GameObject[] Shelters { get; private set; }
-        private GameObject[] spawns;
         public List<GameObject> Humans { get; private set; } = new List<GameObject>();
+        private GameObject[] spawns;
 
         #endregion
 
-        // Map objects
 
         #region GameTags
 
@@ -55,8 +53,13 @@ namespace Com.StudioTBD.CoronaIO
 
         private void Start()
         {
-            if (isSandbox)
+            if (!Menus.MenuManager.isTest)
             {
+                // Set values from Settings
+                tileGenerator.SetFloorScale(Menus.MenuManager.mapScale * 10);
+                // TODO: Replace by line to set minSizeToSplit
+                // TODO: Replace by line to set maxNumOfHordes
+
                 // Create map
                 StartCoroutine("GenerateTiles");
 
@@ -86,6 +89,19 @@ namespace Com.StudioTBD.CoronaIO
         private void FindShelters()
         {
             Shelters = GameObject.FindGameObjectsWithTag(Tags.ShelterTag);
+        }
+
+        private void FindAllHumans()
+        {
+            foreach (var humanAgent in FindObjectsOfType<HumanAgent>())
+            {
+                Humans.Add(humanAgent.gameObject);
+            }
+
+            foreach (var humanAgent in FindObjectsOfType<PoliceAgent>())
+            {
+                Humans.Add(humanAgent.gameObject);
+            }
         }
 
         #endregion
@@ -125,18 +141,5 @@ namespace Com.StudioTBD.CoronaIO
         }
 
         #endregion
-
-        private void FindAllHumans()
-        {
-            foreach (var humanAgent in FindObjectsOfType<HumanAgent>())
-            {
-                Humans.Add(humanAgent.gameObject);
-            }
-
-            foreach (var humanAgent in FindObjectsOfType<PoliceAgent>())
-            {
-                Humans.Add(humanAgent.gameObject);
-            }
-        }
     }
 }

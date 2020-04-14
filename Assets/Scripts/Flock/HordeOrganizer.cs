@@ -127,6 +127,6 @@ public class HordeOrganizer : MonoBehaviour
     public void UpdateHealth()
     {
         if (hordeHealth == null) return;
-        hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
+            hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
     }
 }
