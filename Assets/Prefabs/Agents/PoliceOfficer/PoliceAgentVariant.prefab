@@ -332,6 +332,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: riggedPoliceOfficer
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: b9d2cb8d64100b545a53d782a230ab4e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9d2cb8d64100b545a53d782a230ab4e, type: 3}
 --- !u!4 &6097450928059697385 stripped

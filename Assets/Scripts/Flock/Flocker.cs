@@ -12,6 +12,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
     public float alignmentFactor;
+    public Animator Animator;
 
     [Tooltip("Percentage of human health inflicted on collision")]
     public int damageToHuman;
@@ -19,6 +20,8 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     // Start is called before the first frame update
     void Start()
     {
+        Animator = GetComponent<Animator>();
+        Animator.SetBool("Walking", true);
     }
 
     // Update is called once per frame

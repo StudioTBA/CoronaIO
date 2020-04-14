@@ -2707,6 +2707,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 743793578622001272, guid: dbb542d70791a2744b777b7edc6d6ef3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     - target: {fileID: 4620150001991111644, guid: dbb542d70791a2744b777b7edc6d6ef3,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3879,6 +3884,12 @@ PrefabInstance:
       propertyPath: flockHolder
       value: 
       objectReference: {fileID: 314805945}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: flockPrefab
+      value: 
+      objectReference: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
+        type: 3}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Name

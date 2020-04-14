@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1787034198}
   - component: {fileID: 638131406340536246}
   m_Layer: 10
-  m_Name: HumanVariant
+  m_Name: HumanVariantMale
   m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: riggedhuman 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 10ea52df1e66cf24dbee933a28c945c6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10ea52df1e66cf24dbee933a28c945c6, type: 3}
