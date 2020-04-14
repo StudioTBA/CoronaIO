@@ -54,7 +54,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 200
+  m_Speed: 20
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -86,20 +86,18 @@ MonoBehaviour:
   defencelayer:
     serializedVersion: 2
     m_Bits: 512
-  retreatDistance: 500
+  retreatDistance: 50
   weapon:
-    BulletPrefab: {fileID: 0}
+    BulletPrefab: {fileID: 7243392206702830715, guid: ab4cdd904fa134fe18b8b43253d959ec,
+      type: 3}
     type: 2
     Range: 1000
     attackdamage: 1
     rateOfFire: 0.5
     AOE_radius: 0
-  SightDistance: 10
-  IsDebug: 0
---- !u!114 &2061467936605828887
-  SightDistance: 1000
+  SightDistance: 100
   SightHeight: 1
-  IsDebug: 1
+  IsDebug: 0
 --- !u!114 &7807683559012468734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +188,7 @@ GameObject:
   - component: {fileID: 2061467937542423276}
   m_Layer: 10
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -824,3 +822,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3552044396195874772}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061467936605828887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 

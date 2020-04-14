@@ -13,13 +13,23 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         private NavMeshAgent _navMeshAgent;
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
+        public float SeekShelterRange;
         protected override void Awake()
         {
             base.Awake();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _dataHolder.NavMeshAgent = _navMeshAgent;
+
             _dataHolder.PolicePrefab = PolicePrefab;
             _dataHolder.BecomeAggressorProbability = BecomeAggressorProbability;
+
+
+            _dataHolder.Animator = GetComponentInChildren<Animator>();
+            _dataHolder.rigidbody = GetComponent<Rigidbody>();
+
+
+            _dataHolder.SeekShelterRange = SeekShelterRange;
+
             stateMachine = new HumanStateMachine(_dataHolder);
             stateMachine.Setup(gameObject, defaultState, this);
         }
@@ -31,7 +41,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             {
                 if (humanEvent.EventType == HumanEvent.HumanEventType.PoliceAlert)
                 {
-                    Debug.Log("Police just alerted us");
+                    //Debug.Log("Police just alerted us");
                 }
 
                 base.Consume(@event);

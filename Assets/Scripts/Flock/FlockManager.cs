@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using Com.StudioTBD.CoronaIO.Agent.Zombie;
 using Com.StudioTBD.CoronaIO.Agent.Zombie.States;
+using Com.StudioTBD.CoronaIO.Menus;
 using UnityEngine;
+using UnityEngine.AI;
+using Com.StudioTBD.CoronaIO.Menus;
 
 public class FlockManager : MonoBehaviour
 {
     public GameObject flockPrefab;
     public GameObject flockHolder;
     public float flockMoveSpeed;
-    [SerializeField][Min(0)] int Initial_Horde_Size;
+    [SerializeField] [Min(0)] int Initial_Horde_Size;
     [SerializeField] private bool TestMode;
 
     public int minHordeSizeToSplit;
@@ -25,6 +28,12 @@ public class FlockManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        minHordeSizeToSplit = MenuManager.minSizeToSplit;
+
+        InvokeRepeating("UntrapZombies", 5, 5);
+        float value = MenuManager.mapScale;
+        if(Initial_Horde_Size>0)
+            transform.position = new Vector3(value * 40, transform.position.y, value * 40);
         while (Initial_Horde_Size > 0)
         {
             CreateZombie();
@@ -82,6 +91,11 @@ public class FlockManager : MonoBehaviour
             }
 
             transform.position += direction.normalized * flockMoveSpeed * Time.deltaTime;
+            //GetComponent<NavMeshAgent>().SetDestination((direction + transform.position)*flockMoveSpeed);
+        }
+        if (zombieList.Count == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -89,9 +103,13 @@ public class FlockManager : MonoBehaviour
     {
         Vector3 randomPosInACube;
 
-        randomPosInACube = new Vector3(Random.Range(-5.0f, 5.0f), 25f, Random.Range(-5.0f, 5.0f));
+        float sizeFactor = transform.localScale.x;
+
+        randomPosInACube = new Vector3(Random.Range(-sizeFactor * 2, sizeFactor * 2), sizeFactor / 1.2f, Random.Range(-sizeFactor * 2, sizeFactor * 2));
         GameObject Swarmling = (GameObject)Instantiate(flockPrefab, transform.position + randomPosInACube,
             Quaternion.identity);
+
+        Swarmling.transform.localScale = transform.localScale;
 
         Swarmling.transform.parent = flockHolder.transform;
 
@@ -122,7 +140,7 @@ public class FlockManager : MonoBehaviour
 
             while (zombieList.Count > amount)
             {
-                zombieList[0].GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                zombieList[0].GetComponentInChildren<SkinnedMeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 newHorde.AttachZombie(zombieList[0]);
                 RemoveZombie(zombieList[0]);
             }
@@ -169,6 +187,41 @@ public class FlockManager : MonoBehaviour
         always_flee = other.always_flee;
         attack_if_able = other.attack_if_able;
         stop = other.stop;
+        transform.localScale = other.transform.localScale;
+        minHordeSizeToSplit = other.minHordeSizeToSplit;
+    }
+
+    private void UntrapZombies()
+    {
+        float dist;
+
+        float maxDist = float.MinValue;
+        float minDist = float.MaxValue;
+
+        Flocker furthest = null;
+
+        foreach (Flocker zombie in zombieList)
+        {
+            dist = (transform.position - zombie.transform.position).magnitude;
+
+            if (dist > maxDist)
+            {
+                furthest = zombie;
+                maxDist = dist;
+            }
+            if (dist < minDist)
+                minDist = dist;
+        }
+
+        if (maxDist / minDist > 50.0f)
+        {
+            Vector3 newPos = (transform.position - furthest.transform.position) / 2 + furthest.transform.position;
+
+            newPos = new Vector3(newPos.x, transform.localScale.x, newPos.z);
+
+            furthest.transform.position = newPos;
+        }
+
     }
 
     public void DestroyZombie(Flocker other)

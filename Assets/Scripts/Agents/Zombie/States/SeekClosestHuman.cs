@@ -89,7 +89,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         private bool OverwhelmingTheHumans()
         {
-            Collider[] colliders = Physics.OverlapSphere(_dataHolder.Target.transform.position, 200);
+            Collider[] colliders = Physics.OverlapSphere(_dataHolder.Target.transform.position, range/2);
 
             int numOfHumans = 1;
 

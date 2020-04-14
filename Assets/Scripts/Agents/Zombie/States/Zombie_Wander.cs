@@ -34,8 +34,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
         public override void OnStateEnter()
         {
             InvokeRepeating("WanderToNewPosition", 0, 2);
-
-            base.OnStateEnter();
         }
 
         public override void Execute()
@@ -72,8 +70,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
         private void WanderToNewPosition()
         {
-            Vector3 newPos = RandomPoint(transform.position, 1000f, -1);
-            this._dataHolder.NavMeshAgent.SetDestination(newPos);
+            Vector3 newPos = RandomPoint(transform.position, _dataHolder.FlockManager.transform.localScale.x*20, -1);
+            this._dataHolder.NavMeshAgent.Warp(newPos);
         }
 
         private Vector3 RandomPoint(Vector3 origin, float dist, int layermask)

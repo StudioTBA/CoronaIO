@@ -10,7 +10,7 @@ public class HouseDoor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Make sure it is an agent
-        if (!other.CompareTag("Agent")) return;
+        if (!other.CompareTag("Human")) return;
         other.GetComponent<Agent>().Consume(new HumanEvent(this.gameObject, HumanEvent.HumanEventType.EnteredShelter));
     }
 }

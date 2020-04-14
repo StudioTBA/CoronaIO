@@ -11,6 +11,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
     {
         private ZombieDataHolder _dataHolder;
         private State _idle;
+        private State _attack;
         public float flee_distance_goal;
 
         protected override string SetStateName()
@@ -22,6 +23,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             // StateName = "Flee";
             _dataHolder = (StateMachine as ZombieStateMachine)?.ZombieDataHolder;
             _idle = GetComponent<Idle_Zombie>();
+            _attack = GetComponent<Zombie_Attack>();
         }
 
         public override void Execute()
@@ -35,10 +37,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
             if (!_dataHolder.Target || (_dataHolder.Target.transform.position - transform.position).magnitude > flee_distance_goal)
             {
                 this.ChangeState(_idle);
+            }else if (_dataHolder.FlockManager.attack_if_able)
+            {
+                this.ChangeState(_attack);
             }
             else
             {
-                _dataHolder.NavMeshAgent.SetDestination(PointAwayFromTarget());
+                _dataHolder.NavMeshAgent.Warp(PointAwayFromTarget());
             }
 
 

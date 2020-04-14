@@ -70,8 +70,13 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
             _dataHolder.weapon = weapon;
             _dataHolder.retreatDistance = retreatDistance;
             _dataHolder.agent_sight = SightDistance;
+
             stateMachine = new AggressorFsm(_dataHolder);
             stateMachine.Setup(gameObject, defaultState);
+
+            _dataHolder.NavMeshAgent = GetComponent<NavMeshAgent>();
+            _dataHolder.Animator = GetComponentInChildren<Animator>();
+
             _gameManager = FindObjectOfType<GameManager>();
             StartCoroutine(checkforEnemies());
         }
@@ -121,7 +126,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 var targetPosition = new Vector3(targetRawPos.x, SightHeight, targetRawPos.z);
                 var direction = targetPosition - thisPosition;
 
-                if (!Physics.Raycast(thisPosition, direction, out hit, sightRange)) continue;
+                if (!Physics.Raycast(thisPosition + new Vector3(0,5,0), direction, out hit, sightRange)) continue;
                 if (hit.collider.GetComponent<Flocker>() == null) continue;
                 inSight.Add(zombie.gameObject);
                 var distance = Vector3.Distance(thisRawPos, targetRawPos);
@@ -158,17 +163,25 @@ namespace Com.StudioTBD.CoronaIO.Agent.Aggressors
                 var distance = Vector3.Distance(human.transform.position, gameObject.transform.position);
                 if (distance < range)
                 {
-                    HumanAgent humanAgent = human.transform.parent.GetComponent<HumanAgent>();
+                    Debug.Log("In range");
+                    Debug.Log($"In range {human.name}");
+                    
+                    HumanAgent humanAgent = human.GetComponent<HumanAgent>();
 
                     if (humanAgent != null)
                     {
                         civilians.Add(humanAgent);
                     }
                 }
+                else
+                {
+                    //Debug.Log("Not in range");
+                }
             }
 
             foreach (var civilian in civilians)
             {
+                //Debug.Log($"Alerting civilian in range {civilian.name}", this);
                 civilian.Consume(new HumanEvent(this.gameObject, HumanEvent.HumanEventType.PoliceAlert));
             }
 

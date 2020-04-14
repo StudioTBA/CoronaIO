@@ -40,6 +40,24 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
+            //stop animation if velocity is zero
+            if (DataHolder.NavMeshAgent.remainingDistance <= DataHolder.NavMeshAgent.stoppingDistance)
+            {
+                if (!DataHolder.NavMeshAgent.hasPath || DataHolder.NavMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    DataHolder.Animator.SetBool("Walking", false);
+                }
+            }
+            else
+                DataHolder.Animator.SetBool("Walking", true);
+
+
+            if (DataHolder.weapon.type == weaponType.shortrange)
+                this.DataHolder.Animator.SetBool("ShootingPistol", true);
+            else
+                this.DataHolder.Animator.SetBool("ShootingRifle", true);
+
+
             if (!DataHolder.EnemyPosition.HasValue)
             {
                 this.ResetToDefaultState();
@@ -54,6 +72,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             //if they are walking away keep them within attack distance
             if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.weapon.Range - 1)
             {
+                this.DataHolder.Animator.SetBool("Walking", true);
                 float distdiff = (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) -
                                   DataHolder.weapon.Range);
                 DataHolder.move_target = transform.position +
@@ -93,7 +112,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 var bulletGameObject =
                     Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
                 var bullet = bulletGameObject.GetComponent<Bullet>();
-                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.transform.localScale = transform.localScale;
                 bullet.Shoot(transform.forward);
                 // bullet.Shoot(DataHolder.EnemyPosition.Value - transform.position);
 
@@ -105,7 +124,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         public override void OnStateExit()
         {
             base.OnStateExit();
-            Debug.Log("Exiting " + this.GetType().FullName);
+            //Debug.Log("Exiting " + this.GetType().FullName);
             fireing = false;
             StopCoroutine(shoot());
             //StopAllCoroutines();

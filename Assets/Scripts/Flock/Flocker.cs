@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Com.StudioTBD.CoronaIO;
+﻿using Com.StudioTBD.CoronaIO;
 using UnityEngine;
-using Com.StudioTBD.CoronaIO;
 
 public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
 {
@@ -13,15 +10,22 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float repulsionQueryRadius;
     public float cohesionQueryRadius;
     public float alignmentFactor;
+    public Animator animator;
 
     [Tooltip("Percentage of human health inflicted on collision")]
     public int damageToHuman;
     [Tooltip("Percentage of shelter health inflicted on collision")]
     public int damageShelter;
-
+    MiniMapPicHandler miniMapPicHandler;
     // Start is called before the first frame update
     void Start()
     {
+
+        animator = GetComponent<Animator>();
+        animator.SetBool("Walking", true);
+
+        miniMapPicHandler = GameObject.Find("MiniMapManager").GetComponent<MiniMapPicHandler>();
+
     }
 
     // Update is called once per frame
@@ -105,13 +109,13 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     private void OnCollisionEnter(Collision collision)
     {
         // Infection
-        // Debug.Log($"[Collision] {collision.gameObject.name}");
+        //Debug.Log($"[Collision] {collision.gameObject.name}");
         // Debug.Log($"[Collider] {collision.collider.gameObject.name}");
         if (collision.collider.CompareTag(GameManager.Tags.HumanTag))
         {
-            GameObject parent = collision.collider.transform.parent.gameObject;
+            GameObject parent = collision.collider.gameObject;
             parent.GetComponentInChildren<HealthBar>();
-            Debug.Log($"Proper human {parent.name}", this);
+            //Debug.Log($"Proper human {parent.name}", this);
             // GameObject human = collision.collider.GetComponent<HealthBar>();
             // HealthBar civilianHealth = collision.collider.GetComponentInChildren<HealthBar>();
             HealthBar civilianHealth = parent.GetComponentInChildren<HealthBar>();
@@ -120,7 +124,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (civilianHealth.GetHealth() == 0)
             {
                 //Debug.Log("Infected");
-                
+
                 target.GetComponent<FlockManager>().CreateZombie();
                 Destroy(parent);
             }
@@ -135,6 +139,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (shelterHealth.GetHealth() == 0)
             {
                 collision.gameObject.transform.parent.gameObject.GetComponent<Shelter>().RemoveFromNavmesh();
+                StartCoroutine(miniMapPicHandler.takePictureAndSetTexture());
             }
         }
     }
