@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 74938544372652180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74938544984489648}
   - {fileID: 3395581824743572239}
@@ -51,7 +51,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 200
+  m_Speed: 5
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 300
@@ -77,6 +77,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: 74938544372652176}
   healthBar: {fileID: 4620150001237218874}
+  PolicePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
+    type: 3}
+  BecomeAggressorProbability: 0.7
 --- !u!114 &74938544372652176
 MonoBehaviour:
   m_ObjectHideFlags: 0

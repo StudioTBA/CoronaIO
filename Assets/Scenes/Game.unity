@@ -178,9 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a315f08ef6f3a4da0ad40f25f18e7045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanPrefab: {fileID: 74938544372652180, guid: 9932633c7c95b4271bc0dc5e75f1b585,
+  humanPrefab: {fileID: 74938544372652180, guid: fffbe2f6291bc5d428ec8c24dccdcf28,
     type: 3}
-  policePrefab: {fileID: 2061467936605828971, guid: b274b5a28e642a741b3f13d0d83f99f2,
+  policePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
     type: 3}
   spawningProbability: 20
   policeProbability: 20
@@ -510,6 +510,11 @@ PrefabInstance:
       propertyPath: minimap
       value: 
       objectReference: {fileID: 1003792465}
+    - target: {fileID: 63809615877939542, guid: 1f4d67f08cef745b583be9ebeed9f7d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4d67f08cef745b583be9ebeed9f7d9, type: 3}
 --- !u!1001 &3023379428997182520

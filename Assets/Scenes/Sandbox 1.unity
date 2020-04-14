@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &379319884
 Transform:
   m_ObjectHideFlags: 0
@@ -1337,6 +1337,11 @@ PrefabInstance:
     - target: {fileID: 4445540482161283499, guid: 12d4dad6e208047608caab18592a21af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1619,6 +1624,11 @@ PrefabInstance:
     - target: {fileID: 4445540482161283499, guid: 12d4dad6e208047608caab18592a21af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2259,6 +2269,12 @@ PrefabInstance:
       propertyPath: weapon.Range
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 2061467936605828974, guid: b46b98f0826453b4baf1602be6fbcae9,
+        type: 3}
+      propertyPath: weapon.BulletPrefab
+      value: 
+      objectReference: {fileID: 7243392206702830715, guid: ab4cdd904fa134fe18b8b43253d959ec,
+        type: 3}
     - target: {fileID: 8318042000819579633, guid: b46b98f0826453b4baf1602be6fbcae9,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2367,6 +2383,11 @@ PrefabInstance:
     - target: {fileID: 4445540482161283499, guid: 12d4dad6e208047608caab18592a21af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3650,6 +3671,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d4dad6e208047608caab18592a21af, type: 3}
 --- !u!4 &1442288973 stripped
@@ -3723,6 +3749,11 @@ PrefabInstance:
     - target: {fileID: 4445540482161283499, guid: 12d4dad6e208047608caab18592a21af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3895,6 +3926,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
         type: 3}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: TestMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Name
@@ -5166,6 +5202,11 @@ PrefabInstance:
     - target: {fileID: 4445540482161283499, guid: 12d4dad6e208047608caab18592a21af,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065585635657857551, guid: 12d4dad6e208047608caab18592a21af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

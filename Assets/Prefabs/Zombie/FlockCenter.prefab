@@ -100,10 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2dd166004b3acb419bc7df3823ead90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flockPrefab: {fileID: 9051030930499019212, guid: 71558f2ebe0759b4c9fc0e6b0762414c,
+  flockPrefab: {fileID: 4448086627069949916, guid: a23fa219d4ce17f4cb7727fb00eb818a,
     type: 3}
   flockHolder: {fileID: 0}
   flockMoveSpeed: 400
+  Initial_Horde_Size: 0
+  TestMode: 0
   minHordeSizeToSplit: 2
   active: 1
   always_flee: 0
