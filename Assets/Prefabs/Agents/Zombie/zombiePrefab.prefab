@@ -718,7 +718,7 @@ MonoBehaviour:
   alignmentFactor: 10
   animator: {fileID: 0}
   damageToHuman: 10
-  damageShelter: 0
+  damageShelter: 10
 --- !u!136 &34760104060911546
 CapsuleCollider:
   m_ObjectHideFlags: 0
