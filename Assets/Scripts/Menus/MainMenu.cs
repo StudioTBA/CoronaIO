@@ -15,6 +15,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
             MenuManager.LoadGame();
         }
 
+        public void BackToMainMenu()
+        {
+            SceneManager.LoadScene(MenuManager.MAINMENU);
+        }
+
         public void QuitGame()
         {
             MenuManager.QuitGame();
