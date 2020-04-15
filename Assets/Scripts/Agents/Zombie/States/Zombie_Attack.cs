@@ -1,5 +1,4 @@
-﻿using System;
-using Com.StudioTBD.CoronaIO.FMS;
+﻿using Com.StudioTBD.CoronaIO.FMS;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -32,7 +31,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie.States
 
             //Use Navmesh to head towards Human target
             if (_dataHolder.Target && !_dataHolder.FlockManager.always_flee)
-                _dataHolder.NavMeshAgent.Warp(_dataHolder.Target.transform.position);
+            {
+                Vector3 unitOffset = new Vector3(1, 0, 1);
+                _dataHolder.NavMeshAgent.Warp(_dataHolder.Target.transform.position+unitOffset.normalized*5);
+            }
             else
             {
                 this.ChangeState(_wander);

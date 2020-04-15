@@ -39,7 +39,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
                 return false;
             }
 
-            GameObject flockCenter = HordeHelper.Instance.LockedHorde.GetComponent<MiniMapIcon>().target.gameObject;
+            GameObject flockCenter = HordeHelper.Instance.LockedHorde.GetComponent<MiniMapIcon>().target.gameObject.GetComponent<COMFlockCenter>().FlockCenter;
 
             if (!flockCenter.Equals(state.gameObject))
                 return false;

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1787034198}
   - component: {fileID: 4240614089217746929}
   - component: {fileID: 638131406340536246}
+  - component: {fileID: 8025931694001044615}
   m_Layer: 10
   m_Name: HumanVariantFemale
   m_TagString: Human
@@ -172,6 +173,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8025931694001044615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74938544372652180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068c73b6eb99348428e88c9f12658cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blipManager: {fileID: 0}
+  blipPrefab: {fileID: 3348049639297029941, guid: adcb3ed9498f00e4aaedb693ac5690bf,
+    type: 3}
 --- !u!1 &74938544984489651
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +488,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: d8c2e10e75c976647afebddd35965e71,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d8c2e10e75c976647afebddd35965e71,
         type: 3}
