@@ -71,13 +71,6 @@ namespace Com.StudioTBD.CoronaIO.Menus
             SceneManager.LoadScene(MenuManager.ZOMBIES_ARRIVE);
         }
 
-        public void LoadZombiesAttack()
-        {
-            MenuManager.mapScale = 3;
-            MenuManager.isTest = false;
-            SceneManager.LoadScene(MenuManager.ZOMBIES_ATTACK);
-        }
-
         public void LoadZombiesFlee()
         {
             MenuManager.mapScale = 3;
@@ -85,11 +78,11 @@ namespace Com.StudioTBD.CoronaIO.Menus
             SceneManager.LoadScene(MenuManager.ZOMBIES_FLEE);
         }
 
-        public void LoadZombiesWander()
+        public void LoadZombiesWanderAttack()
         {
             MenuManager.mapScale = 3;
             MenuManager.isTest = false;
-            SceneManager.LoadScene(MenuManager.ZOMBIES_WANDER);
+            SceneManager.LoadScene(MenuManager.ZOMBIES_WANDER_ATTACK);
         }
     }
 }

@@ -28,11 +28,10 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public static int POLICE_ATTACK = 6;
         public static int POLICE_WANDER = 7;
         public static int ZOMBIES_ARRIVE = 8;
-        public static int ZOMBIES_ATTACK = 9;
-        public static int ZOMBIES_FLEE = 10;
-        public static int ZOMBIES_WANDER = 11;
-        public static int GAME_OVER = 12;
-        public static int YOU_WIN = 13;
+        public static int ZOMBIES_FLEE = 9;
+        public static int ZOMBIES_WANDER_ATTACK = 10;
+        public static int GAME_OVER = 11;
+        public static int YOU_WIN = 12;
 
         // Other
         [Tooltip("Indicates if the scene loaded is a demo or not")]
