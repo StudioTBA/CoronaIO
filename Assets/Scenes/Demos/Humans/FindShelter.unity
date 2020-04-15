@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a315f08ef6f3a4da0ad40f25f18e7045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanPrefab: {fileID: 74938544372652180, guid: c3f6462199ccb4d388d5f340b53cb953,
+  humanPrefab: {fileID: 74938544372652180, guid: 9bfea58c96ac740d588f5c1f7817515f,
     type: 3}
   policePrefab: {fileID: 2061467936605828971, guid: c57ca02218fd943e5943eaff4afad391,
     type: 3}
