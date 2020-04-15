@@ -17,7 +17,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             return "ArriveToAggressor";
         }
 
-        protected override void OnStart()
+        public override void OnStateEnter()
         {
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
         }

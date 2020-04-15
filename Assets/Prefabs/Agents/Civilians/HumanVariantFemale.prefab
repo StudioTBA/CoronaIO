@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1787034196}
   - component: {fileID: 1787034197}
   - component: {fileID: 1787034198}
+  - component: {fileID: 4240614089217746929}
   - component: {fileID: 638131406340536246}
   m_Layer: 10
   m_Name: HumanVariantFemale
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7ccb63b863446158f48175e849944f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4240614089217746929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74938544372652180}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1d271af41747a2b6dcb0d70abb5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &638131406340536246

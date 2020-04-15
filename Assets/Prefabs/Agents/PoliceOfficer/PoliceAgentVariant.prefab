@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2061467936605828882}
   - component: {fileID: 2061467936605828970}
   - component: {fileID: 6471290305400714087}
+  - component: {fileID: -5022242483857660886}
   m_Layer: 10
   m_Name: PoliceAgentVariant
   m_TagString: Human
@@ -169,6 +170,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-5022242483857660886
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061467936605828971}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2061467937542423274
 GameObject:
   m_ObjectHideFlags: 0

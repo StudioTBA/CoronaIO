@@ -518,8 +518,8 @@ MonoBehaviour:
     type: 3}
   policePrefab: {fileID: 2061467936605828971, guid: c57ca02218fd943e5943eaff4afad391,
     type: 3}
-  spawningProbability: 20
-  policeProbability: 20
+  spawningProbability: 40
+  policeProbability: 30
 --- !u!114 &1197561117
 MonoBehaviour:
   m_ObjectHideFlags: 0
