@@ -748,6 +748,11 @@ PrefabInstance:
       propertyPath: flockHolder
       value: 
       objectReference: {fileID: 752727027}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: Initial_Horde_Size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Name

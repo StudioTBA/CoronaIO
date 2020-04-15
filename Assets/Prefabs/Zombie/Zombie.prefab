@@ -115,6 +115,8 @@ MonoBehaviour:
   repulsionQueryRadius: 60
   cohesionQueryRadius: 80
   alignmentFactor: 10
+  animator: {fileID: 0}
+  delay: 0.5
   damageToHuman: 10
   damageShelter: 10
 --- !u!54 &1052180639712117562

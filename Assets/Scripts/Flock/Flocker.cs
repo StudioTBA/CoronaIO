@@ -12,6 +12,8 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
     public float alignmentFactor;
     public Animator animator;
 
+    public float delay;
+    private float timer = 0;
     [Tooltip("Percentage of human health inflicted on collision")]
     public int damageToHuman;
     [Tooltip("Percentage of shelter health inflicted on collision")]
@@ -24,7 +26,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         animator = GetComponent<Animator>();
         animator.SetBool("Walking", true);
 
-        miniMapPicHandler = GameObject.Find("MiniMapManager")?.GetComponent<MiniMapPicHandler>();
+        miniMapPicHandler = GameObject.Find("MiniMapManager").GetComponent<MiniMapPicHandler>();
 
     }
 
@@ -35,6 +37,8 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         Repulsion();
         Alignment();
         CollectiveMotion();
+        if (timer < delay)
+            timer += Time.deltaTime;
     }
 
     private void Cohesion()
@@ -106,25 +110,21 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         return (transform.position == other.transform.position);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
+        if (timer < delay)
+            return;
+
         // Infection
-        //Debug.Log($"[Collision] {collision.gameObject.name}");
-        // Debug.Log($"[Collider] {collision.collider.gameObject.name}");
         if (collision.collider.CompareTag(GameManager.Tags.HumanTag))
         {
             GameObject parent = collision.collider.gameObject;
             parent.GetComponentInChildren<HealthBar>();
-            //Debug.Log($"Proper human {parent.name}", this);
-            // GameObject human = collision.collider.GetComponent<HealthBar>();
-            // HealthBar civilianHealth = collision.collider.GetComponentInChildren<HealthBar>();
             HealthBar civilianHealth = parent.GetComponentInChildren<HealthBar>();
             civilianHealth.TakeDamage(damageToHuman);
 
             if (civilianHealth.GetHealth() == 0)
             {
-                //Debug.Log("Infected");
-
                 target.GetComponent<FlockManager>().CreateZombie();
                 Destroy(parent);
             }
@@ -134,14 +134,13 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             HealthBar shelterHealth = collision.gameObject.GetComponentInParent<Shelter>().healthBar;
             shelterHealth.TakeDamage(damageShelter);
 
-            print("hit");
-
             if (shelterHealth.GetHealth() == 0)
             {
                 collision.gameObject.transform.parent.gameObject.GetComponent<Shelter>().RemoveFromNavmesh();
                 StartCoroutine(miniMapPicHandler.takePictureAndSetTexture());
             }
         }
+        timer = 0;
     }
 
     public void GotHit()
