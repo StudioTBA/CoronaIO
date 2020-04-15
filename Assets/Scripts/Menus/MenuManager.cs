@@ -22,8 +22,8 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public static int LAUNCHER = 0;
         public static int MAINMENU = 1;
         public static int GAME = 2;
-        public static int HUMANS_FIND_SHELTER = 3;
-        public static int HUMANS_FLEE = 4;
+        public static int HUMANS_BECOME_POLICE = 3;
+        public static int HUMANS_FIND_SHELTER = 4;
         public static int HUMANS_WANDER = 5;
         public static int POLICE_DEFEND = 6;
         public static int POLICE_WANDER = 7;

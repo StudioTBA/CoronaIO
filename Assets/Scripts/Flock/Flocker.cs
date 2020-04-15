@@ -24,7 +24,7 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
         animator = GetComponent<Animator>();
         animator.SetBool("Walking", true);
 
-        miniMapPicHandler = GameObject.Find("MiniMapManager").GetComponent<MiniMapPicHandler>();
+        miniMapPicHandler = GameObject.Find("MiniMapManager")?.GetComponent<MiniMapPicHandler>();
 
     }
 

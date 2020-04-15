@@ -26,6 +26,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         public override void OnStateEnter()
         {
+            DataHolder = (StateMachine as AggressorFsm)?.dataHolder;
             InvokeRepeating("WanderToNewPosition", 0f, 2f);
             base.OnStateEnter();
         }

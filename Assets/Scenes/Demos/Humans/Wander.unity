@@ -127,6 +127,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 63809614085059727, guid: 1f4d67f08cef745b583be9ebeed9f7d9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 63809614857836649, guid: 1f4d67f08cef745b583be9ebeed9f7d9,
         type: 3}
       propertyPath: m_Name
@@ -343,6 +348,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
         type: 3}
+      propertyPath: obstructionTilePrefabs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
       propertyPath: _floorScale
       value: 30
       objectReference: {fileID: 0}
@@ -351,6 +361,42 @@ PrefabInstance:
       propertyPath: floorScale
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: streetTilePrefab
+      value: 
+      objectReference: {fileID: 7104491652336302364, guid: 70b6f2d12b5ff4569a78da7fb8015cd3,
+        type: 3}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: buildingTilePrefab
+      value: 
+      objectReference: {fileID: 7784098587770238653, guid: 703e978be3e264b7d88c5b2f93adf76d,
+        type: 3}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: obstructionTilePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4098254081353838211, guid: 94a30283fe1664ac3820a0c36ecc3d8b,
+        type: 3}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: obstructionTilePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 532387129099194183, guid: a7bf36cea01244852914ce8563341b5d,
+        type: 3}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: obstructionTilePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3534265680141346834, guid: 9e3ec59f995264a5a867c50625035834,
+        type: 3}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: obstructionTilePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 3294076949228392518, guid: 1ce45d4f55aef4e9bbdd07c3121a3c9b,
+        type: 3}
     - target: {fileID: 372412278489968503, guid: a54db522f4c054a2ca59062037332679,
         type: 3}
       propertyPath: m_Name
