@@ -2144,7 +2144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ATTACK
+  m_text: 'DEFEND ATTACK
 
 '
   m_isRightToLeft: 0
