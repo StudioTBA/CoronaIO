@@ -47,6 +47,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         {
             if (other.gameObject.GetComponent<PoliceAgent>())
             {
+                if(_dataHolder == null)
+                {
+                    _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
+                }
                 var civilianPos = transform;
                 var position = civilianPos.position;
                 if (_dataHolder.PolicePrefab == null)

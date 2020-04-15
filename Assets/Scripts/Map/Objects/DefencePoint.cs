@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using Com.StudioTBD.CoronaIO.FMS;
+using System;
+
 public class DefencePoint : MonoBehaviour
 {
 
@@ -18,19 +20,26 @@ public class DefencePoint : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Defence point attacked");
+        
         if (other.tag == "Zombie")
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, NotifyRange, layer);
-
+            //Debug.Log("Defence point attacked");
             if (colliders.Length > 0)
             {
                 HumanEvent @event = new HumanEvent(this.gameObject, HumanEvent.HumanEventType.PoliceAlert);
-                Debug.Log("police notified");
+                //Debug.Log("police notified");
                 foreach (Collider c in colliders)
                 {
-
-                    c.GetComponentInParent<PoliceAgent>().stateMachine.CurrentState.Consume(@event);
+                    try
+                    {
+                        c.GetComponentInParent<PoliceAgent>().stateMachine.CurrentState.Consume(@event);
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        continue;
+                    }
+                    
 
 
                 }
