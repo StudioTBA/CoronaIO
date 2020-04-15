@@ -63,9 +63,9 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         public static void QuitGame()
         {
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.isPlaying = false;
-            else
+            //if (Application.isEditor)
+            //    UnityEditor.EditorApplication.isPlaying = false;
+            //else
                 Application.Quit();
         }
 
