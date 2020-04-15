@@ -92,7 +92,7 @@ MonoBehaviour:
     type: 2
     Range: 50
     attackdamage: 1
-    rateOfFire: 0.5
+    rateOfFire: 2
     AOE_radius: 0
   SightDistance: 100
   SightHeight: 1
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c73b6eb99348428e88c9f12658cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blipManager: {fileID: 0}
   blipPrefab: {fileID: 3348049639297029941, guid: adcb3ed9498f00e4aaedb693ac5690bf,
     type: 3}
 --- !u!1 &2061467937542423274
