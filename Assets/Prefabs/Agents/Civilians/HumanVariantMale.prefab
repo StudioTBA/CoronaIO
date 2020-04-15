@@ -79,9 +79,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultState: {fileID: 74938544372652176}
   healthBar: {fileID: 4620150001237218874}
-  PolicePrefab: {fileID: 0}
+  PolicePrefab: {fileID: 2061467936605828971, guid: b46b98f0826453b4baf1602be6fbcae9,
+    type: 3}
   BecomeAggressorProbability: 0
-  SeekShelterRange: 0
+  SeekShelterRange: 100
 --- !u!114 &74938544372652176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068c73b6eb99348428e88c9f12658cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blipManager: {fileID: 0}
   blipPrefab: {fileID: 3348049639297029941, guid: adcb3ed9498f00e4aaedb693ac5690bf,
     type: 3}
 --- !u!1 &74938544984489651

@@ -14,6 +14,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
         public float SeekShelterRange;
+
         protected override void Awake()
         {
             base.Awake();

@@ -1014,6 +1014,12 @@ PrefabInstance:
       propertyPath: floorScale
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -5647182914074997839, guid: a54db522f4c054a2ca59062037332679,
+        type: 3}
+      propertyPath: buildingTilePrefab
+      value: 
+      objectReference: {fileID: 7784098587770238653, guid: 208d2ce1415364e65a3055d88c36f7ca,
+        type: 3}
     - target: {fileID: 372412278489968503, guid: a54db522f4c054a2ca59062037332679,
         type: 3}
       propertyPath: m_Name

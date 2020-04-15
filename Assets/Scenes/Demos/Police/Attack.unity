@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a1abf3e22854997be98ccf52e7a8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floackHolder: {fileID: 211670395}
   tileGenerator: {fileID: 1518846548}
   civilianGenerator: {fileID: 175541705}
 --- !u!4 &175541707
@@ -523,13 +524,23 @@ PrefabInstance:
     - target: {fileID: -4411837927842115126, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
       value: 
       objectReference: {fileID: 211670395}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: Initial_Horde_Size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: TestMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_Name
@@ -538,7 +549,7 @@ PrefabInstance:
     - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463286, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
