@@ -14,6 +14,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
         public GameObject PolicePrefab;
         public float BecomeAggressorProbability;
         public float SeekShelterRange;
+
         protected override void Awake()
         {
             base.Awake();
@@ -39,12 +40,14 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human
             HumanEvent humanEvent = @event as HumanEvent;
             if (humanEvent != null)
             {
-                if (humanEvent.EventType == HumanEvent.HumanEventType.PoliceAlert)
+                if (humanEvent.EventType == HumanEvent.HumanEventType.DestroyedShelter)
                 {
-                    //Debug.Log("Police just alerted us");
+                    this.stateMachine.ResetToDefaultState();
                 }
-
-                base.Consume(@event);
+                else
+                {
+                    base.Consume(@event);
+                }
             }
         }
     }
