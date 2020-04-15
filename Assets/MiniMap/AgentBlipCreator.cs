@@ -11,8 +11,13 @@ public class AgentBlipCreator : MonoBehaviour
     void Awake()
     {
         blipManager = GameObject.Find("AgentBlips");
-        blip = Instantiate(blipPrefab, blipManager.transform);
-        blip.GetComponent<MiniMapIcon>().target = this.transform;
+
+        if (blipPrefab && blipManager)
+        {
+            blip = Instantiate(blipPrefab, blipManager.transform);
+            blip.GetComponent<MiniMapIcon>().target = this.transform;
+        }
+
     }
 
     private void OnDestroy()

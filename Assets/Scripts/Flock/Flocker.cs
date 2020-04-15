@@ -137,7 +137,9 @@ public class Flocker : MonoBehaviour, System.IEquatable<Flocker>
             if (shelterHealth.GetHealth() == 0)
             {
                 collision.gameObject.transform.parent.gameObject.GetComponent<Shelter>().RemoveFromNavmesh();
-                StartCoroutine(miniMapPicHandler.takePictureAndSetTexture());
+
+                if (miniMapPicHandler)
+                    StartCoroutine(miniMapPicHandler.takePictureAndSetTexture());
             }
         }
         timer = 0;
