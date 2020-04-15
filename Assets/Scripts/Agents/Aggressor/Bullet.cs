@@ -14,6 +14,11 @@ namespace Agents.Aggressor
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void Start()
+        {
+            Destroy(this.gameObject, 1.0f);
+        }
+
         public void Shoot(Vector3 direction)
         {
             _rigidbody.AddForce(direction.normalized * _force, ForceMode.Impulse);
