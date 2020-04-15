@@ -62,19 +62,22 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
-            if (!DataHolder.EnemyPosition.HasValue)
+            if (!DataHolder.EnemyPosition.HasValue && !DataHolder.defend_target.HasValue)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
-
-            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance &&
+            if (DataHolder.EnemyPosition.HasValue)
+            {
+                if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance &&
                 DataHolder.defend_target == null)
-            {
-                //DataHolder.defend_target = null;
-                StateMachine.ResetToDefaultState();
-                return;
+                {
+                    //DataHolder.defend_target = null;
+                    StateMachine.ResetToDefaultState();
+                    return;
+                }
             }
+            
 
             DataHolder.Animator.SetBool("Walking", true);
             //if the target is null attempt to set a new target 
@@ -132,8 +135,15 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                     StateMachine.ResetToDefaultState();
                 }
             }
-
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+            Quaternion targetrotation = new Quaternion();
+            if (DataHolder.EnemyPosition.HasValue)
+            {
+                targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+            }
+            else
+            {
+                targetrotation = Quaternion.LookRotation(DataHolder.defend_target.Value - transform.position);
+            }
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
         }

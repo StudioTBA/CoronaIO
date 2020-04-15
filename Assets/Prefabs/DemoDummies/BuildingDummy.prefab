@@ -179,7 +179,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1024
-  NotifyRange: 50
+  NotifyRange: 500
 --- !u!65 &4518879489302206664
 BoxCollider:
   m_ObjectHideFlags: 0
