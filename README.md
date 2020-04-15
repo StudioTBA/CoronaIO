@@ -17,4 +17,4 @@ CoronaIO is a real-time strategy game in which the player has to control multipl
 
 ## Note About Last Submission 
 this build was submitted late to fix some incosistencies between what is seen in the 
-unity inspector vs in the build the mini map may still be incosistent.
+unity inspector vs in the build during the video appologies for the late submission.
