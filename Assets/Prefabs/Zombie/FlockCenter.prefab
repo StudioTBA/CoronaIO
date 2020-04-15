@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 186361449705234212}
   - component: {fileID: 3991184127833266252}
   - component: {fileID: -4411837927842115126}
+  - component: {fileID: 1319676019}
   m_Layer: 0
   m_Name: FlockCenter
   m_TagString: Untagged
@@ -105,7 +106,7 @@ MonoBehaviour:
   flockHolder: {fileID: 0}
   flockMoveSpeed: 20
   Initial_Horde_Size: 5
-  TestMode: 0
+  TestMode: 1
   minHordeSizeToSplit: 2
   active: 1
   always_flee: 0
@@ -239,3 +240,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blipPrefab: {fileID: 4285239265992938837, guid: 9392656369b9cf04a945d622c01ac858,
     type: 3}
+  comPrefab: {fileID: 4480060841421301538, guid: 0ed5e1ff584e30043965840d82709ddc,
+    type: 3}
+--- !u!114 &1319676019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956756031875463285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bb124c665379148ae459fc06000b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

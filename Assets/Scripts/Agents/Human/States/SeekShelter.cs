@@ -58,8 +58,8 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             NavMeshAgent agent = _dataHolder.NavMeshAgent;
             // GameObject[] shelters = _gameManager.Shelters;
             float smallestDistance = float.MaxValue;
-            int smallestDistanceIndex = 0;
-           
+            int smallestDistanceIndex = -1;
+
             for (var index = 0; index < colliders.Length; index++)
             {
                 var shelter = colliders[index].transform.GetChild(0).GetComponent<Shelter>();
