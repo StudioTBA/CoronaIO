@@ -16,9 +16,14 @@ public class ZombieHordeBlipCreator : MonoBehaviour
     {
         hordeManager = this.GetComponent<FlockManager>();
         centerOfMass = this.GetComponent<ZombieHordeCenterOfMass>();
+
         blipManager = GameObject.Find("ZombieHordeBlips");
-        blip = Instantiate(blipPrefab, blipManager.transform);
-        centerOfMass.createCenterOfMassGO(comPrefab, blip);
+
+        if (blipPrefab && blipManager)
+            blip = Instantiate(blipPrefab, blipManager.transform);
+
+        if (comPrefab && blip)
+            centerOfMass.createCenterOfMassGO(comPrefab, blip);
     }
 
     private void Update()

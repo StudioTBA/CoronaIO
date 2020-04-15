@@ -440,6 +440,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1177311094}
     m_Modifications:
+    - target: {fileID: -4411837927842115126, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
