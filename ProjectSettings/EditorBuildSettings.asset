@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Demos/Humans/Wander.unity
     guid: 4d2748e0fe2674277b521989334404d3
   - enabled: 1
-    path: Assets/Scenes/Demos/Police/Defend.unity
+    path: Assets/Scenes/Demos/Police/Attack.unity
     guid: 65600b542c68a45af8c77acbb805ad53
   - enabled: 1
     path: Assets/Scenes/Demos/Police/Wander.unity

@@ -48,7 +48,7 @@ namespace Com.StudioTBD.CoronaIO.Menus
         {
             MenuManager.mapScale = 3;
             MenuManager.isTest = false;
-            SceneManager.LoadScene(MenuManager.POLICE_DEFEND);
+            SceneManager.LoadScene(MenuManager.POLICE_ATTACK);
         }
 
         public void LoadPoliceWander()
