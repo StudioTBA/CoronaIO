@@ -18,7 +18,7 @@ public class DefencePoint : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
+        Debug.Log("Defence point attacked");
         if (other.tag == "Zombie")
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, NotifyRange, layer);
@@ -26,7 +26,7 @@ public class DefencePoint : MonoBehaviour
             if (colliders.Length > 0)
             {
                 HumanEvent @event = new HumanEvent(this.gameObject, HumanEvent.HumanEventType.PoliceAlert);
-
+                Debug.Log("police notified");
                 foreach (Collider c in colliders)
                 {
 

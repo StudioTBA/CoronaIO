@@ -1,5 +1,6 @@
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
 using Com.StudioTBD.CoronaIO.FMS.Extensions;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
     {
         private State _runningState;
         private State _attackingState;
+        private State _attackandretreat;
         public AggressorDataHolder DataHolder;
         private Vector3 currentTarget;
 
@@ -20,6 +22,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         protected override void OnStart()
         {
+            _attackandretreat = GetComponent<AttackAndRetreatState>();
             _attackingState = GetComponent<AttackingState>();
             DataHolder = (StateMachine as AggressorFsm).dataHolder;
         }
@@ -69,7 +72,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
         private Vector3 RandomPoint(Vector3 origin, float dist, int layermask)
         {
-            Vector3 randDirection = Random.insideUnitSphere * dist;
+            Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
 
             randDirection += origin;
 
@@ -79,5 +82,24 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 
             return navHit.position;
         }
+
+        public override void Consume(Event.Event @event)
+        {
+            if (!(@event is HumanEvent humanEvent)) return;
+
+            switch (humanEvent.EventType)
+            {
+                case HumanEvent.HumanEventType.SpottedZombie:
+                    break;
+                case HumanEvent.HumanEventType.PoliceAlert:
+                    DataHolder.defend_target = @event.Producer.transform.position;
+                    this.ChangeState(_attackandretreat);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+
     }
 }
