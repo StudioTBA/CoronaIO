@@ -22,15 +22,16 @@ namespace Com.StudioTBD.CoronaIO.Menus
         public static int LAUNCHER = 0;
         public static int MAINMENU = 1;
         public static int GAME = 2;
-        public static int HUMANS_FIND_SHELTER = 3;
-        public static int HUMANS_FLEE = 4;
+        public static int HUMANS_BECOME_POLICE = 3;
+        public static int HUMANS_FIND_SHELTER = 4;
         public static int HUMANS_WANDER = 5;
-        public static int POLICE_DEFEND = 6;
+        public static int POLICE_ATTACK = 6;
         public static int POLICE_WANDER = 7;
         public static int ZOMBIES_ARRIVE = 8;
-        public static int ZOMBIES_ATTACK = 9;
-        public static int ZOMBIES_FLEE = 10;
-        public static int ZOMBIES_WANDER = 11;
+        public static int ZOMBIES_FLEE = 9;
+        public static int ZOMBIES_WANDER_ATTACK = 10;
+        public static int GAME_OVER = 11;
+        public static int YOU_WIN = 12;
 
         // Other
         [Tooltip("Indicates if the scene loaded is a demo or not")]
@@ -62,9 +63,9 @@ namespace Com.StudioTBD.CoronaIO.Menus
 
         public static void QuitGame()
         {
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.isPlaying = false;
-            else
+            //if (Application.isEditor)
+            //    UnityEditor.EditorApplication.isPlaying = false;
+            //else
                 Application.Quit();
         }
 

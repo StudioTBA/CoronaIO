@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using Com.StudioTBD.CoronaIO.Menus;
 
 public class HordeOrganizer : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class HordeOrganizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHordes = MenuManager.maxNumOfHordes;
+
         hordeList = new List<FlockManager>();
         hordeList.Add(transform.parent.GetComponentInChildren<FlockManager>());
     }
@@ -31,9 +34,6 @@ public class HordeOrganizer : MonoBehaviour
             if (hordeList[activeHorde].SplitHorde(temp))
             {
                 hordeList.Add(temp);
-                dropDownMenu?.options.Add(new Dropdown.OptionData());
-                dropDownMenu?.SetValueWithoutNotify(activeHorde);
-                SwitchActive();
             }
             else
                 Destroy(temp.gameObject);
@@ -46,7 +46,7 @@ public class HordeOrganizer : MonoBehaviour
             {
                 foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
                 {
-                    zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                    //zombie.GetComponentInChildren<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 }
 
                 hordeList[activeHorde].AbsorbHorde(hordeList[hordeToAbsorb]);
@@ -56,8 +56,6 @@ public class HordeOrganizer : MonoBehaviour
                     activeHorde--;
             }
         }
-        //UpdateDropDown();
-        UpdateDropDown();
         UpdateHealth();
     }
 
@@ -88,27 +86,26 @@ public class HordeOrganizer : MonoBehaviour
         return index;
     }
 
-    public void SwitchActive()
-    {
-        hordeList[activeHorde].active = false;
-        activeHorde = dropDownMenu.value;
-        hordeList[activeHorde].active = true;
-    }
-
     public void SetActiveHordeTo(FlockManager horde)
     {
-        foreach(FlockManager flock in hordeList)
+        foreach (FlockManager flock in hordeList)
         {
-            flock.active = false;
+            if (flock)
+                flock.active = false;
         }
         horde.active = true;
 
-        for(int i = 0; i<hordeList.Count; i++)
+        for (int i = 0; i < hordeList.Count; i++)
+        {
+            if (!hordeList[i])
+                hordeList.RemoveAt(i);
+        }
+
+        for (int i = 0; i < hordeList.Count; i++)
         {
             if (hordeList[i].active)
             {
                 activeHorde = i;
-                return;
             }
         }
     }
@@ -127,6 +124,6 @@ public class HordeOrganizer : MonoBehaviour
     public void UpdateHealth()
     {
         if (hordeHealth == null) return;
-            hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
+        hordeHealth.text = hordeList[activeHorde].HordeSize().ToString();
     }
 }

@@ -35,15 +35,33 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
 
         public override void OnStateEnter(State newState)
         {
+            if (newState.StateName == "Attack")
+                notifyHorde("Attacking", true);
         }
 
         public override void OnStateChange(State oldState, State newState)
         {
+            
+
             Debug.Log($"{oldState?.StateName} - {newState?.StateName}", this);
         }
 
         public override void OnStateExit(State oldState)
         {
+
+            if (oldState.name == "Zombie_Attack")
+                notifyHorde("Attack", false);
         }
+
+        private void notifyHorde(string animation, bool isplaying)
+        {
+            foreach(Flocker Zombie in _dataHolder.FlockManager.getZombieList())
+            {
+                Zombie.animator.SetBool(animation, isplaying);
+            }
+           
+        }
+
+
     }
 }

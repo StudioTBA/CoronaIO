@@ -14,10 +14,10 @@ public class MiniMapPicHandler : MonoBehaviour
         mapHelper = GameObject.Find("MiniMapManager").GetComponent<MiniMapAndWorldHelper>();
         mapImg = GameObject.Find("MiniMap").GetComponent<UnityEngine.UI.RawImage>();
 
-        StartCoroutine("takePictureAndSetTexture");
+        StartCoroutine(takePictureAndSetTexture());
     }
 
-    IEnumerator takePictureAndSetTexture()
+    public IEnumerator takePictureAndSetTexture()
     {
 
         yield return new WaitForEndOfFrame();
@@ -46,7 +46,7 @@ public class MiniMapPicHandler : MonoBehaviour
         byte[] bytes = image.EncodeToPNG();
         Destroy(image);
 
-        System.IO.File.WriteAllBytes(Application.dataPath + "/MiniMap/MapPic.png", bytes);
+        System.IO.File.WriteAllBytes("Assets/Resources/MiniMapPic.png", bytes);
 
         // Reseting Light
         sceneLight.transform.rotation = originalRot;
@@ -54,13 +54,13 @@ public class MiniMapPicHandler : MonoBehaviour
 
         setMapImg();
 
-        Destroy(miniMapCamera);
+        //Destroy(miniMapCamera);
     }
 
     void setMapImg()
     {
         Texture2D map = new Texture2D(2, 2);
-        byte[] bytes = System.IO.File.ReadAllBytes(Application.dataPath + "/MiniMap/MapPic.png");
+        byte[] bytes = System.IO.File.ReadAllBytes("Assets/Resources/MiniMapPic.png");
         map.LoadImage(bytes);
 
         mapImg.texture = map;

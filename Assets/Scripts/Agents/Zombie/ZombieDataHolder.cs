@@ -11,5 +11,6 @@ namespace Com.StudioTBD.CoronaIO.Agent.Zombie
         public FlockManager FlockManager;
         public GameObject arriveParticleFXPrefab;
         public GameObject myArriveParticleFX;
+       
     }
 }

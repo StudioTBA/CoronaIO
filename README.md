@@ -13,3 +13,8 @@ CoronaIO is a real-time strategy game in which the player has to control multipl
 - Movement AI and/or Path-Finding to be used by NPCs: NavMesh for Humans and Zombies with tactical weighting, Arrive, Flee, Wander
 - Decision-Making to be used by NPCs: Finite State Machine
 - Group AI to be used by NPCs: Flocking, Strategic Movement
+
+
+## Note About Last Submission 
+this build was submitted late to fix some incosistencies between what is seen in the 
+unity inspector vs in the build during the video appologies for the late submission.

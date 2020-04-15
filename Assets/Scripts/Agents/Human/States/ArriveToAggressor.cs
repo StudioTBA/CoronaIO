@@ -17,7 +17,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
             return "ArriveToAggressor";
         }
 
-        protected override void OnStart()
+        public override void OnStateEnter()
         {
             _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
         }
@@ -47,6 +47,10 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
         {
             if (other.gameObject.GetComponent<PoliceAgent>())
             {
+                if(_dataHolder == null)
+                {
+                    _dataHolder = (StateMachine as HumanStateMachine)?.DataHolder;
+                }
                 var civilianPos = transform;
                 var position = civilianPos.position;
                 if (_dataHolder.PolicePrefab == null)
@@ -56,8 +60,7 @@ namespace Com.StudioTBD.CoronaIO.Agent.Human.States
                 }
 
                 var aggressor = Instantiate(_dataHolder.PolicePrefab, position, civilianPos.rotation);
-                aggressor.transform.localScale = new Vector3(GameManager.HumanScale, GameManager.HumanScale,
-                    GameManager.HumanScale);
+                aggressor.transform.localScale = transform.localScale*5;
                 aggressor.GetComponent<NavMeshAgent>().Warp(position);
                 Destroy(this.gameObject);
             }

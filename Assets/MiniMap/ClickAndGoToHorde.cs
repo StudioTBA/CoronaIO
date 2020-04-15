@@ -22,7 +22,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         miniMap = GameObject.Find("MiniMap");
         cameraHandler = GameObject.Find("CameraHandler");
         hordeOrganizer = GameObject.Find("HordeOrganizer").GetComponent<HordeOrganizer>();
-        hordeManager = this.GetComponent<MiniMapIcon>().target.gameObject;
+        hordeManager = this.GetComponent<MiniMapIcon>().target.GetComponent<COMFlockCenter>().FlockCenter;
     }
 
     private void Update()
@@ -39,10 +39,10 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
             if (eventData.pointerPress.Equals(HordeHelper.Instance.SelectedHorde))
             {
-                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+                HordeHelper.Instance.LockedHorde.GetComponentInParent<ClickAndGoToHorde>().resetColor();
                 HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
-                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
-                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponent<FlockManager>());
+                HordeHelper.Instance.LockedHorde.GetComponentInParent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponentInParent<FlockManager>());
                 followHorde = true;
                 HordeHelper.Instance.SelectedHorde = null;
                 return;
@@ -58,14 +58,14 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
             }
 
             HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
-            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            HordeHelper.Instance.SelectedHorde.GetComponentInParent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
             return;
         }
 
         if (HordeHelper.Instance.SelectedHorde == null)
         {
             HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
-            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            HordeHelper.Instance.SelectedHorde.GetComponentInParent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
             return;
         }
 
@@ -74,16 +74,16 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
             if (eventData.pointerPress.Equals(HordeHelper.Instance.SelectedHorde))
             {
                 HordeHelper.Instance.LockedHorde = HordeHelper.Instance.SelectedHorde;
-                HordeHelper.Instance.LockedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
-                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponent<FlockManager>());
+                HordeHelper.Instance.LockedHorde.GetComponentInParent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.green;
+                hordeOrganizer.SetActiveHordeTo(hordeManager.GetComponentInParent<FlockManager>());
                 followHorde = true;
                 HordeHelper.Instance.SelectedHorde = null;
                 return;
             }
 
-            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().resetColor();
+            HordeHelper.Instance.SelectedHorde.GetComponentInParent<ClickAndGoToHorde>().resetColor();
             HordeHelper.Instance.SelectedHorde = eventData.pointerPress;
-            HordeHelper.Instance.SelectedHorde.GetComponent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
+            HordeHelper.Instance.SelectedHorde.GetComponentInParent<ClickAndGoToHorde>().blipOnMiniMap.color = Color.yellow;
             return;
         }
     }
@@ -114,7 +114,8 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
         foreach (Flocker zombie in zombiesInHorde)
         {
             centerOfMass += zombie.transform.position;
-            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 250f);
+            zombie.GetComponentInChildren<SkinnedMeshRenderer>().materials[1].SetFloat("_Outline", 0.02f);
+
         }
 
         return centerOfMass /= zombiesInHorde.Count;
@@ -128,7 +129,7 @@ public class ClickAndGoToHorde : MonoBehaviour, IPointerClickHandler
 
         foreach (Flocker zombie in zombiesInHorde)
         {
-            zombie.GetComponent<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+            zombie.GetComponentInChildren<SkinnedMeshRenderer>().materials[1].SetFloat("_Outline", 0f);
         }
     }
 

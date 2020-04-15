@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Com.StudioTBD.CoronaIO.Agent.Aggressors;
-
+using Agents.Aggressor;
 
 namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
 {
@@ -39,16 +39,27 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
             {
                 yield return new WaitForSeconds(DataHolder.weapon.rateOfFire);
 
-                Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
-                    DataHolder.weapon.rateOfFire * 1 / 2, true);
+                var position = transform.position + (transform.forward * 50f);
+                var bulletGameObject =
+                    Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
+                var bullet = bulletGameObject.GetComponent<Bullet>();
+                bullet.transform.localScale = transform.localScale;
+                bullet.Shoot(transform.forward);
+
+
+                //Debug.DrawLine(transform.position, DataHolder.EnemyPosition.Value, Color.red,
+                //    DataHolder.weapon.rateOfFire * 1 / 2, true);
             }
         }
 
         public override void Execute()
         {
             //turn to look at enemy 
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
-
+            Quaternion targetrotation = new Quaternion();
+            if (DataHolder.EnemyPosition.HasValue)
+                targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+            else
+                targetrotation = Quaternion.LookRotation(transform.position - DataHolder.defend_target.Value);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
         }
 

@@ -11,7 +11,8 @@ namespace Com.StudioTBD.CoronaIO.FMS
         {
             PoliceAlert,
             SpottedZombie,
-            EnteredShelter
+            EnteredShelter,
+            DestroyedShelter
         }
 
         public readonly HumanEventType EventType;

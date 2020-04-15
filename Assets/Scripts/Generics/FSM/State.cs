@@ -54,12 +54,12 @@ namespace Com.StudioTBD.CoronaIO.FMS
 
         private void OnEnable()
         {
-            Debug.Log($"OnEnable {_stateName}");
+            //Debug.Log($"OnEnable {_stateName}");
         }
 
         private void OnDisable()
         {
-            Debug.Log($"OnDisable {_stateName}");
+            //Debug.Log($"OnDisable {_stateName}");
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// </summary>
         public virtual void OnStateEnter()
         {
-            Debug.Log($"[{StateName}] Enabling state");
+            //Debug.Log($"[{StateName}] Enabling state");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Com.StudioTBD.CoronaIO.FMS
         /// </summary>
         public virtual void OnStateExit()
         {
-            Debug.Log($"[{StateName}] Disabling state");
+            //Debug.Log($"[{StateName}] Disabling state");
             // this.enabled = false;
         }
 

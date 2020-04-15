@@ -12,6 +12,8 @@ namespace Com.StudioTBD.CoronaIO
         public GameObject humanPrefab;
         public GameObject policePrefab;
 
+        public List<GameObject> Humans { get; private set; } = new List<GameObject>();
+
         // Probabilities
         [Tooltip("Probability of creating a civilian in a particular spawn. " +
             "For example, if set to 20, the probability of having a character " +
@@ -22,6 +24,7 @@ namespace Com.StudioTBD.CoronaIO
         public float policeProbability;
 
         private GameManager gameManager;
+        private GameObject I;
 
         #endregion
 
@@ -52,9 +55,13 @@ namespace Com.StudioTBD.CoronaIO
                     // If random number is within the probability of spawning police
                     // Else spawn a human
                     if (probability < policeProbability)
-                        Instantiate(policePrefab, spawn.transform);
+                        I = Instantiate(policePrefab, spawn.transform);
                     else
-                        Instantiate(humanPrefab, spawn.transform);
+                        I = Instantiate(humanPrefab, spawn.transform);
+
+                    Humans.Add(I);
+
+                    
                 }
             }
         }

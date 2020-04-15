@@ -52,7 +52,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 var bulletGameObject =
                     Instantiate(DataHolder.weapon.BulletPrefab, position, transform.rotation);
                 var bullet = bulletGameObject.GetComponent<Bullet>();
-                bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+                bullet.transform.localScale = transform.localScale;
                 bullet.Shoot(transform.forward);
             }
         }
@@ -62,21 +62,24 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
         /// </summary>
         public override void Execute()
         {
-            if (!DataHolder.EnemyPosition.HasValue)
+            if (!DataHolder.EnemyPosition.HasValue && !DataHolder.defend_target.HasValue)
             {
                 StateMachine.ResetToDefaultState();
                 return;
             }
-
-            if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance &&
+            if (DataHolder.EnemyPosition.HasValue)
+            {
+                if (Vector3.Distance(transform.position, DataHolder.EnemyPosition.Value) >= DataHolder.retreatDistance &&
                 DataHolder.defend_target == null)
-            {
-                //DataHolder.defend_target = null;
-                StateMachine.ResetToDefaultState();
-                return;
+                {
+                    //DataHolder.defend_target = null;
+                    StateMachine.ResetToDefaultState();
+                    return;
+                }
             }
+            
 
-
+            DataHolder.Animator.SetBool("Walking", true);
             //if the target is null attempt to set a new target 
             if (DataHolder.defend_target == null && !movingToDefend)
             {
@@ -103,6 +106,7 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 {
                     // change state to defending
                     movingToDefend = false;
+                    DataHolder.Animator.SetBool("Walking", false);
                     StateMachine.ChangeState(_defendingState);
                     return;
                 }
@@ -127,11 +131,19 @@ namespace Com.StudioTBD.CoronaIO.FMS.Aggressors
                 else
                 {
                     // Reach destination
+                    DataHolder.Animator.SetBool("Walking", false);
                     StateMachine.ResetToDefaultState();
                 }
             }
-
-            Quaternion targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+            Quaternion targetrotation = new Quaternion();
+            if (DataHolder.EnemyPosition.HasValue)
+            {
+                targetrotation = Quaternion.LookRotation(DataHolder.EnemyPosition.Value - transform.position);
+            }
+            else
+            {
+                targetrotation = Quaternion.LookRotation(DataHolder.defend_target.Value - transform.position);
+            }
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetrotation, 0.8f);
         }
