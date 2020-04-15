@@ -46,7 +46,7 @@ public class HordeOrganizer : MonoBehaviour
             {
                 foreach (Flocker zombie in hordeList[hordeToAbsorb].getZombieList())
                 {
-                    zombie.GetComponentInChildren<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
+                    //zombie.GetComponentInChildren<MeshRenderer>().materials[1].SetFloat("_Outline", 0f);
                 }
 
                 hordeList[activeHorde].AbsorbHorde(hordeList[hordeToAbsorb]);
