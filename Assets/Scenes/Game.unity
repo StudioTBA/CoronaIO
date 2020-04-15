@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27225807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -359.4, y: 0, z: 0}
+  m_LocalPosition: {x: 358, y: 0, z: 195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 752727028}
@@ -744,6 +744,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 27225808}
     m_Modifications:
+    - target: {fileID: 6956756031875463280, guid: 085535e0d4b9d1448903471c117edab5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: flockHolder
@@ -834,6 +839,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1711837362}
+    - target: {fileID: 3187935670922395302, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 257
+      objectReference: {fileID: 0}
     - target: {fileID: 3187935670991697596, guid: b65c0ccd5cb8d8c499b83084f4a6c09b,
         type: 3}
       propertyPath: m_LocalPosition.x
