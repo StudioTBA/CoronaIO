@@ -105,7 +105,7 @@ MonoBehaviour:
     type: 3}
   flockHolder: {fileID: 0}
   flockMoveSpeed: 20
-  Initial_Horde_Size: 5
+  Initial_Horde_Size: 0
   TestMode: 1
   minHordeSizeToSplit: 2
   active: 1
