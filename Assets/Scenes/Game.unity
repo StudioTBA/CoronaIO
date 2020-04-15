@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a1abf3e22854997be98ccf52e7a8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floackHolder: {fileID: 752727027}
   tileGenerator: {fileID: 3023379428997182521}
   civilianGenerator: {fileID: 308688802}
 --- !u!114 &308688802
