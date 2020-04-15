@@ -106,7 +106,7 @@ MonoBehaviour:
   flockHolder: {fileID: 0}
   flockMoveSpeed: 20
   Initial_Horde_Size: 0
-  TestMode: 1
+  TestMode: 0
   minHordeSizeToSplit: 2
   active: 1
   always_flee: 0
