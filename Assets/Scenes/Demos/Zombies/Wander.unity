@@ -658,12 +658,12 @@ PrefabInstance:
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: Initial_Horde_Size
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463282, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
       propertyPath: always_flee
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6956756031875463285, guid: 085535e0d4b9d1448903471c117edab5,
         type: 3}
